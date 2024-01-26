@@ -9,6 +9,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Add event listeners for the action buttons
+    document.getElementById("attack-button").addEventListener("click", function () {
+        alert("Attcking the monster!");
+    });
+
+    document.getElementById("run-button").addEventListener("click", function () {
+        alert("Running away from the monster!");
+    });
+
+    document.getElementById("potion-button").addEventListener("click", function () {
+        alert("Using a health potion!");
+    });
+
     //Default game
     runGame("default");
 });
