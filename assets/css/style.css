@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.game-container {
+    position: relative;
+    width: 1000px;
+    /* Adjust the width as needed */
+    height: 60vh;
+    background-color: gray;
+}
+
+.character-info,
+.monster-info {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 50%;
+    /* Adjust the width as needed */
+    text-align: center;
+    /* Align text in the center */
+}
+
+.character-info {
+    top: 0;
+    left: 0;
+}
+
+.monster-info {
+    top: 0;
+    right: 0;
+}
+
+.life-bar {
+    background-color: #5cb85c;
+    /* Green color for life bars */
+    padding: 5px;
+}
+
+.stats {
+    margin-top: 10px;
+}
+
+.button-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    /* Adjust the width as needed */
+    padding: 10px;
+}
+
+.button {
+    flex: 1;
+    margin: 0 5px;
+    /* Adjust the margin as needed */
+    padding: 10px;
+    background-color: #007bff;
+    /* Blue color for buttons */
+    color: white;
+    cursor: pointer;
+}
