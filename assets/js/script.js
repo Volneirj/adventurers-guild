@@ -33,6 +33,10 @@ let playerAttack = 20;
 let playerDefense = 10;
 let playerHealthPotions = 3;
 
+//Player and monster life inicialization
+let currentMonster = null; // Add this line to initialize the variable
+let currentPlayerHealthPoints = playerHealthPoints; // Add this line to initialize the variable
+
 // Monster List
 var monsters = [
     new Monster("Goblin", 50, 10, 0, "levelone"),
@@ -54,16 +58,19 @@ function Monster(name, healthPoints, attack, defense, gameType) {
 
 // Main Game Loop
 function runGame(gameType) {
-    selectedMonster = dungeon(gameType);  
+    //Monster life bar/Status
+    selectedMonster = dungeon(gameType);    
     let monsterLifeBar = document.getElementById("monster-life");
-    let monsterStats = document.getElementById("monster-stats");
+    let monsterStats = document.getElementById("monster-stats");    
     monsterLifeBar.textContent = selectedMonster.name + " " + "HP:" + selectedMonster.healthPoints;
     monsterStats.textContent = "Att: " + selectedMonster.attack + " Def: " + selectedMonster.defense;
+    //Hero life bar/Status
     let characterLife = document.getElementById("character-life");
-    characterLife.textContent = "Hero HP: " + playerHealthPoints;
     let characterStats = document.getElementById("character-stats");
+    characterLife.textContent = "Hero HP: " + playerHealthPoints;    
     characterStats.textContent = "Att: " + playerAttack + " Def: " + playerDefense + " Health Potions: " + playerHealthPotions;
 
+    //When start the game start with default game to not toggle the buttons
     if (gameType !== "default") {
         toggleButtons(true);
     }
@@ -104,11 +111,13 @@ function attackButton() {
     // Calculate damage dealt and update monster health
     let damageDealt = calculateDamage(playerAttack, selectedMonster.defense);
     selectedMonster.healthPoints -= damageDealt;
+    //Call Function to update Health
     updateMonsterHealth();
 
     // Calculate damage taken and update player health
     let damageTaken = calculateDamage(selectedMonster.attack, playerDefense);
     currentPlayerHealthPoints -= damageTaken;
+    //Call Function to update Health
     updatePlayerLife();
 
     // Check game status after the attack
