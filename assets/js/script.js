@@ -104,23 +104,43 @@ function attackButton() {
     // Calculate damage dealt and update monster health
     let damageDealt = calculateDamage(playerAttack, selectedMonster.defense);
     selectedMonster.healthPoints -= damageDealt;
-    // Update monster life 
-    let monsterLifeBar = document.getElementById("monster-life");
-    monsterLifeBar.textContent = `${selectedMonster.name} HP: ${selectedMonster.healthPoints}`;
+    updateMonsterHealth();
 
     // Calculate damage taken and update player health
     let damageTaken = calculateDamage(selectedMonster.attack, playerDefense);
     currentPlayerHealthPoints -= damageTaken;
-
-    // Update Player life
-    let playerLifeBar = document.getElementById("character-life");
-    playerLifeBar.textContent = `Hero HP: ${currentPlayerHealthPoints}`;
+    updatePlayerLife();
 
     // Check game status after the attack
     checkGameStatus();
+}
+
+//Function to Update playerLife
+function updatePlayerLife() {
+    let playerLifeBar = document.getElementById("character-life");
+    playerLifeBar.textContent = `Hero HP: ${currentPlayerHealthPoints}`;
+}
+
+// Function to update monster health
+function updateMonsterHealth() {
+    let monsterLifeBar = document.getElementById("monster-life");
+    monsterLifeBar.textContent = `${selectedMonster.name} HP: ${selectedMonster.healthPoints}`;
 }
 
 // Function to calculate damage
 function calculateDamage(attackValue, defenseValue) {
     return Math.max(0, Math.floor(Math.random() * attackValue) - Math.floor(Math.random() * defenseValue));
 }
+
+//Function Get the result of the battle
+function checkGameStatus(){
+     if (currentPlayerHealthPoints <= 0) {
+    // Player is defeated, handle game over logic
+    alert("Game Over - Player Defeated");
+    runGame("default");
+    } else if (currentMonster && currentMonster.healthPoints <= 0) {
+    // Monster is defeated, handle victory logic
+            alert("Victory - Monster Defeated");
+            runGame("default");
+        }
+    }
