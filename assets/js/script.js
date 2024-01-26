@@ -1,0 +1,57 @@
+// Wait for the DOM to finish loading before running the game
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the button elements and add Event Listeners to them
+    let buttons = document.getElementsByClassName("button");
+    for (let button of buttons) {
+        button.addEventListener("click", function () {
+            let gameType = this.getAttribute("dungeon");
+            runGame(gameType);
+        });
+    }
+
+    // Initial run with a default gameType
+    runGame("levelone");
+});
+
+// Game Variables
+// Hero stats
+let playerHealthPoints = 100;
+let playerAttack = 20;
+let playerDefense = 10;
+let playerHealthPotions = 3;
+
+// Monster List
+var monsters = [
+    new Monster("Goblin", 50, 10, 0, "levelone"),
+    new Monster("Goblin Paladin", 100, 20, 20, "leveltwo"),
+    new Monster("Hobgoblin", 250, 35, 25, "levelthree"),
+    new Monster("Goblin Shaman", 400, 40, 20, "levelfour"),
+    new Monster("Goblin Champion", 1000, 100, 100, "levelfive")
+];
+
+// Function to create the monsters
+function Monster(name, healthPoints, attack, defense, gameType) {
+    this.name = name;
+    this.healthPoints = healthPoints;
+    this.attack = attack;
+    this.defense = defense;
+    this.gameType = gameType;
+}
+
+// Main Game Loop
+function runGame(gameType) {
+    let selectedMonster = dungeon(gameType);
+    let monsterLifeBar = document.getElementById("monster-life");
+    let monsterStats = document.getElementById("monster-stats");
+    monsterLifeBar.textContent = selectedMonster.name + " " + "HP:" + selectedMonster.healthPoints;
+    monsterStats.textContent = "Att: " + selectedMonster.attack + " Def: " + selectedMonster.defense;
+    let characterLife = document.getElementById("character-life");
+    characterLife.textContent = "Hero HP: " + playerHealthPoints;
+    let characterStats = document.getElementById("character-stats");
+    characterStats.textContent = "Att: " + playerAttack + " Def: " + playerDefense + " Health Potions: " + playerHealthPotions;
+}
+
+// This function loads the monster and adds the status to start the battle
+function dungeon(gameType) {
+    return monsters.find(monster => monster.gameType === gameType);
+}
