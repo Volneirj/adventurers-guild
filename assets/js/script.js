@@ -182,9 +182,10 @@ function checkGameStatus() {
         // Monster is defeated, handle victory logic
         if (confirm("Victory - Monster Defeated! Do you want to restart?")) {
             updatePlayerLife();
+            levelUp();
             runGame("default");
             toggleButtons(false);
-            levelUp();
+            
         }              
         
     }
@@ -224,14 +225,17 @@ function levelUp(){
     alert("Level up! Your stats have increased.\n You Increased 5 Health Point.\n You Increased 1 Attack Point.\n You Increased 1 Defense Point");
     updatePlayerStats();
     updatePlayerLife();
+
     //Small chance to get an item which will give a bonus status
     if (Math.random()<= 0.05){
         dropItem(gameType);
     }
-    if (Math.random()<= 0.25){
-        ++currentPlayerHealthPotions;
-        alert("The" + currentMonster + "drop a Health Potion");
-    }
+
+    if (Math.random() <= 0.99) {
+        alert("The " + selectedMonster.name + " dropped a Health Potion");
+        currentPlayerHealthPotions++;
+        updatePlayerStats(); 
+}
 }
 
 // Function for drop item related to each Dungeon
