@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add event listeners for the action buttons
     document.getElementById("attack-button").addEventListener("click", function () {
-        alert("Attcking the monster!");
+        attackButton();
     });
 
     document.getElementById("run-button").addEventListener("click", function () {
@@ -97,4 +97,30 @@ function toggleButtons(showActionButtons) {
             document.getElementById(actionButton).style.display = "none";
         }
     }
+}
+
+//Function for attack Button
+function attackButton() {
+    // Calculate damage dealt and update monster health
+    let damageDealt = calculateDamage(playerAttack, selectedMonster.defense);
+    selectedMonster.healthPoints -= damageDealt;
+    // Update monster life 
+    let monsterLifeBar = document.getElementById("monster-life");
+    monsterLifeBar.textContent = `${selectedMonster.name} HP: ${selectedMonster.healthPoints}`;
+
+    // Calculate damage taken and update player health
+    let damageTaken = calculateDamage(selectedMonster.attack, playerDefense);
+    currentPlayerHealthPoints -= damageTaken;
+
+    // Update Player life
+    let playerLifeBar = document.getElementById("character-life");
+    playerLifeBar.textContent = `Hero HP: ${currentPlayerHealthPoints}`;
+
+    // Check game status after the attack
+    checkGameStatus();
+}
+
+// Function to calculate damage
+function calculateDamage(attackValue, defenseValue) {
+    return Math.max(0, Math.floor(Math.random() * attackValue) - Math.floor(Math.random() * defenseValue));
 }
