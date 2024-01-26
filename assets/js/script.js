@@ -157,6 +157,7 @@ function checkGameStatus() {
         if (confirm("Game Over - Player Defeated! Do you want to restart?")) {
             runGame("default");
             toggleButtons(false);
+            resetPlayerstats();
         }
     } else if (selectedMonster && selectedMonster.healthPoints <= 0) {
         // Monster is defeated, handle victory logic
@@ -173,5 +174,7 @@ function resetPlayerstats(){
         playerHealthPoints = 100;
         playerAttack = 20;
         playerDefense = 5;
-        playerHealthPotions = 5;    
+        playerHealthPotions = 5;
+        currentPlayerHealthPoints = playerHealthPoints;
+
     }
