@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     document.getElementById("potion-button").addEventListener("click", function () {
-        alert("Using a health potion!");
+            if (confirm("Using a health potion!")){
+            useHealthPotion();            
+        }
     });
 
     document.getElementById("run-button").addEventListener("click", function () {
@@ -40,8 +42,12 @@ let playerDefense = 5;
 let playerHealthPotions = 5;
 
 //Player and monster life inicialization
-let currentMonster = null; // Add this line to initialize the variable
-let currentPlayerHealthPoints = playerHealthPoints; // Add this line to initialize the variable
+let currentMonster = null; 
+let currentPlayerHealthPoints = playerHealthPoints; 
+let currentPlayerAttack = playerAttack;
+let currentPlayerDefense = playerDefense;
+let currentPlayerHealthPotions = playerHealthPotions;
+
 
 // Monster List
 var monsters = [
@@ -76,8 +82,9 @@ function runGame(gameType) {
     let characterLife = document.getElementById("character-life");
     let characterStats = document.getElementById("character-stats");
     characterLife.textContent = "Hero HP: " + playerHealthPoints;    
-    characterStats.textContent = "Att: " + playerAttack + " Def: " + playerDefense + " Health Potions: " + playerHealthPotions;
-
+    characterStats.textContent = "Att: " + currentPlayerAttack + " Def: " + currentPlayerDefense + " Health Potions: " + currentPlayerHealthPotions;
+    //Update the HeroBar after the battle
+    updatePlayerLife();
     //When start the game start with default game to not toggle the buttons
     if (gameType !== "default") {
         toggleButtons(true);
@@ -182,4 +189,20 @@ function resetPlayerstats(){
         playerDefense = 5;
         playerHealthPotions = 5;
         currentPlayerHealthPoints = playerHealthPoints;
-    }
+}
+
+//Function for use health Potions
+function useHealthPotion(){
+    if (currentPlayerHealthPotions >= 1){
+        currentPlayerHealthPoints += 30;
+        --currentPlayerHealthPotions;
+        updatePlayerLife();
+        console.log("You have left:" + currentPlayerHealthPotions + " Health Potions!");
+        characterStats = document.getElementById("character-stats");
+        characterStats.textContent = `Att: ${currentPlayerAttack} Def: ${currentPlayerDefense} Health Potions: ${currentPlayerHealthPotions}`;
+    }else if (currentPlayerHealthPotions <= 0) {
+        alert("You are out of potions");
+    }    
+}
+
+
