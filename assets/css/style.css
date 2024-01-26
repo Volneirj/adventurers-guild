@@ -38,6 +38,16 @@ main {
     padding: 20px; 
 }
 
+.monster-image {
+    position: absolute;
+    bottom: 100px;
+    left: 50px; 
+    width: 60%; 
+    max-width: 200px; 
+    height: auto;
+    z-index: 2; 
+}
+
 /* Hero and Monster styles */
 .character-info,
 .monster-info {
@@ -65,6 +75,7 @@ main {
 
 .stats {
     margin-top: 10px;
+    color:white;
 }
 
 /* Button Styles */
