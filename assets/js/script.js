@@ -13,15 +13,21 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("attack-button").addEventListener("click", function () {
         attackButton();
     });
-
-    document.getElementById("run-button").addEventListener("click", function () {
-        alert("Running away from the monster!");
-    });
-
+    
     document.getElementById("potion-button").addEventListener("click", function () {
         alert("Using a health potion!");
     });
 
+    document.getElementById("run-button").addEventListener("click", function () {
+
+        if (confirm("Running away from the monster!")){
+            //Back to the Main screen
+            runGame("default");
+            //Back to the Main screen
+            toggleButtons(false);
+
+        }
+    });
     //Default game
     runGame("default");
 });
@@ -176,5 +182,4 @@ function resetPlayerstats(){
         playerDefense = 5;
         playerHealthPotions = 5;
         currentPlayerHealthPoints = playerHealthPoints;
-
     }
