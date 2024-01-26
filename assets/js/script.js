@@ -36,9 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Game Variables
 // Hero stats
+let maxPlayerHealth =100;
 let playerHealthPoints = 100;
-let playerAttack = 20;
-let playerDefense = 5;
+let playerAttack = 25;
+let playerDefense = 10;
 let playerHealthPotions = 5;
 
 //Player and monster life inicialization
@@ -48,14 +49,13 @@ let currentPlayerAttack = playerAttack;
 let currentPlayerDefense = playerDefense;
 let currentPlayerHealthPotions = playerHealthPotions;
 
-
 // Monster List
 var monsters = [
     new Monster("Goblin", 100, 20, 0, "levelone", "Short Sword"),
     new Monster("Goblin Paladin", 150, 35, 20, "leveltwo", "Iron Shield"),
     new Monster("Hobgoblin", 250, 55, 25, "levelthree", "Life Totem"),
     new Monster("Goblin Shaman", 500, 75, 20, "levelfour", "Clarity Potion"),
-    new Monster("Goblin Champion", 1500, 125, 125, "levelfive", "Long Sword"),
+    new Monster("Champion", 1500, 125, 125, "levelfive", "Long Sword"),
     new Monster("None", 0, 0, 0, "default", "none")
 ];
 
@@ -70,14 +70,14 @@ function Monster(name, healthPoints, attack, defense, gameType, itemDrop) {
     this.itemDrop = itemDrop;
 }
 
-// Main Game Loop
+//Main Game Loop
 function runGame(gameType) {
     //Monster life bar/Status
     selectedMonster = dungeon(gameType);
     console.log(selectedMonster);    
     let monsterLifeBar = document.getElementById("monster-life");
     let monsterStats = document.getElementById("monster-stats");    
-    monsterLifeBar.textContent = selectedMonster.name + " " + "HP:" + selectedMonster.healthPoints;
+    monsterLifeBar.textContent = selectedMonster.name + " HP:" + selectedMonster.healthPoints;
     monsterStats.textContent = "Att: " + selectedMonster.attack + " Def: " + selectedMonster.defense;
     //Hero life bar/Status
     let characterLife = document.getElementById("character-life");
@@ -91,12 +91,12 @@ function runGame(gameType) {
         toggleButtons(true);
     }
 }
-// This function loads the monster and adds the status to start the battle
+//This function loads the monster and adds the status to start the battle
 function dungeon(gameType) {
     //Select the monster from the monster array
     let selectedMonster = monsters.find(monster => monster.gameType === gameType);
 
-    // Reset the monster's health to its initial value
+    //Reset the monster's health to its initial value
     selectedMonster.healthPoints = selectedMonster.initialHealth;
     return selectedMonster;
 }
@@ -107,20 +107,20 @@ function toggleButtons(showActionButtons) {
     let actionButtons = ["attack-button", "run-button", "potion-button"];
 
     if (showActionButtons) {
-        // Hide dungeon buttons
+        //Hide dungeon buttons
         for (let button of dungeonButtons) {
             button.style.display = "none";
         }
-        // Show action buttons
+        //Show action buttons
         for (let actionButton of actionButtons) {
             document.getElementById(actionButton).style.display = "inline-block";
         }
     } else {
-        // Show dungeon buttons
+        //Show dungeon buttons
         for (let button of dungeonButtons) {
             button.style.display = "inline-block";
         }
-        // Hide action buttons
+        //Hide action buttons
         for (let actionButton of actionButtons) {
             document.getElementById(actionButton).style.display = "none";
         }
@@ -129,40 +129,42 @@ function toggleButtons(showActionButtons) {
 
 //Function for attack Button
 function attackButton() {
-    // Calculate damage dealt and update monster health
+    //Calculate damage dealt and update monster health
     let damageDealt = calculateDamage(playerAttack, selectedMonster.defense);
+    console.log("You damaged the " + selectedMonster.name + " for "+ damageDealt + " hit points");
     selectedMonster.healthPoints -= damageDealt;
     //Call Function to update Health
     updateMonsterHealth();
 
-    // Calculate damage taken and update player health
+    //Calculate damage taken and update player health
     let damageTaken = calculateDamage(selectedMonster.attack, playerDefense);
+    console.log("The "+ selectedMonster.name + " dameged you for " + damageTaken+ " hit points");
     currentPlayerHealthPoints -= damageTaken;
     //Call Function to update Health
     updatePlayerLife();
 
-    // Check game status after the attack
+    //Check game status after the attack
     checkGameStatus();
 }
 
 //Function to Update playerLife
 function updatePlayerLife() {
     let playerLifeBar = document.getElementById("character-life");
-    playerLifeBar.textContent = `Hero HP: ${currentPlayerHealthPoints}`;
+    playerLifeBar.textContent = `Hero HP: ${currentPlayerHealthPoints}/${maxPlayerHealth} `;
 }
-// Function To update Player stats
+//Function To update Player stats
 function updatePlayerStats(){
     characterStats = document.getElementById("character-stats");
     characterStats.textContent = `Att: ${currentPlayerAttack} Def: ${currentPlayerDefense} Health Potions: ${currentPlayerHealthPotions}`;
 }
 
-// Function to update monster health
+//Function to update monster health
 function updateMonsterHealth() {
     let monsterLifeBar = document.getElementById("monster-life");
     monsterLifeBar.textContent = `${selectedMonster.name} HP: ${selectedMonster.healthPoints}`;
 }
 
-// Function to calculate damage
+//Function to calculate damage
 function calculateDamage(attackValue, defenseValue) {
     return Math.max(0, Math.floor(Math.random() * attackValue) - Math.floor(Math.random() * defenseValue));
 }
@@ -182,21 +184,16 @@ function checkGameStatus() {
         // Monster is defeated, handle victory logic
         if (confirm("Victory - Monster Defeated! Do you want to restart?")) {
             updatePlayerLife();
-            levelUp();
+            levelUp(selectedMonster.gameType);
             runGame("default");
-            toggleButtons(false);
-            
-        }              
-        
+            toggleButtons(false);           
+        }   
     }
 }
 
 //Function to reset player stats in case of death
 function resetPlayerstats(){
-    playerHealthPoints = 100;
-    playerAttack = 20;
-    playerDefense = 5;
-    playerHealthPotions = 5;
+    maxPlayerHealth = 100;
     currentPlayerHealthPoints = playerHealthPoints;
     currentPlayerAttack = playerAttack;
     currentPlayerDefense = playerDefense;
@@ -206,43 +203,89 @@ function resetPlayerstats(){
 //Function for use health Potions
 function useHealthPotion(){
     if (currentPlayerHealthPotions >= 1){
-        currentPlayerHealthPoints += 30;
+        //Increase the HP based on 25% of maximum health
+        let healingAmount = Math.floor(0.25 * maxPlayerHealth);
+        currentPlayerHealthPoints += healingAmount;
+        alert("You Healed " + healingAmount + "Points");
+        //Garantee to not increase more than the maximum health using potions
+        if (currentPlayerHealthPoints > maxPlayerHealth) {
+            currentPlayerHealthPoints = maxPlayerHealth;
+        }
+        // Decrease the Current health Potions
         --currentPlayerHealthPotions;
         updatePlayerLife();
-        console.log("You have left:" + currentPlayerHealthPotions + " Health Potions!");
         updatePlayerStats();
+        console.log("You have left:" + currentPlayerHealthPotions + " Health Potions!");      
     }else if (currentPlayerHealthPotions <= 0) {
         alert("You are out of potions");
     }    
 }
 
 //Function To increase the character stats every win
-function levelUp(){
+function levelUp(level){
     //Increase HP, Attack and defense related to the dungeon you enter
-    currentPlayerHealthPoints += 15;
-    currentPlayerAttack += 5;
-    currentPlayerDefense += 5;
-    alert("Level up! Your stats have increased.\n You Increased 5 Health Point.\n You Increased 1 Attack Point.\n You Increased 1 Defense Point");
+     let bonusHP = 15;
+     let bonusATK = 5;
+     let bonusDEF = 5;
+    if (level === "levelone") {        
+        maxPlayerHealth += bonusHP;
+        currentPlayerAttack += bonusATK;
+        currentPlayerDefense += bonusDEF;
+        alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP +  "points.\nYour max Attack increased by " + bonusATK + "points.\nYour max defense increased by " + bonusDEF +" points.");
+    }else if (level === "leveltwo") {
+        maxPlayerHealth += bonusHP*2;
+        currentPlayerAttack += bonusHP*2;
+        currentPlayerDefense += bonusHP*2;
+        alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*2 +  "points.\nYour max Attack increased by " + bonusATK*2 + "points.\nYour max defense increased by " + bonusDEF*2 +" points.");
+    }else if (level === "levelthree") {
+        maxPlayerHealth += bonusHP*3;
+        currentPlayerAttack += bonusHP*3;
+        currentPlayerDefense += bonusHP*3;
+        alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*3 +  "points.\nYour max Attack increased by " + bonusATK*3 + "points.\nYour max defense increased by " + bonusDEF*3 +" points.");
+    }else if (level === "levelfour") {
+        maxPlayerHealth += bonusHP*4;
+        currentPlayerAttack += bonusHP*4;
+        currentPlayerDefense += bonusHP*4;
+        alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*4 +  "points.\nYour max Attack increased by " + bonusATK*4 + "points.\nYour max defense increased by " + bonusDEF*4 +" points.");
+    }
     updatePlayerStats();
     updatePlayerLife();
 
     //Small chance to get an item which will give a bonus status
-    if (Math.random()<= 0.05){
-        dropItem(gameType);
+    if (Math.random()<= 0.50){
+        dropItem(selectedMonster.gameType);
     }
 
-    if (Math.random() <= 0.99) {
+    if (Math.random() <= 0.80) {
         alert("The " + selectedMonster.name + " dropped a Health Potion");
         currentPlayerHealthPotions++;
         updatePlayerStats(); 
-}
-}
-
-// Function for drop item related to each Dungeon
-function dropItem(item){
-    if (item) {
-        alert("test");
     }
 }
+
+//Function for drop item related to each Dungeon
+function dropItem(item){
+    if (item === "levelone") {
+        currentPlayerAttack += 15;
+        alert("You Found a commom magic Pearl\nYou Attack Increased in 15 points");
+    }else if (item === "leveltwo") {
+        currentPlayerDefense += 25;
+        currentPlayerAttack += 25;
+        alert("You Found a rare magic Pearl\nYou Attack and Defense Increased in 25 points");
+    }else if (item === "levelthree") {
+        maxPlayerHealth += 50;
+        currentPlayerAttack += 40;
+        currentPlayerDefense += 40;
+        alert("You Found a Very Rare magic Pearl!\nYour Attack,Defense Increase in 40 points.\n Your HP Increased in 50 points");
+    }else if (item === "levelfour") {
+        maxPlayerHealth += 150;
+        currentPlayerAttack += 100;
+        currentPlayerDefense += 100;
+        alert("You Found a Epic magic Pearl!\nYour Attack,Defense Increase in 100 points.\n Your HP Increased in 150 points");
+    }
+}
+
+
+
 
 

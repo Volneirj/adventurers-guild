@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Action-->
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Adventurer's Guild</title>
   </head>
   <body>
+    <header>
+      <!-- Header Content -->
+      <h1>Adventurer's Guild Game</h1>
+    </header>
+    <!--Game container with stats-->    
     <div class="game-container">
       <div class="character-info">
         <div class="life-bar" id="character-life">Character Life Bar</div>
@@ -16,6 +22,7 @@
         <div class="life-bar" id="monster-life">Monster Life Bar</div>
         <div class="stats" id="monster-stats">Monster Stats</div>
       </div>
+      <!--Dungeon Buttons Selector-->
       <div class="button-container">
         <div dungeon="levelone" class="button">Dungeon Level 1</div>
         <div dungeon="leveltwo" class="button">Dungeon Level 2</div>
@@ -23,12 +30,18 @@
         <div dungeon="levelfour" class="button">Dungeon Level 4</div>
         <div dungeon="levelfive" class="button">Dungeon Level 5</div>
       </div>
+      <!--Dungeon Action buttons-->
       <div class="button-container">
         <button id="attack-button" style="display: none" class="act-button">Attack</button>        
         <button id="potion-button" style="display: none" class="act-button"> Use Potion</button>
         <button id="run-button" style="display: none" class="act-button">Run</button>
       </div>      
     </div>
+
+    <footer>
+      <!-- Footer Content -->
+      <p>Art and additional information about the game.</p>
+    </footer>
 
     <script src="assets/js/script.js"></script>
   </body>

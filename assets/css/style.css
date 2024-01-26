@@ -2,15 +2,23 @@ body {
     margin: 0;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
 
+header, footer {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
 .game-container {
     position: relative;
     width: 1000px;
-    /* Adjust the width as needed */
     height: 60vh;
     background-color: gray;
 }
@@ -21,9 +29,7 @@ body {
     box-sizing: border-box;
     padding: 10px;
     width: 50%;
-    /* Adjust the width as needed */
     text-align: center;
-    /* Align text in the center */
 }
 
 .character-info {
@@ -38,7 +44,6 @@ body {
 
 .life-bar {
     background-color: #5cb85c;
-    /* Green color for life bars */
     padding: 5px;
 }
 
@@ -67,4 +72,6 @@ body {
     cursor: pointer;
 }
 
-
+footer {
+    margin-top: auto;
+}
