@@ -219,9 +219,9 @@ function useHealthPotion(){
 //Function To increase the character stats every win
 function levelUp(){
     //Increase HP, Attack and defense related to the dungeon you enter
-    currentPlayerHealthPoints += 5;
-    currentPlayerAttack += 1;
-    currentPlayerDefense += 1;
+    currentPlayerHealthPoints += 15;
+    currentPlayerAttack += 5;
+    currentPlayerDefense += 5;
     alert("Level up! Your stats have increased.\n You Increased 5 Health Point.\n You Increased 1 Attack Point.\n You Increased 1 Defense Point");
     updatePlayerStats();
     updatePlayerLife();
