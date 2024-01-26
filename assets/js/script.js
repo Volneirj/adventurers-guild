@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     //Default game
     runGame("default");
+    setBackground();
 });
 
 // Game Variables
@@ -74,7 +75,8 @@ function Monster(name, healthPoints, attack, defense, gameType, itemDrop) {
 function runGame(gameType) {
     //Monster life bar/Status
     selectedMonster = dungeon(gameType);
-    console.log(selectedMonster);    
+    console.log(selectedMonster);
+    setBackground();    
     let monsterLifeBar = document.getElementById("monster-life");
     let monsterStats = document.getElementById("monster-stats");    
     monsterLifeBar.textContent = selectedMonster.name + " HP:" + selectedMonster.healthPoints;
@@ -252,7 +254,7 @@ function levelUp(level){
     updatePlayerLife();
 
     //Small chance to get an item which will give a bonus status
-    if (Math.random()<= 0.50){
+    if (Math.random()<= 0.30){
         dropItem(selectedMonster.gameType);
     }
 
@@ -283,6 +285,16 @@ function dropItem(item){
         currentPlayerDefense += 100;
         alert("You Found a Epic magic Pearl!\nYour Attack,Defense Increase in 100 points.\n Your HP Increased in 150 points");
     }
+}
+
+//Function to set the background
+function setBackground(){
+    let gameContainer = document.querySelector(".game-container");
+    //Set Image path
+    let backgroundPath = `assets/images/${selectedMonster.name}-background.jpg`;
+    //Set the background image settings
+    gameContainer.style.backgroundImage = `url('${backgroundPath}')`;
+    gameContainer.style.backgroundSize = "cover";  
 }
 
 
