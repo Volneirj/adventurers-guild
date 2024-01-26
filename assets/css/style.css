@@ -40,9 +40,9 @@ main {
 
 .monster-image {
     position: absolute;
-    bottom: 100px;
+    bottom: 10%;
     left: 50px; 
-    width: 60%; 
+    width: 50%; 
     max-width: 200px; 
     height: auto;
     z-index: 2; 
