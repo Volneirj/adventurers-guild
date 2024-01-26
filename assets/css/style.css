@@ -2,6 +2,8 @@
 /*General Styles */
 body {
     margin: 0;
+    background-color: #333;
+    
 }
 
 /* Header */
@@ -18,14 +20,25 @@ header img {
     max-height: 100%;
 }
 
+main {
+    background-color: rgb(214, 217, 218);
+    /* Make main element take up any surplus space to push footer down */
+    flex: 1 0 auto;
+    box-shadow: 0 2px 2px #3a3a3a;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Game container*/
 .game-container {
     position: relative;
-    min-height: 60vh; 
+    min-height: 80vh; 
     background-color: gray;
     box-sizing: border-box; 
     padding: 20px; 
 }
 
+/* Hero and Monster styles */
 .character-info,
 .monster-info {
     position: absolute;
@@ -54,6 +67,7 @@ header img {
     margin-top: 10px;
 }
 
+/* Button Styles */
 .button-container {
     position: absolute;
     bottom: 0;
@@ -75,10 +89,32 @@ header img {
     cursor: pointer;
 }
 
-
+/* Footer Styles */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    max-height: 50px;
+    max-height: auto;
+}
+
+#social-networks {
+    text-align: center;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    font-size: 250%;
+    width: 100%;
+    line-height: 1;
+    margin:0;
+}
+
+.fa-square-instagram{
+    color: #e12375;
+}
+.fa-square-facebook{
+    color: #0c5eeb;
+}
+.fa-square-whatsapp{
+    color: #1fad70;
 }
