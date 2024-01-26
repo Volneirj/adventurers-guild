@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
     <title>Adventurer's Guild</title>
   </head>
-
   <body>
     <div class="game-container">
       <div class="character-info">
@@ -23,9 +21,15 @@
         <div dungeon="leveltwo" class="button">Dungeon Level 2</div>
         <div dungeon="levelthree" class="button">Dungeon Level 3</div>
         <div dungeon="levelfour" class="button">Dungeon Level 4</div>
-        <div dungeon="levelfire" class="button">Dungeon Level 5</div>
+        <div dungeon="levelfive" class="button">Dungeon Level 5</div>
       </div>
+      <div class="button-container">
+        <button id="attack-button" style="display: none" class="act-button">Attack</button>        
+        <button id="potion-button" style="display: none" class="act-button"> Use Potion</button>
+        <button id="run-button" style="display: none" class="act-button">Run</button>
+      </div>      
     </div>
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>

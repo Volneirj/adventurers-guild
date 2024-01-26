@@ -46,7 +46,7 @@ body {
     margin-top: 10px;
 }
 
-.button-container {
+.button-container{
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -54,17 +54,17 @@ body {
     display: flex;
     justify-content: space-between;
     width: 50%;
-    /* Adjust the width as needed */
     padding: 10px;
 }
 
-.button {
+.button,
+.act-button {
     flex: 1;
     margin: 0 5px;
-    /* Adjust the margin as needed */
     padding: 10px;
     background-color: #007bff;
-    /* Blue color for buttons */
     color: white;
     cursor: pointer;
 }
+
+

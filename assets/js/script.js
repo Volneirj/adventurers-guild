@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Initial run with a default gameType
-    runGame("levelone");
+    //Default game
+    runGame("default");
 });
 
 // Game Variables
@@ -26,7 +26,8 @@ var monsters = [
     new Monster("Goblin Paladin", 100, 20, 20, "leveltwo"),
     new Monster("Hobgoblin", 250, 35, 25, "levelthree"),
     new Monster("Goblin Shaman", 400, 40, 20, "levelfour"),
-    new Monster("Goblin Champion", 1000, 100, 100, "levelfive")
+    new Monster("Goblin Champion", 1000, 100, 100, "levelfive"),
+    new Monster("None", 0, 0, 0, "default")
 ];
 
 // Function to create the monsters
@@ -40,7 +41,7 @@ function Monster(name, healthPoints, attack, defense, gameType) {
 
 // Main Game Loop
 function runGame(gameType) {
-    let selectedMonster = dungeon(gameType);
+    selectedMonster = dungeon(gameType);  
     let monsterLifeBar = document.getElementById("monster-life");
     let monsterStats = document.getElementById("monster-stats");
     monsterLifeBar.textContent = selectedMonster.name + " " + "HP:" + selectedMonster.healthPoints;
@@ -50,8 +51,9 @@ function runGame(gameType) {
     let characterStats = document.getElementById("character-stats");
     characterStats.textContent = "Att: " + playerAttack + " Def: " + playerDefense + " Health Potions: " + playerHealthPotions;
 }
-
 // This function loads the monster and adds the status to start the battle
 function dungeon(gameType) {
     return monsters.find(monster => monster.gameType === gameType);
 }
+
+
