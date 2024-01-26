@@ -63,10 +63,38 @@ function runGame(gameType) {
     characterLife.textContent = "Hero HP: " + playerHealthPoints;
     let characterStats = document.getElementById("character-stats");
     characterStats.textContent = "Att: " + playerAttack + " Def: " + playerDefense + " Health Potions: " + playerHealthPotions;
+
+    if (gameType !== "default") {
+        toggleButtons(true);
+    }
 }
 // This function loads the monster and adds the status to start the battle
 function dungeon(gameType) {
     return monsters.find(monster => monster.gameType === gameType);
 }
 
+//Function to toggle the buttons while in fight mode
+function toggleButtons(showActionButtons) {
+    let dungeonButtons = document.getElementsByClassName("button");
+    let actionButtons = ["attack-button", "run-button", "potion-button"];
 
+    if (showActionButtons) {
+        // Hide dungeon buttons
+        for (let button of dungeonButtons) {
+            button.style.display = "none";
+        }
+        // Show action buttons
+        for (let actionButton of actionButtons) {
+            document.getElementById(actionButton).style.display = "inline-block";
+        }
+    } else {
+        // Show dungeon buttons
+        for (let button of dungeonButtons) {
+            button.style.display = "inline-block";
+        }
+        // Hide action buttons
+        for (let actionButton of actionButtons) {
+            document.getElementById(actionButton).style.display = "none";
+        }
+    }
+}
