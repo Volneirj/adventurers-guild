@@ -2,8 +2,8 @@
 /*General Styles */
 body {
     margin: 0;
-    background-color: #333;
-    
+    background-color: #333; 
+    overflow-y: auto;   
 }
 
 /* Header */
@@ -11,13 +11,12 @@ header{
     background-color: #333;
     color: white;
     text-align: center;  
-    min-height: 70px;   
+    min-height: 70px; 
+    margin-top: 10px;  
 }
 
 header img {
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
+    max-width: 90%;
 }
 
 main {
@@ -40,12 +39,14 @@ main {
     max-width: 1500px;
     justify-content: space-evenly;
     margin:0 auto;
+    overflow-x: auto;
 }
 
 .background-image {
     background-size: 150vh;
     background-repeat: no-repeat;
     background-position: 50%;
+    background-size: cover;
 }
 
 .monster-image {
@@ -120,7 +121,7 @@ main {
     z-index: 0;   
   }
 #select-level img {
-    height: 8vh;
+    height: 7vh;
   }
 
 /* Button Styles */
@@ -178,6 +179,7 @@ footer {
     list-style-type: none;
     font-size: 250%;
     width: 100%;
+    max-height: fit-content;
     line-height: 1;
     margin:0;
 }
@@ -192,10 +194,14 @@ footer {
     color: #1fad70;
 }
 
-/* Media query: small screens to better performance (smaller than 600px) */
-@media screen and (max-width: 420px) {
+/* Media query: small screens to better performance (smaller than 320px) */
+@media screen and (max-width: 320px) {
 
     /* Select level */
+    #select-level{
+        bottom: 80px;
+        max-height: 150px
+    } 
     #select-level img {
         height: 5vh;
       }
@@ -208,4 +214,47 @@ footer {
         padding: 0;
     }
 }
+/* Media query: bigger screens to better performance (bigger than 1023px) */
+@media screen and (min-width: 1023px) {
+
+    /* Select level */
+    #select-level{
+        bottom: 150px;
+        max-height: 100px
+    }    
+    #select-level img {
+        height: 15vh; 
+        max-height: 100px       
+      }
+    /*Dungeon Button */
+    .button-container img {
+        height: 8vh;
+        max-height: 150px
+      }
+    .button {        
+        padding: 0;
+    }
+}
+
+/* Media query: bigger screens to better performance (bigger than 1439px) */
+@media screen and (min-width: 1439px) {
+    /* Select level */
+    #select-level{
+        bottom: 200px;
+        max-height: 100px
+    }    
+    #select-level img {
+        height: 15vh; 
+        max-height: 140px       
+      }
+    
+    /*Monster Image*/
+    .monster-image {
+        height: 80vh;
+        max-width: 500px; 
+        max-height: 500px
+    }
+}
+
+
   

@@ -288,7 +288,7 @@ function levelUp(level){
 function dropItem(item){
     if (item === "levelone") {
         currentPlayerAttack += 15;
-        alert("You Found a commom magic Pearl\nYou Attack Increased in 15 points");
+        alert("You Found a common magic Pearl\nYou Attack Increased in 15 points");
     }else if (item === "leveltwo") {
         currentPlayerDefense += 25;
         currentPlayerAttack += 25;
