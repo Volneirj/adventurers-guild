@@ -40,7 +40,7 @@ let maxPlayerHealth =100;
 let playerHealthPoints = 100;
 let playerAttack = 25;
 let playerDefense = 0;
-let playerHealthPotions = 10;
+let playerHealthPotions = 15;
 
 // Player and monster life inicialization
 let selectedMonster = null; 
@@ -52,9 +52,9 @@ let currentPlayerHealthPotions = playerHealthPotions;
 // Monster List
 var monsters = [
     new Monster("Goblin", 100, 25, 10, "levelone", "Short Sword"),
-    new Monster("Goblin Paladin", 500, 100, 120, "leveltwo", "Iron Shield"),
-    new Monster("Hobgoblin", 1000, 500, 250, "levelthree", "Life Totem"),
-    new Monster("Goblin Shaman", 1500, 800, 500, "levelfour", "Clarity Potion"),
+    new Monster("Goblin Paladin", 500, 100, 150, "leveltwo", "Iron Shield"),
+    new Monster("Hobgoblin", 1000, 500, 400, "levelthree", "Life Totem"),
+    new Monster("Goblin Shaman", 1500, 1000, 700, "levelfour", "Clarity Potion"),
     new Monster("Champion", 5000, 1000, 1000, "levelfive", "Long Sword"),
     new Monster("None", 0, 0, 0, "default", "none")
 ];
@@ -246,8 +246,8 @@ function useHealthPotion(){
 function levelUp(level){
     // Increase HP, Attack and defense related to the dungeon you enter
      let bonusHP = 15;
-     let bonusATK = 3;
-     let bonusDEF = 3;
+     let bonusATK = 2;
+     let bonusDEF = 2;
     if (level === "levelone") {        
         maxPlayerHealth += bonusHP;
         currentPlayerAttack += bonusATK;

@@ -57,7 +57,6 @@ main {
     width: 80%;
     display:flex;     
     max-width: 300px; 
-    height: auto;
     z-index: 0; 
 }
 
@@ -110,7 +109,7 @@ main {
 /* Select level */
 #select-level {
     position: absolute;
-    bottom: 100px;
+    bottom: 250px;
     left: 0;
     font-size: small;
     right: 0;
@@ -199,11 +198,11 @@ footer {
 
     /* Select level */
     #select-level{
-        bottom: 80px;
+        bottom: 200px;
         max-height: 150px
     } 
     #select-level img {
-        height: 5vh;
+        height: 7vh;
       }
     
     /*Dungeon Button */
@@ -214,12 +213,13 @@ footer {
         padding: 0;
     }
 }
-/* Media query: bigger screens to better performance (bigger than 1023px) */
-@media screen and (min-width: 1023px) {
+
+/* Media query: bigger screens to better performance (bigger than 767px) */
+@media screen and (min-width: 767px) {
 
     /* Select level */
     #select-level{
-        bottom: 150px;
+        bottom: 180px;
         max-height: 100px
     }    
     #select-level img {
@@ -227,6 +227,9 @@ footer {
         max-height: 100px       
       }
     /*Dungeon Button */
+    .button-container{
+        bottom: 50px;
+    }
     .button-container img {
         height: 8vh;
         max-height: 150px
@@ -246,7 +249,13 @@ footer {
     #select-level img {
         height: 15vh; 
         max-height: 140px       
-      }
+    }
+
+    /*Dungeon Button */
+    .button-container img {
+        height: 10vh;
+        max-height: 150px
+    }
     
     /*Monster Image*/
     .monster-image {
