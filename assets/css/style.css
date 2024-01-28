@@ -57,7 +57,7 @@ main {
     display:flex;     
     max-width: 300px; 
     height: auto;
-    z-index: 2; 
+    z-index: 0; 
 }
 
 /* Hero and Monster styles */
