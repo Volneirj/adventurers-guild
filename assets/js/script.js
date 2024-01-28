@@ -273,11 +273,11 @@ function levelUp(level){
     updatePlayerLife();
 
     // Small chance to get an item which will give a bonus status
-    if (Math.random()<= 0.30){
+    if (Math.random()<= 0.25){
         dropItem(selectedMonster.gameType);
     }
 
-    if (Math.random() <= 0.85) {
+    if (Math.random() <= 0.80) {
         alert("The " + selectedMonster.name + " dropped a Health Potion");
         currentPlayerHealthPotions++;
         updatePlayerStats(); 
