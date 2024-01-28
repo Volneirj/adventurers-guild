@@ -97,7 +97,24 @@ main {
 .stats {
     margin-top: 10px;
     color:white;
+    font-style:normal;
 }
+
+/* Select level */
+#selectlevel {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    font-size: small;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;    
+  }
+#selectlevel img {
+    height: 10vh;
+  }
 
 /* Button Styles */
 .button-container {
@@ -108,7 +125,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10px;
+    padding: 10px;    
 }
 
 .act-button {

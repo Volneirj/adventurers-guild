@@ -159,8 +159,8 @@ function updatePlayerLife() {
 function updatePlayerStats(){
     let characterName = document.getElementById("character-name");
     let characterStats = document.getElementById("character-stats");
-    characterName.textContent ="Hero"    
-    characterStats.textContent = `Att: ${currentPlayerAttack} Def: ${currentPlayerDefense} Health Potions: ${currentPlayerHealthPotions}`;
+    characterName.textContent ="Hero"  
+    characterStats.textContent = `Att: ${currentPlayerAttack} Def: ${currentPlayerDefense}  Health Potions: ${currentPlayerHealthPotions}`;  
 }
 
 //Function To update monster Stats name
@@ -328,7 +328,6 @@ function setBackground(){
          // Append the additional image to the game container
         gameContainer.appendChild(monsterImage);
     }
-   
 }
 
 //Function remove last image 
