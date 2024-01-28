@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
 let maxPlayerHealth =100;
 let playerHealthPoints = 100;
 let playerAttack = 25;
-let playerDefense = 10;
-let playerHealthPotions = 5;
+let playerDefense = 0;
+let playerHealthPotions = 10;
 
 // Player and monster life inicialization
 let selectedMonster = null; 
@@ -51,11 +51,11 @@ let currentPlayerHealthPotions = playerHealthPotions;
 
 // Monster List
 var monsters = [
-    new Monster("Goblin", 100, 20, 5, "levelone", "Short Sword"),
-    new Monster("Goblin Paladin", 150, 30, 20, "leveltwo", "Iron Shield"),
-    new Monster("Hobgoblin", 250, 65, 40, "levelthree", "Life Totem"),
-    new Monster("Goblin Shaman", 500, 80, 50, "levelfour", "Clarity Potion"),
-    new Monster("Champion", 1500, 150, 150, "levelfive", "Long Sword"),
+    new Monster("Goblin", 100, 25, 10, "levelone", "Short Sword"),
+    new Monster("Goblin Paladin", 500, 100, 120, "leveltwo", "Iron Shield"),
+    new Monster("Hobgoblin", 1000, 500, 250, "levelthree", "Life Totem"),
+    new Monster("Goblin Shaman", 1500, 800, 500, "levelfour", "Clarity Potion"),
+    new Monster("Champion", 5000, 1000, 1000, "levelfive", "Long Sword"),
     new Monster("None", 0, 0, 0, "default", "none")
 ];
 
@@ -130,14 +130,14 @@ function toggleButtons(showActionButtons) {
 // Function for attack Button
 function attackButton() {
     // Calculate damage dealt and update monster health
-    let damageDealt = calculateDamage(playerAttack, selectedMonster.defense);
+    let damageDealt = calculateDamage(currentPlayerAttack, selectedMonster.defense);
     console.log("You damaged the " + selectedMonster.name + " for "+ damageDealt + " hit points");
     selectedMonster.healthPoints -= damageDealt;
     // Call Function to update Health
     updateMonsterHealth();
 
     // Calculate damage taken and update player health
-    let damageTaken = calculateDamage(selectedMonster.attack, playerDefense);
+    let damageTaken = calculateDamage(selectedMonster.attack, currentPlayerDefense);
     console.log("The "+ selectedMonster.name + " dameged you for " + damageTaken+ " hit points");
     currentPlayerHealthPoints -= damageTaken;
     // Call Function to update Health
@@ -246,8 +246,8 @@ function useHealthPotion(){
 function levelUp(level){
     // Increase HP, Attack and defense related to the dungeon you enter
      let bonusHP = 15;
-     let bonusATK = 5;
-     let bonusDEF = 5;
+     let bonusATK = 3;
+     let bonusDEF = 3;
     if (level === "levelone") {        
         maxPlayerHealth += bonusHP;
         currentPlayerAttack += bonusATK;
@@ -277,7 +277,7 @@ function levelUp(level){
         dropItem(selectedMonster.gameType);
     }
 
-    if (Math.random() <= 0.80) {
+    if (Math.random() <= 0.85) {
         alert("The " + selectedMonster.name + " dropped a Health Potion");
         currentPlayerHealthPotions++;
         updatePlayerStats(); 
@@ -287,21 +287,21 @@ function levelUp(level){
 // Function for drop item related to each Dungeon
 function dropItem(item){
     if (item === "levelone") {
-        currentPlayerAttack += 15;
+        currentPlayerAttack += 10;
         alert("You Found a common magic Pearl\nYou Attack Increased in 15 points");
     }else if (item === "leveltwo") {
-        currentPlayerDefense += 25;
-        currentPlayerAttack += 25;
+        currentPlayerDefense += 15;
+        currentPlayerAttack += 15;
         alert("You Found a rare magic Pearl\nYou Attack and Defense Increased in 25 points");
     }else if (item === "levelthree") {
         maxPlayerHealth += 50;
-        currentPlayerAttack += 40;
-        currentPlayerDefense += 40;
+        currentPlayerAttack += 25;
+        currentPlayerDefense += 25;
         alert("You Found a Very Rare magic Pearl!\nYour Attack,Defense Increase in 40 points.\n Your HP Increased in 50 points");
     }else if (item === "levelfour") {
         maxPlayerHealth += 150;
-        currentPlayerAttack += 100;
-        currentPlayerDefense += 100;
+        currentPlayerAttack += 40;
+        currentPlayerDefense += 40;
         alert("You Found a Epic magic Pearl!\nYour Attack,Defense Increase in 100 points.\n Your HP Increased in 150 points");
     }
 }
