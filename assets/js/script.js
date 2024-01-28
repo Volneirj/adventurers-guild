@@ -348,11 +348,11 @@ function updateLifeBarColor(hpBar, currentHp, maxHp) {
  
     // Change color based on percentage
     if (Percentage >= 70) {
-        lifeBar.style.backgroundColor = "green";
+        lifeBar.style.backgroundColor = "lime";
     } else if (Percentage >= 30) {
         lifeBar.style.backgroundColor = "yellow";
     } else {
-        lifeBar.style.backgroundColor = "red";
+        lifeBar.style.backgroundColor = "#FE6262";
     }
 }
 

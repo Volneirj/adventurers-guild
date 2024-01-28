@@ -67,7 +67,9 @@ main {
     box-sizing: border-box;
     padding: 10px;
     width: 50%;
-    text-align: center;     
+    text-align: center;
+    font-weight: bold; 
+    font-size: large;    
 }
 
 .character-info {
@@ -83,23 +85,22 @@ main {
 .name{    
     background-color: goldenrod;
     padding: 5px;
-    border: 5px solid #745858;
+    border: 5px solid #352727;
     border-radius: 20%;
     text-align: center;
-    font: caption;  
+    font-weight: bold; 
 }
 
-.life-bar {
-    background-color: #5cb85c;
+.life-bar {   
     padding: 5px;
-    border: 5px solid #745858;
+    border: 5px solid #352727;
     border-radius: 30%;
 }
 
 .stats {    
     color:white;
     font-style:normal;
-    background-color: gray;
+    background-color: rgb(53, 48, 48);
     padding: 5px;
     border: 5px solid #745858;
     border-radius: 30%;
