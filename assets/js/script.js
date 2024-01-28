@@ -40,7 +40,7 @@ let maxPlayerHealth =100;
 let playerHealthPoints = 100;
 let playerAttack = 25;
 let playerDefense = 0;
-let playerHealthPotions = 15;
+let playerHealthPotions = 12;
 
 // Player and monster life inicialization
 let selectedMonster = null; 
