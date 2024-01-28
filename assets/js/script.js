@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 let maxPlayerHealth =100;
 let playerHealthPoints = 100;
 let playerAttack = 25;
-let playerDefense = 10;
+let playerDefense = 20;
 let playerHealthPotions = 5;
 
 // Player and monster life inicialization
@@ -51,11 +51,11 @@ let currentPlayerHealthPotions = playerHealthPotions;
 
 // Monster List
 var monsters = [
-    new Monster("Goblin", 100, 20, 0, "levelone", "Short Sword"),
-    new Monster("Goblin Paladin", 150, 35, 20, "leveltwo", "Iron Shield"),
-    new Monster("Hobgoblin", 250, 55, 25, "levelthree", "Life Totem"),
-    new Monster("Goblin Shaman", 500, 75, 20, "levelfour", "Clarity Potion"),
-    new Monster("Champion", 1500, 125, 125, "levelfive", "Long Sword"),
+    new Monster("Goblin", 100, 20, 5, "levelone", "Short Sword"),
+    new Monster("Goblin Paladin", 150, 30, 20, "leveltwo", "Iron Shield"),
+    new Monster("Hobgoblin", 250, 65, 40, "levelthree", "Life Totem"),
+    new Monster("Goblin Shaman", 500, 80, 50, "levelfour", "Clarity Potion"),
+    new Monster("Champion", 1500, 150, 150, "levelfive", "Long Sword"),
     new Monster("None", 0, 0, 0, "default", "none")
 ];
 
