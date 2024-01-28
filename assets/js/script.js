@@ -159,7 +159,9 @@ function updatePlayerStats(){
     let characterName = document.getElementById("character-name");
     let characterStats = document.getElementById("character-stats");
     characterName.textContent ="Hero"  
-    characterStats.textContent = `Att: ${currentPlayerAttack} Def: ${currentPlayerDefense}  Health Potions: ${currentPlayerHealthPotions}`;  
+    characterStats.textContent = `Att: ${currentPlayerAttack} Def: ${currentPlayerDefense}`;
+    let characterHealthPotion = document.getElementById("potion-button");  
+    characterHealthPotion.textContent =`Use Health Potion (${currentPlayerHealthPotions})`;
 }
 
 // Function To update monster Stats name
