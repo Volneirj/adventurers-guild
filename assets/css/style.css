@@ -96,10 +96,13 @@ main {
     border-radius: 30%;
 }
 
-.stats {
-    margin-top: 10px;
+.stats {    
     color:white;
     font-style:normal;
+    background-color: gray;
+    padding: 5px;
+    border: 5px solid #745858;
+    border-radius: 30%;
 }
 
 /* Select level */
