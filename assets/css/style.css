@@ -110,10 +110,11 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10px;    
+    padding: 10px; 
+    z-index: 0;   
   }
 #selectlevel img {
-    height: 10vh;
+    height: 8vh;
   }
 
 /* Button Styles */
