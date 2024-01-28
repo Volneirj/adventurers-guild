@@ -55,7 +55,7 @@ main {
     box-sizing: border-box;
     padding: 10px;
     width: 50%;
-    text-align: center;
+    text-align: center;     
 }
 
 .character-info {
@@ -68,9 +68,20 @@ main {
     right: 0;
 }
 
+.name{    
+    background-color: #5cb85c;
+    padding: 5px;
+    border: 5px solid #745858;
+    border-radius: 20%;
+    text-align: center;
+    font: caption;  
+}
+
 .life-bar {
     background-color: #5cb85c;
     padding: 5px;
+    border: 5px solid #745858;
+    border-radius: 30%;
 }
 
 .stats {
@@ -90,7 +101,6 @@ main {
     padding: 10px;
 }
 
-.button,
 .act-button {
     flex: 1;
     margin: 0 5px;
@@ -98,8 +108,25 @@ main {
     background-color: #007bff;
     color: white;
     cursor: pointer;
+    text-align: center;
 }
+.button {    
+    color: white;
+    padding: 10px;
+    border:brown;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;  
+    margin: 4px 2px;
+    cursor: pointer;
+  }
 
+.button img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-height: 80px;
+  }
 /* Footer Styles */
 footer {
     background-color: #333;
