@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 let maxPlayerHealth =100;
 let playerHealthPoints = 100;
 let playerAttack = 25;
-let playerDefense = 20;
+let playerDefense = 10;
 let playerHealthPotions = 5;
 
 // Player and monster life inicialization
@@ -75,17 +75,16 @@ function runGame(gameType) {
     // Monster life bar/Status    
     removeMonsterImages();
     selectedMonster = dungeon(gameType);
-    console.log(selectedMonster);    
+    console.log(selectedMonster); 
+    // Set Background related to the gametype   
     setBackground(); 
-    let monsterName = document.getElementById("monster-name");      
-    let monsterStats = document.getElementById("monster-stats");  
-    monsterName.textContent = selectedMonster.name;    
-    monsterStats.textContent = "Att: " + selectedMonster.attack + " Def: " + selectedMonster.defense;
-    // Hero life bar/Status    
-    updatePlayerStats();
-    // Update the HeroBar after the battle
+    // Updated Select monster stats
+    updateMonsterStats();
+    updateMonsterHealth();    
+    //Update player stats
+    updatePlayerStats();    
     updatePlayerLife();
-    updateMonsterHealth();
+    // Remove monster stats from first screem  
     hideMonsterStat(); 
     // When start the game start with default game to not toggle the buttons
     if (gameType !== "default") {
@@ -159,7 +158,7 @@ function updatePlayerStats(){
     let characterName = document.getElementById("character-name");
     let characterStats = document.getElementById("character-stats");
     characterName.textContent ="Hero"  
-    characterStats.textContent = `Att: ${currentPlayerAttack} Def: ${currentPlayerDefense}`;
+    characterStats.textContent = `Atk: ${currentPlayerAttack} Def: ${currentPlayerDefense}`;
     let characterHealthPotion = document.getElementById("potion-button");  
     characterHealthPotion.textContent =`Use Health Potion (${currentPlayerHealthPotions})`;
 }
@@ -169,7 +168,7 @@ function updateMonsterStats(){
     let monsterName = document.getElementById("monster-name");      
     let monsterStats = document.getElementById("monster-stats");
     monsterName.textContent = selectedMonster.name;    
-    monsterStats.textContent = "Att: " + selectedMonster.attack + " Def: " + selectedMonster.defense;
+    monsterStats.textContent = "Atk: " + selectedMonster.attack + " Def: " + selectedMonster.defense;
 }
 
 // Function to update monster health/name and stats
