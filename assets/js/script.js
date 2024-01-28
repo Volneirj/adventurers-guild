@@ -316,12 +316,14 @@ function setBackground(){
     let backgroundPath = `assets/images/${selectedMonster.gameType}-background.webp`;
     //Set the background image settings
     gameContainer.style.backgroundImage = `url('${backgroundPath}')`;
+    //Attribution for the background image
+    //Designed by Freepik (http://www.freepik.com)
     //Load the monster Image in a variable and add Src and alt.
     if (selectedMonster.gameType !== "default") {
         let monsterImage = document.createElement("img");
         //Set Image path
         monsterImage.src = `assets/images/${selectedMonster.gameType}-image.png`;
-        monsterImage.alt = `${selectedMonster.name} Image`;
+        monsterImage.alt = `${selectedMonster.name} Image - Designed by Freepik http://www.freepik.com`;
         monsterImage.classList.add("monster-image");
          // Append the additional image to the game container
         gameContainer.appendChild(monsterImage);
