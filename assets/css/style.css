@@ -35,15 +35,25 @@ main {
     min-height: 80vh; 
     background-color: gray;
     box-sizing: border-box; 
-    padding: 20px; 
+    padding: 20px;
+    width: 100%; 
+    max-width: 1500px;
+    justify-content: space-evenly;
+    margin:0 auto;
+}
+
+.background-image {
+    background-size: 150vh;
+    background-repeat: no-repeat;
+    background-position: 50%;
 }
 
 .monster-image {
     position: absolute;
     bottom: 10%;
     left: 50px; 
-    width: 50%; 
-    max-width: 200px; 
+    width: 80%; 
+    max-width: 300px; 
     height: auto;
     z-index: 2; 
 }

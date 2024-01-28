@@ -306,25 +306,27 @@ function dropItem(item){
     }
 }
 
-//Function to set the background
+//Function to set the background and monster image
 function setBackground(){   
     //Select the game container
     let gameContainer = document.querySelector(".game-container");
+    //add a new class
+    gameContainer.classList.add("background-image");
     //Set Image path
-    let backgroundPath = `assets/images/${selectedMonster.name}-background.jpg`;
+    let backgroundPath = `assets/images/${selectedMonster.gameType}-background.webp`;
     //Set the background image settings
     gameContainer.style.backgroundImage = `url('${backgroundPath}')`;
-    gameContainer.style.backgroundSize = "cover";  
-
     //Load the monster Image in a variable and add Src and alt.
-    let monsterImage = document.createElement("img");
-    //Set Image path
-    monsterImage.src = `assets/images/${selectedMonster.name}-image.png`;
-    monsterImage.alt = `${selectedMonster.name} Image`;
-    monsterImage.classList.add("monster-image");
-
-    // Append the additional image to the game container
-    gameContainer.appendChild(monsterImage);
+    if (selectedMonster.gameType !== "default") {
+        let monsterImage = document.createElement("img");
+        //Set Image path
+        monsterImage.src = `assets/images/${selectedMonster.gameType}-image.png`;
+        monsterImage.alt = `${selectedMonster.name} Image`;
+        monsterImage.classList.add("monster-image");
+         // Append the additional image to the game container
+        gameContainer.appendChild(monsterImage);
+    }
+   
 }
 
 //Function remove last image 
