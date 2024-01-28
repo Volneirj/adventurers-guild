@@ -210,17 +210,22 @@ function useHealthPotion(){
     if (currentPlayerHealthPotions >= 1){
         //Increase the HP based on 25% of maximum health
         let healingAmount = Math.floor(0.25 * maxPlayerHealth);
-        currentPlayerHealthPoints += healingAmount;
-        alert("You Healed " + healingAmount + "Points");
-        //Garantee to not increase more than the maximum health using potions
+        //Check if the hero is 100% HP and do not use potions;
+        if (currentPlayerHealthPoints === maxPlayerHealth){
+            currentPlayerHealthPoints += healingAmount;
+            // Decrease the Current health Potions
+            --currentPlayerHealthPotions;
+            alert("You Healed " + healingAmount + "Points");
+        }else {
+            alert("You already have full health points!");
+        }    
+        //Garantee to not increase more than the maximum HP using potions
         if (currentPlayerHealthPoints > maxPlayerHealth) {
             currentPlayerHealthPoints = maxPlayerHealth;
-        }
-        // Decrease the Current health Potions
-        --currentPlayerHealthPotions;
-        updatePlayerLife();
-        updatePlayerStats();
-        console.log("You have left:" + currentPlayerHealthPotions + " Health Potions!");      
+        }              
+    updatePlayerLife();
+    updatePlayerStats();
+    console.log("You have left:" + currentPlayerHealthPotions + " Health Potions!");      
     }else if (currentPlayerHealthPotions <= 0) {
         alert("You are out of potions");
     }    
@@ -300,8 +305,9 @@ function setBackground(){
     gameContainer.style.backgroundImage = `url('${backgroundPath}')`;
     gameContainer.style.backgroundSize = "cover";  
 
-    //Load the monster Image
+    //Load the monster Image in a variable and add Src and alt.
     let monsterImage = document.createElement("img");
+    //Set Image path
     monsterImage.src = `assets/images/${selectedMonster.name}-image.png`;
     monsterImage.alt = `${selectedMonster.name} Image`;
     monsterImage.classList.add("monster-image");
@@ -313,6 +319,7 @@ function setBackground(){
 //Function remove last image 
 function removeMonsterImages() {
     let monsterImages = document.querySelectorAll(".monster-image");
+    //Look for all images and delete it
     monsterImages.forEach((image) => {
         image.remove();
     });
