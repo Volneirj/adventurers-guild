@@ -4,7 +4,6 @@ body {
     margin: 0;
     background-color: #333; 
     overflow-y: auto; 
-    min-height: 100vh;  
 }
 
 /* Header */
@@ -26,7 +25,7 @@ main {
     flex: 1 0 auto;
     box-shadow: 0 2px 2px #3a3a3a;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  
 }
 
 /* Game container*/
@@ -40,14 +39,14 @@ main {
     max-width: 1500px;
     justify-content: space-evenly;
     margin:0 auto;
-    overflow-x: auto;
+    overflow-x: auto;    
 }
 
-.background-image {
-    background-size: 150vh;
+.background-image { 
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
+    min-height: 80vh;
 }
 
 .monster-image {
@@ -256,6 +255,29 @@ footer {
         max-height: 500px
     }
 }
+
+/* Media query for landscape orientation (orientation: landscape) */
+@media screen and (orientation: landscape) and (max-width: 800px) {
+
+    main {
+        min-height: 600px;
+    }
+    .monster-image {
+        height: 100%; 
+        max-height: none;  
+        bottom: 0; 
+        transform: translateX(0); 
+    }
+    
+    .game-container{
+        max-height: none;
+    }
+    .background-image{
+        min-height: 600px;
+    }
+}
+
+
 
 
   
