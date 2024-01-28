@@ -52,10 +52,10 @@ let currentPlayerHealthPotions = playerHealthPotions;
 // Monster List
 var monsters = [
     new Monster("Goblin", 100, 25, 10, "levelone", "Short Sword"),
-    new Monster("Goblin Paladin", 500, 100, 150, "leveltwo", "Iron Shield"),
-    new Monster("Hobgoblin", 1000, 500, 400, "levelthree", "Life Totem"),
-    new Monster("Goblin Shaman", 1500, 1000, 700, "levelfour", "Clarity Potion"),
-    new Monster("Champion", 5000, 1000, 1000, "levelfive", "Long Sword"),
+    new Monster("Goblin Paladin", 500, 125, 150, "leveltwo", "Iron Shield"),
+    new Monster("Hobgoblin", 2500, 625, 750, "levelthree", "Life Totem"),
+    new Monster("Goblin Shaman", 10000, 1800, 1500, "levelfour", "Clarity Potion"),
+    new Monster("Champion", 50000, 5000, 5000, "levelfive", "Long Sword"),
     new Monster("None", 0, 0, 0, "default", "none")
 ];
 
