@@ -3,7 +3,8 @@
 body {
     margin: 0;
     background-color: #333; 
-    overflow-y: auto;   
+    overflow-y: auto; 
+    min-height: 100vh;  
 }
 
 /* Header */
