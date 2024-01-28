@@ -193,8 +193,8 @@ footer {
     color: #1fad70;
 }
 
-/* Media query: small screens to better performance (smaller than 320px) */
-@media screen and (max-width: 320px) {
+/* Media query: small screens to better performance (smaller than 319px) */
+@media screen and (max-width: 319px) {
 
     /* Select level */
     #select-level{
@@ -202,7 +202,7 @@ footer {
         max-height: 150px
     } 
     #select-level img {
-        height: 7vh;
+        height: 6vh;
       }
     
     /*Dungeon Button */
