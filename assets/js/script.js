@@ -223,11 +223,10 @@ function checkGameStatus() {
     } else if (selectedMonster && selectedMonster.healthPoints <= 0) {
         // Monster is defeated, handle victory logic
         if (confirm("Victory - Monster Defeated! Do you want to restart?")) {
-            removeMonsterImages();
-            updatePlayerLife();            
+            removeMonsterImages();                       
             levelUp(selectedMonster.gameType);
-            runGame("default");
-            toggleButtons(false);           
+            continueDungeon(); 
+            updatePlayerLife();  
         }   
     }
 }
@@ -402,6 +401,22 @@ function hideMonsterStat(){
 // Function for not strong enough for dungeon
 function alertWeak(){
     alert(`You are not strong enough kido, you need a minimum ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`);
+}
+
+//Function to continue in the dungeon or go back to the first page (user sugestion)
+function continueDungeon(){
+    const userResponse = window.confirm("Do you want continue in this dungeon?");
+    if (userResponse) {
+        // User clicked "OK" or answered "Yes"
+        runGame(selectedMonster.gameType);
+        alert(`Suddenly, a ${selectedMonster.name} jumps out from behind a rock!`);    
+        console.log("User clicked Ok");
+    } else {    
+        // User clicked "Cancel" or answered "No"
+        runGame("default"); 
+        toggleButtons(false);    
+        console.log("User clicked Cancel");
+}
 }
 
 
