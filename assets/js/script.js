@@ -5,7 +5,30 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let button of buttons) {
         button.addEventListener("click", function () {
             let gameType = this.getAttribute("dungeon");
-            runGame(gameType);
+            if (gameType === "leveltwo"){
+                selectedMonster = dungeon(gameType);                
+                if (currentPlayerAttack >= selectedMonster.attack){
+                    runGame(gameType);
+                }else{                   
+                    alertWeak();
+                }
+            }else if (gameType === "levelthree"){
+                selectedMonster = dungeon(gameType);
+                if (currentPlayerAttack >= selectedMonster.attack){
+                    runGame(gameType);
+                }else{                    
+                    alertWeak();
+                }
+            }else if(gameType === "levelfour"){
+                selectedMonster = dungeon(gameType);
+                if (currentPlayerAttack >= selectedMonster.attack){
+                    runGame(gameType);
+                }else{                    
+                    alertWeak();
+                }
+            }else{
+                runGame(gameType);
+            }
         });
     }
 
@@ -370,6 +393,11 @@ function hideMonsterStat(){
         document.getElementById("monster-life").style.display = "block";
         document.getElementById("monster-stats").style.display = "block";
 }
+}
+
+// Function for not strong enough for dungeon
+function alertWeak(){
+    alert(`You are not strong enough kido, you need a minimum ${selectedMonster.attack} of Attack Damage to enter this dungeon`);
 }
 
 
