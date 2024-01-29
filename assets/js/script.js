@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByClassName("button");
     for (let button of buttons) {
         button.addEventListener("click", function () {
-            let gameType = this.getAttribute("dungeon");            
+            let gameType = this.getAttribute("dungeon"); 
+            selectedMonster = dungeon(gameType);           
             if(gameType ==="levelone"){
                 if (currentPlayerAttack <= selectedMonster.attack*6){                    
                     runGame(gameType);                    
