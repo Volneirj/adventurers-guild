@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByClassName("button");
     for (let button of buttons) {
         button.addEventListener("click", function () {
-            let gameType = this.getAttribute("dungeon");
-            selectedMonster = dungeon(gameType);
+            let gameType = this.getAttribute("dungeon");            
             if(gameType ==="levelone"){
                 if (currentPlayerAttack <= selectedMonster.attack*6){                    
                     runGame(gameType);                    
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Hero stats
 let maxPlayerHealth =100;
 let playerHealthPoints = 100;
-let playerAttack = 125;
+let playerAttack = 25;
 let playerDefense = 0;
 let playerHealthPotions = 12;
 
