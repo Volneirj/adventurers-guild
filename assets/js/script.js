@@ -44,13 +44,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("run-button").addEventListener("click", function () {
-
         if (confirm("Running away from the monster!")){
             // Back to the Main screen
             runGame("default");
             toggleButtons(false);
 
         }
+    });
+    document.getElementById("how-to-play").addEventListener("click", function () {
+        alert("1 - Select the Dungeon.\n2 - To defeat the monster, Attack or Heal yourself using potions.\n3 - After killing the monster, you will increase your stats.\n4 - Dungeons have a chance to drop a Health potions or magic pearls.\n5 - Magic Pearls add extra stats to your Hero.\n6 - Every Dungeon has a minimum attack to enter (It is not guaranteed that you will survive).\n\nGet strong, clear the dungeons, and become a Legend!!");
     });
     //Default game
     runGame("default");
@@ -382,12 +384,14 @@ function updateLifeBarColor(hpBar, currentHp, maxHp) {
 function hideMonsterStat(){    
     if (selectedMonster.gameType === "default") {
         // Hide monster life and stats
+        document.getElementById("how-to-play").style.display = "flex";
         document.getElementById("select-level").style.display = "flex";
         document.getElementById("monster-name").style.display = "none";        
         document.getElementById("monster-life").style.display = "none";
         document.getElementById("monster-stats").style.display = "none";
     } else {
         // Show monster life and stats
+        document.getElementById("how-to-play").style.display = "none";
         document.getElementById("select-level").style.display = "none";
         document.getElementById("monster-name").style.display = "block";
         document.getElementById("monster-life").style.display = "block";

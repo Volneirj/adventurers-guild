@@ -106,6 +106,13 @@ main {
     border-radius: 30%;
 }
 
+/* How to play */
+#how-to-play{
+    position: absolute;
+    top:0;
+    right:0;
+    z-index: 0;
+}
 /* Select level */
 #select-level {
     position: absolute;
