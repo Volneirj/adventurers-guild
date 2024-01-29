@@ -5,22 +5,26 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let button of buttons) {
         button.addEventListener("click", function () {
             let gameType = this.getAttribute("dungeon");
-            if (gameType === "leveltwo"){
-                selectedMonster = dungeon(gameType);                
+            selectedMonster = dungeon(gameType);
+            if(gameType ==="levelone"){
+                if (currentPlayerAttack <= selectedMonster.attack*6){                    
+                    runGame(gameType);                    
+                }else{                   
+                    alert(`You are too strong the ${selectedMonster.name} run away in fear.`)
+                }
+            }else if(gameType === "leveltwo"){                               
                 if (currentPlayerAttack >= selectedMonster.attack*0.8){
                     runGame(gameType);
                 }else{                   
                     alertWeak();
                 }
-            }else if (gameType === "levelthree"){
-                selectedMonster = dungeon(gameType);
+            }else if (gameType === "levelthree"){              
                 if (currentPlayerAttack >= selectedMonster.attack*0.8){
                     runGame(gameType);
                 }else{                    
                     alertWeak();
                 }
-            }else if(gameType === "levelfour"){
-                selectedMonster = dungeon(gameType);
+            }else if(gameType === "levelfour"){                
                 if (currentPlayerAttack >= selectedMonster.attack*0.8){
                     runGame(gameType);
                 }else{                    
@@ -63,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Hero stats
 let maxPlayerHealth =100;
 let playerHealthPoints = 100;
-let playerAttack = 25;
+let playerAttack = 125;
 let playerDefense = 0;
 let playerHealthPotions = 12;
 
@@ -301,7 +305,7 @@ function levelUp(level){
         dropItem(selectedMonster.gameType);
     }
 
-    if (Math.random() <= 0.80) {
+    if (Math.random() <= 0.85) {
         alert("The " + selectedMonster.name + " dropped a Health Potion");
         currentPlayerHealthPotions++;
         updatePlayerStats(); 
