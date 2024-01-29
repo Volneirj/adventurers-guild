@@ -290,10 +290,10 @@ footer {
         min-height: 600px;
     }
     .monster-image {
-        height: 100%; 
+        height: 50%; 
         max-height: none;  
-        bottom: 0; 
-        transform: translateX(0); 
+        bottom: 50px; 
+        transform: translateX(-50); 
     }        
 }
 
