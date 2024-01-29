@@ -203,21 +203,21 @@ footer {
     color: #1fad70;
 }
 
-/* Media query: small screens to better performance (smaller than 319px) */
-@media screen and (max-width: 319px) {
+/* Media query: small screens to better performance (smaller than 400px) */
+@media screen and (max-width: 400px) {
 
     /* Select level */
     #select-level{
-        bottom: 200px;
-        max-height: 150px
+        bottom: 100px;
+        max-height: 200px
     } 
     #select-level img {
         height: 6vh;
-      }
+    }
     
     /*Dungeon Button */
     .button-container img {
-        height: 6vh;
+        max-height: 50px;
       }
     .button {        
         padding: 0;
