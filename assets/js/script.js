@@ -7,21 +7,21 @@ document.addEventListener("DOMContentLoaded", function () {
             let gameType = this.getAttribute("dungeon");
             if (gameType === "leveltwo"){
                 selectedMonster = dungeon(gameType);                
-                if (currentPlayerAttack >= selectedMonster.attack){
+                if (currentPlayerAttack >= selectedMonster.attack*0.8){
                     runGame(gameType);
                 }else{                   
                     alertWeak();
                 }
             }else if (gameType === "levelthree"){
                 selectedMonster = dungeon(gameType);
-                if (currentPlayerAttack >= selectedMonster.attack){
+                if (currentPlayerAttack >= selectedMonster.attack*0.8){
                     runGame(gameType);
                 }else{                    
                     alertWeak();
                 }
             }else if(gameType === "levelfour"){
                 selectedMonster = dungeon(gameType);
-                if (currentPlayerAttack >= selectedMonster.attack){
+                if (currentPlayerAttack >= selectedMonster.attack*0.8){
                     runGame(gameType);
                 }else{                    
                     alertWeak();
@@ -75,8 +75,8 @@ let currentPlayerHealthPotions = playerHealthPotions;
 // Monster List
 var monsters = [
     new Monster("Goblin", 100, 25, 10, "levelone", "Short Sword"),
-    new Monster("Goblin Paladin", 500, 125, 150, "leveltwo", "Iron Shield"),
-    new Monster("Hobgoblin", 2500, 625, 750, "levelthree", "Life Totem"),
+    new Monster("Goblin Paladin", 500, 125, 125, "leveltwo", "Iron Shield"),
+    new Monster("Hobgoblin", 2500, 625, 700, "levelthree", "Life Totem"),
     new Monster("Goblin Shaman", 10000, 1800, 1500, "levelfour", "Clarity Potion"),
     new Monster("Champion", 50000, 5000, 5000, "levelfive", "Long Sword"),
     new Monster("None", 0, 0, 0, "default", "none")
@@ -278,18 +278,18 @@ function levelUp(level){
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP +  "points.\nYour max Attack increased by " + bonusATK + "points.\nYour max defense increased by " + bonusDEF +" points.");
     }else if (level === "leveltwo") {
         maxPlayerHealth += bonusHP*2;
-        currentPlayerAttack += bonusHP*2;
-        currentPlayerDefense += bonusHP*2;
+        currentPlayerAttack += bonusATK*2;
+        currentPlayerDefense += bonusDEF*2;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*2 +  "points.\nYour max Attack increased by " + bonusATK*2 + "points.\nYour max defense increased by " + bonusDEF*2 +" points.");
     }else if (level === "levelthree") {
         maxPlayerHealth += bonusHP*3;
-        currentPlayerAttack += bonusHP*3;
-        currentPlayerDefense += bonusHP*3;
+        currentPlayerAttack += bonusATK*3;
+        currentPlayerDefense += bonusDEF*3;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*3 +  "points.\nYour max Attack increased by " + bonusATK*3 + "points.\nYour max defense increased by " + bonusDEF*3 +" points.");
     }else if (level === "levelfour") {
         maxPlayerHealth += bonusHP*4;
-        currentPlayerAttack += bonusHP*4;
-        currentPlayerDefense += bonusHP*4;
+        currentPlayerAttack += bonusATK*4;
+        currentPlayerDefense += bonusDEF*4;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*4 +  "points.\nYour max Attack increased by " + bonusATK*4 + "points.\nYour max defense increased by " + bonusDEF*4 +" points.");
     }
     updatePlayerStats();
@@ -397,7 +397,7 @@ function hideMonsterStat(){
 
 // Function for not strong enough for dungeon
 function alertWeak(){
-    alert(`You are not strong enough kido, you need a minimum ${selectedMonster.attack} of Attack Damage to enter this dungeon`);
+    alert(`You are not strong enough kido, you need a minimum ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`);
 }
 
 
