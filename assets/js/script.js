@@ -404,7 +404,7 @@ function hideMonsterStat(){
 
 // Function for not strong enough for dungeon
 function alertWeak(){
-    alert(`You are not strong enough kido, you need a minimum ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`);
+    alert(`You are not strong enough kiddo, you need a minimum ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`);
 }
 
 //Function to continue in the dungeon or go back to the first page (user sugestion)

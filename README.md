@@ -10,49 +10,63 @@ Embark on an epic adventure in Adventurer's Guild The game, a thrilling role-pla
 
 ### Purpose:
 
-As part of a course project, this website serves as an educational resource, demonstrating the application of web development skills to create an engaging online platform. Through the lens of our friend's photography, we aim to explore HTML/CSS features, creating an accessible and responsive design.
+As part of a course project, this website serves as an educational resource, demonstrating the application of web development skills to create an engaging online platform. Through the mini game presented, we aim to explore HTML/CSS/JavaScript features, creating an accessible and responsive design.
 
 ### Existing Features
 
-#### Navigation Bar
+#### LOGO
 
-- Featured on all three pages of the website.
-- Responsive navigation bar for easy navigation.
-- Contains links to the Logo, Home, Gallery, and Contact pages. Clicking the Logo takes the user to the home page.
+- The logo image contains a square style, and it has been generated using the free web site [CoolText Graphics Generator](https://cooltext.com/).
 
-![Navigation Bar](docs/readme_images/nav_bar_readme.jpg)
+![Logo](docs/readme_images/logo_readme.jpg)
 
-#### The landing page image
+#### Game Container
 
-- The hero image contains a picture from Japanese gardens located in Gramado-RS.
+- The game container is where the user will interact and play the game.
+- The background brings the idea of a mediavel and fantasy world.
+- The main screen have the hero life and status, how to play and the dungeon selection.
 
-![Hero Image](docs/readme_images/hero_image_readme.jpg)
+![Game container](docs/readme_images/game-container.jpg)
 
-#### Middle Art Links
+#### Life bar and status
 
-- Art is located in the middle of the page for easier interaction to move to the portfolio and contact.
+- The life bar and the status bar is where the user keep tracking of his progress in the game.
 
-![Middle Link Art](docs/readme_images/middle_links.jpg)
+![Life bar and status](docs/readme_images/life-bar.jpg)
 
-#### The home page
+#### How to play
 
-- Serra Gaúcha section introduces the project and showcases the photographer's passion.
-- About Us section explains the project owners' trajectory.
+- The button on the top right of the game container open an alert to show the user basic how to play the game
+- The button is Responsive changing the size for diferent screens.
 
-![Serra Section](docs/readme_images/serra_readme.jpg)
-![About Us Section](docs/readme_images/about_us_readme.jpg)
+![Navigation Bar](docs/readme_images/how-to-play.jpg)
 
-#### Portfolio page
+#### Dungeon Selection
 
-- Quick tour through a few experiences and a showcase.
+- On the dungeon selection you will be able to select the what game do you want to play.
+- Every dungeon has his own power attack requirement.
+- When you have some restricion to access specific dungeon a pop up will explain why.
 
-![Portfolio Page](docs/readme_images/portfolio_readme.jpg)
+![Dungeon Selection](docs/readme_images/dungeon-selection.jpg)
+![Requirement for second Dungeon](docs/readme_images/dungeon-selection-interaction.jpg)
 
-#### The contact page
+#### Dungeon Dynamic and Interface
 
-- Background image and a complete contact form.
+- The dungeon have a friendly and easy user interface.
+- Life bar and status from the Hero and Monster.
+- The background image is unique for each dungeon.
+- The monster is unique for each dungeon.
+- To the user interact he has three options Attack, Use Health Potion or Run.
 
-![Contact Page](docs/readme_images/contact_readme.jpg)
+![Dungeon Interface](docs/readme_images/dungeon-interaction.jpg)
+
+#### Life bar, status and monster name.
+
+- On the top of the game container you have the Hero/Monster name, Life bar and Status Bar. 
+- The life bar interacts with the amount of life the player and the monster have, if the life is bigger than 50% it turn green, if less than 50% it turn yellow if less than 25% it turn red.
+- The hero status will be increase after he win the battle and will show it on the status bar.
+
+![Dungeon Interaction bars](docs/readme_images/dungeon-bar-interaction.jpg)
 
 #### The footer section
 
