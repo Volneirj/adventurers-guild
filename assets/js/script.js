@@ -7,25 +7,25 @@ document.addEventListener("DOMContentLoaded", function () {
             let gameType = this.getAttribute("dungeon"); 
             selectedMonster = dungeon(gameType);           
             if(gameType ==="levelone"){
-                if (currentPlayerAttack <= selectedMonster.attack*6){                    
+                if (currentHeroAttack <= selectedMonster.attack*6){                    
                     runGame(gameType);                    
                 }else{                   
                     alert(`You are too strong the ${selectedMonster.name} run away in fear.`)
                 }
             }else if(gameType === "leveltwo"){                               
-                if (currentPlayerAttack >= selectedMonster.attack*0.8){
+                if (currentHeroAttack >= selectedMonster.attack*0.8){
                     runGame(gameType);
                 }else{                   
                     alertWeak();
                 }
             }else if (gameType === "levelthree"){              
-                if (currentPlayerAttack >= selectedMonster.attack*0.8){
+                if (currentHeroAttack >= selectedMonster.attack*0.8){
                     runGame(gameType);
                 }else{                    
                     alertWeak();
                 }
             }else if(gameType === "levelfour"){                
-                if (currentPlayerAttack >= selectedMonster.attack*0.8){
+                if (currentHeroAttack >= selectedMonster.attack*0.8){
                     runGame(gameType);
                 }else{                    
                     alertWeak();
@@ -38,47 +38,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add event listeners for the action buttons
     document.getElementById("attack-button").addEventListener("click", function () {
-        attackButton();
+        // If Hero and Monster HP are bigger than 0, when clicked will attack.
+        if (currentHeroHitPoints > 0 && selectedMonster.HitPoints > 0){
+            attackButton();
+        // If Hero HP bigger than 0 and Monster HP less or equal zero, when clicked will call continue dungeon
+        }else if (selectedMonster.HitPoints <= 0 || currentHeroHitPoints > 0 ){
+            console.log("Monster dead");
+            continueDungeon();
+        // If hero HP less or equal zero, when clicked will check status, tell you are dead and  sugest to use potion
+        }else if (currentHeroHitPoints <=0){            
+            checkGameStatus();
+            alert("You are dead - Use potion to have another chance");            
+        }
     });
     
     document.getElementById("potion-button").addEventListener("click", function () {
-            if (confirm("Using a health potion!")){
+        // If clicked and confirmed will call useHealthPotion
+        if (confirm("Using a health potion!")){
             useHealthPotion();            
         }
     });
 
     document.getElementById("run-button").addEventListener("click", function () {
-        if (confirm("Running away from the monster!")){
+        // When clicked will move to the main screen
+        if(confirm("Running away from the monster!") && (currentHeroHitPoints >0)){
             // Back to the Main screen
             runGame("default");
-            toggleButtons(false);
-
+            toggleButtons(false);         
+        }
+        // Handle the situation when the Hero is dead and click in cancel and then so run will go to main screen
+        if (currentHeroHitPoints <=0){            
+            checkGameStatus();
+            alert("You Don't have much option you are dead - Stats Reseted")
+            updateHeroAfterDeath();
+            toggleButtons(false);  
         }
     });
     document.getElementById("how-to-play").addEventListener("click", function () {
         alert("1 - Select the Dungeon.\n2 - To defeat the monster, Attack or Heal yourself using potions.\n3 - After killing the monster, you will increase your stats.\n4 - Dungeons have a chance to drop a Health potions or magic pearls.\n5 - Magic Pearls add extra stats to your Hero.\n6 - Every Dungeon has a minimum attack to enter (It is not guaranteed that you will survive).\n\nGet strong, clear the dungeons, and become a Legend!!");
     });
-    //Default game
+    //Default game for first run
     runGame("default");
     setBackground();
+    //Reset hero stats for first run
+    updateHeroStats();    
+    updateHeroLife();
 });
 
 // Game Variables
-// Hero stats
-let maxPlayerHealth =100;
-let playerHealthPoints = 100;
-let playerAttack = 25;
-let playerDefense = 0;
-let playerHealthPotions = 12;
+// List of variables with Hero Initial stats
+let maxHeroHealth =100;
+let HeroHitPoints = 100;
+let HeroAttack = 25;
+let HeroDefense = 0;
+let HeroHealthPotions = 12;
 
-// Player and monster life inicialization
+// List of Hero and monster variable inicialization
 let selectedMonster = null; 
-let currentPlayerHealthPoints = playerHealthPoints; 
-let currentPlayerAttack = playerAttack;
-let currentPlayerDefense = playerDefense;
-let currentPlayerHealthPotions = playerHealthPotions;
+let currentHeroHitPoints = HeroHitPoints; 
+let currentHeroAttack = HeroAttack;
+let currentHeroDefense = HeroDefense;
+let currentHeroHealthPotions = HeroHealthPotions;
 
-// Monster List
+// List of monster, each representing a different level
 var monsters = [
     new Monster("Goblin", 100, 25, 10, "levelone", "Short Sword"),
     new Monster("Goblin Paladin", 500, 125, 125, "leveltwo", "Iron Shield"),
@@ -88,11 +110,11 @@ var monsters = [
     new Monster("None", 0, 0, 0, "default", "none")
 ];
 
-// Function to create the monsters
-function Monster(name, healthPoints, attack, defense, gameType, itemDrop) {
+// Constructor function for creating Monster instances
+function Monster(name, HitPoints, attack, defense, gameType, itemDrop) {
     this.name = name;
-    this.healthPoints = healthPoints;
-    this.initialHealth = healthPoints;
+    this.HitPoints = HitPoints;
+    this.initialHealth = HitPoints;
     this.attack = attack;
     this.defense = defense;
     this.gameType = gameType;
@@ -103,16 +125,15 @@ function Monster(name, healthPoints, attack, defense, gameType, itemDrop) {
 function runGame(gameType) {
     // Monster life bar/Status    
     removeMonsterImages();
+    // Retrieve a monster based on the game type
     selectedMonster = dungeon(gameType);
+    // Log the selected monster for debugging purposes
     console.log(selectedMonster); 
-    // Set Background related to the gametype   
+    // Set the background based on the game type  
     setBackground(); 
-    // Updated Select monster stats
+    // Update and display the selected monster's stats
     updateMonsterStats();
-    updateMonsterHealth();    
-    //Update player stats
-    updatePlayerStats();    
-    updatePlayerLife();
+    updateMonsterHitpoints();    
     // Remove monster stats from first screem  
     hideMonsterStat(); 
     // When start the game start with default game to not toggle the buttons
@@ -120,17 +141,23 @@ function runGame(gameType) {
         toggleButtons(true);
     }
 }
-// This function loads the monster and adds the status to start the battle
+// This function loads a monster based on the provided game type and resets its hitpoints.
 function dungeon(gameType) {
     // Select the monster from the monster array
     let selectedMonster = monsters.find(monster => monster.gameType === gameType);
 
+    // Check if a monster is found
+    if (!selectedMonster) {
+        console.error(`No monster found for game type: ${selectedGameType}`);
+        return monsters.find(monster => monster.gameType === "default");
+    }
+
     // Reset the monster's health to its initial value
-    selectedMonster.healthPoints = selectedMonster.initialHealth;
+    selectedMonster.HitPoints = selectedMonster.initialHealth;
     return selectedMonster;
 }
 
-// Function to toggle the buttons while in fight mode
+// Function to toggle between dungeon buttons and action buttons
 function toggleButtons(showActionButtons) {
     let dungeonButtons = document.getElementsByClassName("button");
     let actionButtons = ["attack-button", "run-button", "potion-button"];
@@ -159,37 +186,43 @@ function toggleButtons(showActionButtons) {
 // Function for attack Button
 function attackButton() {
     // Calculate damage dealt and update monster health
-    let damageDealt = calculateDamage(currentPlayerAttack, selectedMonster.defense);
+    let damageDealt = calculateDamage(currentHeroAttack, selectedMonster.defense);
     console.log("You damaged the " + selectedMonster.name + " for "+ damageDealt + " hit points");
-    selectedMonster.healthPoints -= damageDealt;
-    // Call Function to update Health
-    updateMonsterHealth();
+    selectedMonster.HitPoints -= damageDealt;      
+    if (selectedMonster.HitPoints <= 0){
+        selectedMonster.HitPoints =0;
+    }
+    // Call Function to update monster Hitpoints  
+    updateMonsterHitpoints();
 
-    // Calculate damage taken and update player health
-    let damageTaken = calculateDamage(selectedMonster.attack, currentPlayerDefense);
+    // Calculate damage taken and update Hero health
+    let damageTaken = calculateDamage(selectedMonster.attack, currentHeroDefense);
     console.log("The "+ selectedMonster.name + " dameged you for " + damageTaken+ " hit points");
-    currentPlayerHealthPoints -= damageTaken;
-    // Call Function to update Health
-    updatePlayerLife();
+    currentHeroHitPoints -= damageTaken;
+    if (currentHeroHitPoints <= 0){
+        currentHeroHitPoints =0;
+    }
+    // Call Function to update Hero Hitpoints
+    updateHeroLife();
 
     // Check game status after the attack
     checkGameStatus();
 }
 
-// Function to Update playerLife
-function updatePlayerLife() {
-    let playerLifeBar = document.getElementById("character-life");
-    playerLifeBar.textContent = `${currentPlayerHealthPoints}/${maxPlayerHealth} `;
-    updateLifeBarColor("character-life", currentPlayerHealthPoints, maxPlayerHealth);
+// Function to Update Hero Life
+function updateHeroLife() {
+    let HeroLifeBar = document.getElementById("character-life");
+    HeroLifeBar.textContent = `${currentHeroHitPoints}/${maxHeroHealth} `;
+    updateLifeBarColor("character-life", currentHeroHitPoints, maxHeroHealth);
 }
-// Function To update Player stats and name
-function updatePlayerStats(){
+// Function To update Hero stats and name
+function updateHeroStats(){
     let characterName = document.getElementById("character-name");
     let characterStats = document.getElementById("character-stats");
     characterName.textContent ="Hero"  
-    characterStats.textContent = `Atk:${currentPlayerAttack} Def:${currentPlayerDefense}`;
+    characterStats.textContent = `Atk:${currentHeroAttack} Def:${currentHeroDefense}`;
     let characterHealthPotion = document.getElementById("potion-button");  
-    characterHealthPotion.textContent =`Use Health Potion (${currentPlayerHealthPotions})`;
+    characterHealthPotion.textContent =`Use Health Potion (${currentHeroHealthPotions})`;
 }
 
 // Function To update monster Stats name
@@ -201,71 +234,82 @@ function updateMonsterStats(){
 }
 
 // Function to update monster health/name and stats
-function updateMonsterHealth() {  
+function updateMonsterHitpoints() {  
     let monsterLifeBar = document.getElementById("monster-life");
-    monsterLifeBar.textContent = `${selectedMonster.healthPoints}/${selectedMonster.initialHealth}`;
-    updateLifeBarColor("monster-life", selectedMonster.healthPoints, selectedMonster.initialHealth);
+    monsterLifeBar.textContent = `${selectedMonster.HitPoints}/${selectedMonster.initialHealth}`;
+    updateLifeBarColor("monster-life", selectedMonster.HitPoints, selectedMonster.initialHealth);
 }
 
 // Function to calculate damage
 function calculateDamage(attackValue, defenseValue) {
+    // Use of math.floor to ensure non-negative integer
     return Math.max(0, Math.floor(Math.random() * attackValue) - Math.floor(Math.random() * defenseValue));
 }
 
 // Function Get the result of the battle
 function checkGameStatus() {
-    console.log("Player Health: ", currentPlayerHealthPoints);
-    console.log("Monster Health: ", selectedMonster ? selectedMonster.healthPoints : "N/A");
-    if (currentPlayerHealthPoints <= 0) {
-        // Player is defeated, handle game over logic
-        if (confirm("Game Over - Player Defeated! Do you want to restart?")) {
-            removeMonsterImages();
-            runGame("default");
-            toggleButtons(false);
-            resetPlayerstats();
-        }
-    } else if (selectedMonster && selectedMonster.healthPoints <= 0) {
+    console.log("Hero Health: ", currentHeroHitPoints);
+    console.log("Monster Health: ", selectedMonster ? selectedMonster.HitPoints : "N/A");
+    if (currentHeroHitPoints <= 0) {
+        // Hero is defeated, handle game over logic
+        if (confirm("Game Over - You are Dead! Do you want to restart?")) {
+            updateHeroAfterDeath()
+        }else if (selectedMonster && selectedMonster.HitPoints <= 0) {
         // Monster is defeated, handle victory logic
         if (confirm("Victory - Monster Defeated! Do you want to restart?")) {
             removeMonsterImages();                       
             levelUp(selectedMonster.gameType);
-            continueDungeon(); 
-            updatePlayerLife();  
+            continueDungeon();    
         }   
+        }
     }
 }
 
-// Function to reset player stats in case of death
-function resetPlayerstats(){
-    maxPlayerHealth = 100;
-    currentPlayerHealthPoints = playerHealthPoints;
-    currentPlayerAttack = playerAttack;
-    currentPlayerDefense = playerDefense;
-    currentPlayerHealthPotions = playerHealthPotions;
+// Reset, move back to main screen and update hero info
+function updateHeroAfterDeath(){
+    removeMonsterImages();
+    runGame("default");
+    toggleButtons(false);           
+    resetHeroStats();
+    // Set Hero hit points to maximum
+    currentHeroHitPoints=maxHeroHealth; 
+    // Update hero stats and life               
+    updateHeroStats();    
+    updateHeroLife();
+}
+
+// Function to reset Hero stats in case of death
+function resetHeroStats(){
+    // Set hero stats to inicial value
+    maxHeroHealth = 100;
+    currentHeroHitPoints = HeroHitPoints;
+    currentHeroAttack = HeroAttack;
+    currentHeroDefense = HeroDefense;
+    currentHeroHealthPotions = HeroHealthPotions;
 }
 
 // Function for use health Potions
 function useHealthPotion(){
-    if (currentPlayerHealthPotions >= 1){
+    if (currentHeroHealthPotions >= 1){
         // Increase the HP based on 25% of maximum health
-        let healingAmount = Math.floor(0.25 * maxPlayerHealth);
+        let healingAmount = Math.floor(0.25 * maxHeroHealth);
         // Check if the hero is 100% HP and do not use potions;
-        if (currentPlayerHealthPoints !== maxPlayerHealth){
-            currentPlayerHealthPoints += healingAmount;
+        if (currentHeroHitPoints !== maxHeroHealth){
+            currentHeroHitPoints += healingAmount;
             // Decrease the Current health Potions
-            --currentPlayerHealthPotions;
+            --currentHeroHealthPotions;
             alert("You Healed " + healingAmount + "Points");
         }else {
             alert("You already have full health points!");
         }    
         // Garantee to not increase more than the maximum HP using potions
-        if (currentPlayerHealthPoints > maxPlayerHealth) {
-            currentPlayerHealthPoints = maxPlayerHealth;
+        if (currentHeroHitPoints > maxHeroHealth) {
+            currentHeroHitPoints = maxHeroHealth;
         }              
-    updatePlayerLife();
-    updatePlayerStats();
-    console.log("You have left:" + currentPlayerHealthPotions + " Health Potions!");      
-    }else if (currentPlayerHealthPotions <= 0) {
+    updateHeroLife();
+    updateHeroStats();
+    console.log("You have left:" + currentHeroHealthPotions + " Health Potions!");      
+    }else if (currentHeroHealthPotions <= 0) {
         alert("You are out of potions");
     }    
 }
@@ -276,30 +320,28 @@ function levelUp(level){
      let bonusHP = 15;
      let bonusATK = 2;
      let bonusDEF = 2;
+    // Select the dungeon and gives proper bonus stats
     if (level === "levelone") {        
-        maxPlayerHealth += bonusHP;
-        currentPlayerAttack += bonusATK;
-        currentPlayerDefense += bonusDEF;
+        maxHeroHealth += bonusHP;
+        currentHeroAttack += bonusATK;
+        currentHeroDefense += bonusDEF;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP +  "points.\nYour max Attack increased by " + bonusATK + "points.\nYour max defense increased by " + bonusDEF +" points.");
     }else if (level === "leveltwo") {
-        maxPlayerHealth += bonusHP*2;
-        currentPlayerAttack += bonusATK*2;
-        currentPlayerDefense += bonusDEF*2;
+        maxHeroHealth += bonusHP*2;
+        currentHeroAttack += bonusATK*2;
+        currentHeroDefense += bonusDEF*2;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*2 +  "points.\nYour max Attack increased by " + bonusATK*2 + "points.\nYour max defense increased by " + bonusDEF*2 +" points.");
     }else if (level === "levelthree") {
-        maxPlayerHealth += bonusHP*3;
-        currentPlayerAttack += bonusATK*3;
-        currentPlayerDefense += bonusDEF*3;
+        maxHeroHealth += bonusHP*3;
+        currentHeroAttack += bonusATK*3;
+        currentHeroDefense += bonusDEF*3;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*3 +  "points.\nYour max Attack increased by " + bonusATK*3 + "points.\nYour max defense increased by " + bonusDEF*3 +" points.");
     }else if (level === "levelfour") {
-        maxPlayerHealth += bonusHP*4;
-        currentPlayerAttack += bonusATK*4;
-        currentPlayerDefense += bonusDEF*4;
+        maxHeroHealth += bonusHP*4;
+        currentHeroAttack += bonusATK*4;
+        currentHeroDefense += bonusDEF*4;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*4 +  "points.\nYour max Attack increased by " + bonusATK*4 + "points.\nYour max defense increased by " + bonusDEF*4 +" points.");
     }
-    updatePlayerStats();
-    updatePlayerLife();
-
     // Small chance to get an item which will give a bonus status
     if (Math.random()<= 0.25){
         dropItem(selectedMonster.gameType);
@@ -307,29 +349,32 @@ function levelUp(level){
 
     if (Math.random() <= 0.85) {
         alert("The " + selectedMonster.name + " dropped a Health Potion");
-        currentPlayerHealthPotions++;
-        updatePlayerStats(); 
+        currentHeroHealthPotions++;       
     }
+    //update Hero Stats/Life
+    updateHeroStats();
+    updateHeroLife();
+
 }
 
 // Function for drop item related to each Dungeon
 function dropItem(item){
     if (item === "levelone") {
-        currentPlayerAttack += 10;
+        currentHeroAttack += 10;
         alert("You Found a common magic Pearl\nYou Attack Increased in 15 points");
     }else if (item === "leveltwo") {
-        currentPlayerDefense += 15;
-        currentPlayerAttack += 15;
+        currentHeroDefense += 15;
+        currentHeroAttack += 15;
         alert("You Found a rare magic Pearl\nYou Attack and Defense Increased in 25 points");
     }else if (item === "levelthree") {
-        maxPlayerHealth += 50;
-        currentPlayerAttack += 25;
-        currentPlayerDefense += 25;
+        maxHeroHealth += 50;
+        currentHeroAttack += 25;
+        currentHeroDefense += 25;
         alert("You Found a Very Rare magic Pearl!\nYour Attack,Defense Increase in 40 points.\n Your HP Increased in 50 points");
     }else if (item === "levelfour") {
-        maxPlayerHealth += 150;
-        currentPlayerAttack += 40;
-        currentPlayerDefense += 40;
+        maxHeroHealth += 150;
+        currentHeroAttack += 40;
+        currentHeroDefense += 40;
         alert("You Found a Epic magic Pearl!\nYour Attack,Defense Increase in 100 points.\n Your HP Increased in 150 points");
     }
 }
