@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Hero stats
 let maxPlayerHealth =100;
 let playerHealthPoints = 100;
-let playerAttack = 2000;
+let playerAttack = 25;
 let playerDefense = 0;
 let playerHealthPotions = 12;
 
