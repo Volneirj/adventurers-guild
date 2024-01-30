@@ -112,6 +112,10 @@ main {
     right:0;
     z-index: 0;
 }
+
+#how-to-play img { 
+    max-height: 130px;
+}
 /* Select level */
 #select-level {
     position: absolute;
