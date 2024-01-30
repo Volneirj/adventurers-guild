@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Hero stats
 let maxPlayerHealth =100;
 let playerHealthPoints = 100;
-let playerAttack = 25;
+let playerAttack = 2000;
 let playerDefense = 0;
 let playerHealthPotions = 12;
 
@@ -350,7 +350,7 @@ function setBackground(){
     if (selectedMonster.gameType !== "default") {
         let monsterImage = document.createElement("img");
         // Set Image path
-        monsterImage.src = `assets/images/${selectedMonster.gameType}-image.png`;
+        monsterImage.src = `assets/images/${selectedMonster.gameType}-image.webp`;
         monsterImage.alt = `${selectedMonster.name} Image - Designed by Freepik http://www.freepik.com`;
         monsterImage.classList.add("monster-image");
          // Append the additional image to the game container

@@ -53,10 +53,9 @@ main {
     position: absolute;
     bottom: 10%;
     left: 50%; 
-    transform: translateX(-50%);
-    width: 80%;
+    transform: translateX(-50%);    
     display:flex;     
-    max-width: 300px; 
+    max-height: 50%; 
     z-index: 0; 
 }
 
@@ -253,10 +252,8 @@ footer {
 @media screen and (min-width: 1439px) {
 
     /*Monster Image*/
-    .monster-image {
-        height: 80vh;
-        max-width: 500px; 
-        max-height: 500px
+    .monster-image {      
+        max-height: 50%;
     }
     /* Select level */
     #select-level{
