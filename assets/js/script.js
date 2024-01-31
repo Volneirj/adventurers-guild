@@ -100,7 +100,7 @@ let currentHeroAttack = HeroAttack;
 let currentHeroDefense = HeroDefense;
 let currentHeroHealthPotions = HeroHealthPotions;
 
-// List of monster, each representing a different level
+// List of monster, each representing a different level (Base on https://www.youtube.com/watch?v=EpB9u4ItOYU&ab )
 var monsters = [
     new Monster("Goblin", 100, 25, 10, "levelone", "Short Sword"),
     new Monster("Goblin Paladin", 500, 125, 125, "leveltwo", "Iron Shield"),
@@ -240,7 +240,7 @@ function updateMonsterHitpoints() {
     updateLifeBarColor("monster-life", selectedMonster.HitPoints, selectedMonster.initialHealth);
 }
 
-// Function to calculate damage
+// Function to calculate damage (Base on https://www.youtube.com/watch?v=EpB9u4ItOYU&ab )
 function calculateDamage(attackValue, defenseValue) {
     // Use of math.floor to ensure non-negative integer
     return Math.max(0, Math.floor(Math.random() * attackValue) - Math.floor(Math.random() * defenseValue));
@@ -288,7 +288,7 @@ function resetHeroStats(){
     currentHeroHealthPotions = HeroHealthPotions;
 }
 
-// Function for use health Potions
+// Function for use health Potions (Base on https://www.youtube.com/watch?v=EpB9u4ItOYU&ab )
 function useHealthPotion(){
     if (currentHeroHealthPotions >= 1){
         // Increase the HP based on 25% of maximum health
