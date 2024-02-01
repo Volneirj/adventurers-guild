@@ -1,5 +1,5 @@
 // Wait for the DOM to finish loading before running the game
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function () {
     // Get the button elements and add Event Listeners to them
     let buttons = document.getElementsByClassName("button");
     for (let button of buttons) {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //Reset hero stats for first run
     updateHeroStats();    
     updateHeroLife();
-});
+};
 
 // Game Variables
 // List of variables with Hero Initial stats
