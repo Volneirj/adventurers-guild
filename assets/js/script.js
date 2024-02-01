@@ -253,15 +253,15 @@ function checkGameStatus() {
     if (currentHeroHitPoints <= 0) {
         // Hero is defeated, handle game over logic
         if (confirm("Game Over - You are Dead! Do you want to restart?")) {
-            updateHeroAfterDeath()
-        }else if (selectedMonster && selectedMonster.HitPoints <= 0) {
+            updateHeroAfterDeath();
+        }
+    }else if (selectedMonster && selectedMonster.HitPoints <= 0) {
         // Monster is defeated, handle victory logic
         if (confirm("Victory - Monster Defeated! Do you want to restart?")) {
             removeMonsterImages();                       
             levelUp(selectedMonster.gameType);
             continueDungeon();    
         }   
-        }
     }
 }
 
