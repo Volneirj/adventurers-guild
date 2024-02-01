@@ -83,6 +83,8 @@ window.onload = function () {
     //Reset hero stats for first run
     updateHeroStats();    
     updateHeroLife();
+    //Toggle the buttons in the main screen first time
+    toggleButtons(false);
 };
 
 // Game Variables
@@ -134,8 +136,6 @@ function runGame(gameType) {
     // Update and display the selected monster's stats
     updateMonsterStats();
     updateMonsterHitpoints();    
-    // Remove monster stats from first screem  
-    hideMonsterStat(); 
     // When start the game start with default game to not toggle the buttons
     if (gameType !== "default") {
         toggleButtons(true);
@@ -171,6 +171,13 @@ function toggleButtons(showActionButtons) {
         for (let actionButton of actionButtons) {
             document.getElementById(actionButton).style.display = "inline-block";
         }
+        // hide How to play and select level
+        document.getElementById("how-to-play").style.display = "none";
+        document.getElementById("select-level").style.display = "none";
+        // Show monster name, life, stats
+        document.getElementById("monster-name").style.display = "block";
+        document.getElementById("monster-life").style.display = "block";
+        document.getElementById("monster-stats").style.display = "block";
     } else {
         // Show dungeon buttons
         for (let button of dungeonButtons) {
@@ -180,6 +187,14 @@ function toggleButtons(showActionButtons) {
         for (let actionButton of actionButtons) {
             document.getElementById(actionButton).style.display = "none";
         }
+        // Hide monster name, life, stats
+        document.getElementById("monster-name").style.display = "none";        
+        document.getElementById("monster-life").style.display = "none";
+        document.getElementById("monster-stats").style.display = "none";
+        // show how to play and select level
+        document.getElementById("how-to-play").style.display = "flex";
+        document.getElementById("select-level").style.display = "flex";        
+
     }
 }
 
@@ -426,25 +441,6 @@ function updateLifeBarColor(hpBar, currentHp, maxHp) {
     } else {
         lifeBar.style.backgroundColor = "#FE6262";
     }
-}
-
-// Hide monster
-function hideMonsterStat(){    
-    if (selectedMonster.gameType === "default") {
-        // Hide monster life and stats
-        document.getElementById("how-to-play").style.display = "flex";
-        document.getElementById("select-level").style.display = "flex";
-        document.getElementById("monster-name").style.display = "none";        
-        document.getElementById("monster-life").style.display = "none";
-        document.getElementById("monster-stats").style.display = "none";
-    } else {
-        // Show monster life and stats
-        document.getElementById("how-to-play").style.display = "none";
-        document.getElementById("select-level").style.display = "none";
-        document.getElementById("monster-name").style.display = "block";
-        document.getElementById("monster-life").style.display = "block";
-        document.getElementById("monster-stats").style.display = "block";
-}
 }
 
 // Function for not strong enough for dungeon
