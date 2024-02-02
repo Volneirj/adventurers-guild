@@ -75,7 +75,7 @@ window.onload = function () {
         }
     });
     document.getElementById("how-to-play").addEventListener("click", function () {
-        alert("1 - Select the Dungeon.\n2 - To defeat the monster, Attack or Heal yourself using potions.\n3 - After killing the monster, you will increase your stats.\n4 - Dungeons have a chance to drop a Health potions or magic pearls.\n5 - Magic Pearls add extra stats to your Hero.\n6 - Every Dungeon has a minimum attack to enter (It is not guaranteed that you will survive).\n\nGet strong, clear the dungeons, and become a Legend!!");
+        alert("1 - Select the Dungeon.\n2 - To defeat the monster, Attack or Heal yourself using potions.\n3 - After killing the monster, your status will be increased.\n4 - Dungeons have a chance to drop a Health potions or magic pearls.\n5 - Magic Pearls add extra stats to your Hero.\n6 - Every Dungeon has a minimum attack to enter (It is not guaranteed that you will survive).\n\nGet strong, clear the dungeons, and become a Legend!!");
     });
     //Default game for first run
     runGame("default");
@@ -314,7 +314,7 @@ function useHealthPotion(){
             --currentHeroHealthPotions;
             alert("You Healed " + healingAmount + "Points");
         }else {
-            alert("You already have full health points!");
+            alert("You already have full hitpoints!");
         }    
         // Garantee to not increase more than the maximum HP using potions
         if (currentHeroHitPoints > maxHeroHitPoints) {
@@ -456,16 +456,16 @@ function alertWeak(){
     alert(`You are not strong enough kiddo, you need a minimum ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`);
 }
 
-//Function to continue in the dungeon or go back to the first page (user sugestion)
+// Function to continue in the dungeon or go back to the first page (user sugestion)
 function continueDungeon(){
     const userResponse = window.confirm("Do you want continue in this dungeon?");
     if (userResponse) {
-        // User clicked "OK" or answered "Yes"
+        // User clicked "OK"
         runGame(selectedMonster.gameType);
         alert(`Suddenly, a ${selectedMonster.name} jumps out from behind a rock!`);    
         console.log("User clicked Ok");
     } else {    
-        // User clicked "Cancel" or answered "No"
+        // User clicked "Cancel"
         runGame("default"); 
         toggleButtons(false);    
         console.log("User clicked Cancel");

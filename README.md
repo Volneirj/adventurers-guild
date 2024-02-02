@@ -18,7 +18,7 @@ As part of a course project, this website serves as an educational resource, dem
 
 - The logo image contains a square style, and it has been generated using the free web site [CoolText Graphics Generator](https://cooltext.com/).
 
-![Logo](docs/readme_images/logo_readme.jpg)
+![Logo](docs/readme_images/logo-readme.jpg)
 
 #### Game Container
 
@@ -72,59 +72,106 @@ As part of a course project, this website serves as an educational resource, dem
 
 - Contains clickable links to Facebook, Instagram, and Whatsapp for contact.
 
-![Contact Page](docs/readme_images/footer_readme.jpg)
+![Contact Page](docs/readme_images/footer-readme.jpg)
 
 ## Design
 
-### Home Page Pre Design
+### Main Screen Pre Design
 
-![Home Pre Design](docs/readme_images/home_frame.jpg)
+![Main Screen Pre Design](docs/readme_images/home-frame.jpg)
 
 ### About us Pre Design
 
-![About Us Pre Design](docs/readme_images/about_us_frame.jpg)
-
-### Portfolio Pre Design
-
-![Portfolio Pre Design](docs/readme_images/portfolio_frame.jpg)
-
-### Contact Pre Design
-
-![Contact Pre Design](docs/readme_images/contact_frame.jpg)
+![Battle Screen Pre Design](docs/readme_images/battle-screen.jpg)
 
 ## Technologies
 
 - HTML: The structure of the website.
 - CSS: Styling using custom CSS.
+- JavaScript: Backend Development
 - CodeAnywhere.com: Online IDE.
+- Visual Studio Code: Local IDE.
 - GitHub: Source code hosting and deployment.
 - Git: Version control.
 - Font Awesome: Icons for social media links.
-- Iloveimg: Image size reduction.
+- Iloveimg.com: Image size reduction.
 - Cloudconvert: Image format conversion.
-- Favicon.io: Favicon creation.
-- Canvas: Wireframes/Pre-design/Arts created using canvas from canva.com
+- Favicon.io: Favicon creation.- 
+- Canvas: Wireframes/Pre-design/
+- Leonardo.ai: AI Image Generator
 
 ## Future Enhancements
 
-- Implementation of JavaScript for a better experience and more interactive design.
-- Expansion of the portfolio with a single page for types of products.
-- Creation of a confirmation page for the form sent.
-- Multi-language support: Portuguese, English, Spanish.
+- Implementation of Status distribution to add more interaction with the game
+- Dungeon expansion and new monsters
+- Create an infinity loop between the missions increasing the dungeon dificulty
+- Add more than 1 monster per dungeon to make it more interactive
+- 
 
 ## Testing
 
-- The website has been tested changing the sizes and using navigation bar on follow browsers: Chrome, Microsoft Edge,Opera, Firefox.
-- For mobile test, it has been tested using Google Chrome Devtools, also tested on my personal mobile Xiami 11 pro, on mobiles bigger than 768 pixels using the landscape mode the page contact could have a small issue where will be addressed in the Unfixed and fixed bugs topic.
-- Responsive design on standard screen sizes using devtools device toolbar.
-- On the contact page, on the form had been checked:
-  1. Not accepted been sent missing information.
-  2. The email input only accepted email format.
-  3. The phone number only accepted numbers.
-  4. The form information was been recorded correct.
+### User Interaction Feedback
 
-![Form Test](docs/readme_images/forms_test.jpg)
-![Form Sent](docs/readme_images/forms_sent.jpg)
+- The website has been tested the response changing the sizes and using navigation bar on follow browsers: Chrome, Microsoft Edge,Opera, Firefox.
+- For mobile test, it has been tested using Google Chrome Devtools, also tested on my personal mobile Xiami 11 pro. 
+- Responsive design on standard screen sizes using devtools device toolbar.
+- To the game content testing, have been sent for a few people to test it and taken in consideration feedbacks and implemented on the game, bellow the most relevant information.
+
+- User 1 feedback:
+  1. When finish the battle, it go back to the main screen, would be nice to have an option to keep inside the dungeon.
+    * Feature added.
+  ![Feedback Restart Dungeon](docs/readme_images/feedback-onea.jpg)
+  2. Globin can be killed infinity times and so you can take infinity Health potion and kill the bigger monsters easily. 
+    * Added a minimum power for next dungeons. 
+    ![Feedback minimum power](docs/readme_images/minpower.jpg) 
+    * Added maximum power to enter dungeon I.
+    ![Feedback maximum power](docs/readme_images/maxpower.jpg)
+  * Amount time played: More than 30 minutes
+  * Finished the game?: Yes
+  * Gamming experience: Yes
+
+- User 2 feedback: 
+  1. When uses health potion with full hitpoints it still use the potion, also showed the message had been healed x amount of points. 
+    * Added condition to limit the use of potion if hitpoits are full.
+    ![Feedback health potion](docs/readme_images/fullhp.jpg)
+  * Amount time played: More than 30 minutes
+  * Finished the game?: No
+  * Gamming experience: No
+
+- User 3 feedback:
+  1. The user found a bug if the player die when cancel the prompt and click to attack your life would keep going down.
+  * Added to the damage function a condition to life not go lower than zero.
+  ![Attack Button logic](docs/readme_images/hpminimum.jpg)
+
+  * Also, added a few conditions to the attack buttom where it only can be activated to attack when player is alive and the monster in case the player cancel the alert if he click to attack again will show the pop up to continue on the dungeon or leave.
+  ![Attack Button logic](docs/readme_images/attack-button-logic.jpg)
+  * Amount time played: More than 30 minutes.
+  * Finished the game?: No.
+  * Gamming experience: Yes.
+
+- User 4 feedback:
+  1. The user never had contact with RPG or any game so did not understand the game objective
+    * Added the How to play button, giving basic information of the game objective.
+    ![Instructions](docs/readme_images/instructions.jpg)
+  * Amount time played: Less than 30 minutes.
+  * Finished the game?: No.
+  * Gamming experience: No.
+
+- User 5 feedback:
+ 1. User suggest to change the action buttons as it was not matching with the screen design and increase the text size.
+    * Using CSS create more medieval color for the buttons and limit it size so do not take all width for bigger screens, selected better colour to have more contrast.
+  ![Old/New Action buttons](docs/readme_images/buttons-feedback.jpg)
+  * Amount time played: Less than 30 minutes.
+  * Finished the game?: No.
+  * Gamming experience: yes.
+  
+The game dynamic has been tested for 12 people, also I have played the game more than 5 hours looking for bugs and to see if was possible to finish it, with a good strategy and luck it is possible.
+
+### Debbugging 
+  - For debugging, the JavaScript code has been using `console.log` together with the Google Developer Tools to help identify bugs, loops, and condition interactions.. 
+ ![Console.log](docs/readme_images/console-log.jpg)
+ ![Developer Tools](docs/readme_images/devtools.jpg)
+
 
 ### Validator Testing
 
