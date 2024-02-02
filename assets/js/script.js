@@ -89,7 +89,7 @@ window.onload = function () {
 
 // Game Variables
 // List of variables with Hero Initial stats
-let maxHeroHealth =100;
+let maxHeroHitPoints =100;
 let HeroHitPoints = 100;
 let HeroAttack = 25;
 let HeroDefense = 0;
@@ -219,7 +219,6 @@ function attackButton() {
     }
     // Call Function to update Hero Hitpoints
     updateHeroLife();
-
     // Check game status after the attack
     checkGameStatus();
 }
@@ -227,8 +226,8 @@ function attackButton() {
 // Function to Update Hero Life
 function updateHeroLife() {
     let HeroLifeBar = document.getElementById("character-life");
-    HeroLifeBar.textContent = `${currentHeroHitPoints}/${maxHeroHealth} `;
-    updateLifeBarColor("character-life", currentHeroHitPoints, maxHeroHealth);
+    HeroLifeBar.textContent = `${currentHeroHitPoints}/${maxHeroHitPoints} `;
+    updateLifeBarColor("character-life", currentHeroHitPoints, maxHeroHitPoints);
 }
 // Function To update Hero stats and name
 function updateHeroStats(){
@@ -287,7 +286,7 @@ function updateHeroAfterDeath(){
     toggleButtons(false);           
     resetHeroStats();
     // Set Hero hit points to maximum
-    currentHeroHitPoints=maxHeroHealth; 
+    currentHeroHitPoints=maxHeroHitPoints; 
     // Update hero stats and life               
     updateHeroStats();    
     updateHeroLife();
@@ -296,7 +295,7 @@ function updateHeroAfterDeath(){
 // Function to reset Hero stats in case of death
 function resetHeroStats(){
     // Set hero stats to inicial value
-    maxHeroHealth = 100;
+    maxHeroHitPoints = 100;
     currentHeroHitPoints = HeroHitPoints;
     currentHeroAttack = HeroAttack;
     currentHeroDefense = HeroDefense;
@@ -307,9 +306,9 @@ function resetHeroStats(){
 function useHealthPotion(){
     if (currentHeroHealthPotions >= 1){
         // Increase the HP based on 25% of maximum health
-        let healingAmount = Math.floor(0.25 * maxHeroHealth);
+        let healingAmount = Math.floor(0.25 * maxHeroHitPoints);
         // Check if the hero is 100% HP and do not use potions;
-        if (currentHeroHitPoints !== maxHeroHealth){
+        if (currentHeroHitPoints !== maxHeroHitPoints){
             currentHeroHitPoints += healingAmount;
             // Decrease the Current health Potions
             --currentHeroHealthPotions;
@@ -318,8 +317,8 @@ function useHealthPotion(){
             alert("You already have full health points!");
         }    
         // Garantee to not increase more than the maximum HP using potions
-        if (currentHeroHitPoints > maxHeroHealth) {
-            currentHeroHitPoints = maxHeroHealth;
+        if (currentHeroHitPoints > maxHeroHitPoints) {
+            currentHeroHitPoints = maxHeroHitPoints;
         }              
     updateHeroLife();
     updateHeroStats();
@@ -337,22 +336,22 @@ function levelUp(level){
      let bonusDEF = 2;
     // Select the dungeon and gives proper bonus stats
     if (level === "levelone") {        
-        maxHeroHealth += bonusHP;
+        maxHeroHitPoints += bonusHP;
         currentHeroAttack += bonusATK;
         currentHeroDefense += bonusDEF;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP +  "points.\nYour max Attack increased by " + bonusATK + "points.\nYour max defense increased by " + bonusDEF +" points.");
     }else if (level === "leveltwo") {
-        maxHeroHealth += bonusHP*2;
+        maxHeroHitPoints += bonusHP*2;
         currentHeroAttack += bonusATK*2;
         currentHeroDefense += bonusDEF*2;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*2 +  "points.\nYour max Attack increased by " + bonusATK*2 + "points.\nYour max defense increased by " + bonusDEF*2 +" points.");
     }else if (level === "levelthree") {
-        maxHeroHealth += bonusHP*3;
+        maxHeroHitPoints += bonusHP*3;
         currentHeroAttack += bonusATK*3;
         currentHeroDefense += bonusDEF*3;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*3 +  "points.\nYour max Attack increased by " + bonusATK*3 + "points.\nYour max defense increased by " + bonusDEF*3 +" points.");
     }else if (level === "levelfour") {
-        maxHeroHealth += bonusHP*4;
+        maxHeroHitPoints += bonusHP*4;
         currentHeroAttack += bonusATK*4;
         currentHeroDefense += bonusDEF*4;
         alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*4 +  "points.\nYour max Attack increased by " + bonusATK*4 + "points.\nYour max defense increased by " + bonusDEF*4 +" points.");
@@ -375,19 +374,28 @@ function levelUp(level){
 // Function for drop item related to each Dungeon
 function dropItem(item){
     if (item === "levelone") {
-        currentHeroAttack += 10;
-        alert("You Found a common magic Pearl\nYou Attack Increased in 15 points");
+        const randomChance = Math.random();
+        if (randomChance<=0.33){
+            currentHeroAttack += 10;
+            alert("You Found a common magic Pearl\nYou Attack Increased in 10 points");
+        }else if(randomChance<=0.66){
+            currentHeroDefense += 10;
+            alert("You Found a common magic Pearl\nYou Defense Increased in 10 points");  
+        }else{
+            maxHeroHitPoints += 30;
+            alert("You Found a common magic Pearl\nYou Hitpoints Increased in 30 points");
+        }  
     }else if (item === "leveltwo") {
         currentHeroDefense += 15;
         currentHeroAttack += 15;
         alert("You Found a rare magic Pearl\nYou Attack and Defense Increased in 25 points");
     }else if (item === "levelthree") {
-        maxHeroHealth += 50;
+        maxHeroHitPoints += 50;
         currentHeroAttack += 25;
         currentHeroDefense += 25;
         alert("You Found a Very Rare magic Pearl!\nYour Attack,Defense Increase in 40 points.\n Your HP Increased in 50 points");
     }else if (item === "levelfour") {
-        maxHeroHealth += 150;
+        maxHeroHitPoints += 150;
         currentHeroAttack += 40;
         currentHeroDefense += 40;
         alert("You Found a Epic magic Pearl!\nYour Attack,Defense Increase in 100 points.\n Your HP Increased in 150 points");

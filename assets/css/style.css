@@ -131,30 +131,7 @@ main {
 #select-level img {
     height: 7vh;
   }
-
-/* Button Styles */
-.button-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px;    
-}
-
-.act-button {
-    flex: 1;
-    margin: 0 5px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 40%;
-    z-index: 2;  
-}
+/* Main screen buttons syle*/
 .button {    
     color: white;
     padding: 10px;
@@ -165,7 +142,7 @@ main {
     margin: 4px 2px;
     cursor: pointer;
     z-index: 2; 
-  }
+}
 
 .button img {
     background-size: cover;
@@ -173,7 +150,49 @@ main {
     background-repeat: no-repeat;
     max-height: 80px;
     z-index: 2;
-  }
+}  
+
+/* Button Styles */
+.button-container,
+.action-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;    
+}
+
+/*Action buttons style*/
+.act-button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #8B4513; 
+    color: #FFF8DC;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 20%;
+    z-index: 2; 
+    max-width: 70px;
+    border: 2px solid #CD853F;
+    box-shadow: 2px 2px 5px #A0522D;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    max-height: 60px;
+}
+
+#potion-button{
+    min-width: 100px
+}
+
+.act-button:hover {
+    background-color: #A0522D;
+}
+
 /* Footer Styles */
 footer {
     background-color: #333;
@@ -249,6 +268,17 @@ footer {
     .button {        
         padding: 0;
     }
+    /*Action buttons style*/
+    .act-button {
+        font-size: 30px;
+        max-width: 120px;
+        max-height: 100px;
+    }
+
+    #potion-button{
+        min-width: 200px
+    }
+    
 }
 
 /* Media query: bigger screens to better performance (bigger than 1439px) */
