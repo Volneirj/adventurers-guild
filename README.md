@@ -39,7 +39,7 @@ As part of a course project, this website serves as an educational resource, dem
 - The button on the top right of the game container open an alert to show the user basic how to play the game
 - The button is Responsive changing the size for diferent screens.
 
-![Navigation Bar](docs/readme_images/how-to-play.jpg)
+![How to Play](docs/readme_images/how-to-play.jpg)
 
 #### Dungeon Selection
 
