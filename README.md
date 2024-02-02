@@ -72,7 +72,7 @@ As part of a course project, this website serves as an educational resource, dem
 
 - Contains clickable links to Facebook, Instagram, and Whatsapp for contact.
 
-![Contact Page](docs/readme_images/footer-readme.jpg)
+![Contact Page](docs/readme_images/footer.jpg)
 
 ## Design
 
@@ -120,7 +120,7 @@ As part of a course project, this website serves as an educational resource, dem
 - User 1 feedback:
   1. When finish the battle, it go back to the main screen, would be nice to have an option to keep inside the dungeon.
     * Feature added.
-  ![Feedback Restart Dungeon](docs/readme_images/feedback-onea.jpg)
+  ![Feedback Restart Dungeon](docs/readme_images/continue-dungeon.jpg)
   2. Globin can be killed infinity times and so you can take infinity Health potion and kill the bigger monsters easily. 
     * Added a minimum power for next dungeons. 
     ![Feedback minimum power](docs/readme_images/minpower.jpg) 
