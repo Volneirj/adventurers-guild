@@ -86,12 +86,12 @@ window.onload = function () {
     });
     HowToPlay.addEventListener("click", function () {
         alert(`1 - Select the Dungeon.
-        \n2 - To defeat the monster, Attack or Heal yourself using potions.
-        \n3 - After killing the monster, your status will be increased.
-        \n4 - Dungeons have a chance to drop a Health potions or magic pearls.
-        \n5 - Magic Pearls add extra stats to your Hero.
-        \n6 - Every Dungeon has a minimum attack to enter (It is not guaranteed that you will survive).
-        \n\nGet strong, clear the dungeons, and become a Legend!!`);
+        2 - To defeat the monster, Attack or Heal yourself using potions.
+        3 - After killing the monster, your status will be increased.
+        4 - Dungeons have a chance to drop a Health potions or magic pearls.
+        5 - Magic Pearls add extra stats to your Hero.
+        6 - Every Dungeon has a minimum attack to enter (It is not guaranteed that you will survive).
+        \nGet strong, clear the dungeons, and become a Legend!!`);
     });
     //Default game for first run
     runGame("default");
@@ -328,36 +328,37 @@ function levelUp(level){
         currentMaxHeroHitPoints += bonusHP;
         currentHeroAttack += bonusATK;
         currentHeroDefense += bonusDEF;
-        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*bonusMultiplier} +  
-        "points.\nYour max Attack increased by " + ${bonusATK*bonusMultiplier} + 
-        "points.\nYour max defense increased by " + ${bonusDEF*bonusMultiplier} +" points.`);
+        alert(`Level up! Your stats have increased.
+        Your max HP increased by + ${bonusHP*bonusMultiplier} + points.
+        Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.
+        Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.`);
     }else if (level === "leveltwo") {
         bonusMultiplier = 2; 
         currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
         currentHeroAttack += bonusATK*bonusMultiplier;
         currentHeroDefense += bonusDEF*bonusMultiplier;
-        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  
-        ${bonusHP*bonusMultiplier} +  
-        "points.\nYour max Attack increased by " + ${bonusATK*bonusMultiplier} + 
-        "points.\nYour max defense increased by " + ${bonusDEF*bonusMultiplier} +" points.`);
+        alert(`Level up! Your stats have increased.
+        Your max HP increased by + ${bonusHP*bonusMultiplier} + points.
+        Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.
+        Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.`);
     }else if (level === "levelthree") {
         bonusMultiplier = 3; 
         currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
         currentHeroAttack += bonusATK*bonusMultiplier;
         currentHeroDefense += bonusDEF*bonusMultiplier;
-        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  
-        ${bonusHP*bonusMultiplier} +  
-        "points.\nYour max Attack increased by " + ${bonusATK*bonusMultiplier} + 
-        "points.\nYour max defense increased by " + ${bonusDEF*bonusMultiplier} +" points.`);
+        alert(`Level up! Your stats have increased.
+        Your max HP increased by + ${bonusHP*bonusMultiplier} + points.
+        Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.
+        Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.`);
     }else if (level === "levelfour") {
         bonusMultiplier = 4; 
         currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
         currentHeroAttack += bonusATK*bonusMultiplier;
         currentHeroDefense += bonusDEF*bonusMultiplier;
-        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  
-        ${bonusHP*bonusMultiplier} +  
-        "points.\nYour max Attack increased by " + ${bonusATK*bonusMultiplier} + 
-        "points.\nYour max defense increased by " + ${bonusDEF*bonusMultiplier} +" points.`);
+        alert(`Level up! Your stats have increased.
+        Your max HP increased by + ${bonusHP*bonusMultiplier} + points.
+        Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.
+        Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.`);
     }
     // Small chance to get an item which will give a bonus status
     if (Math.random()<= 0.25){
