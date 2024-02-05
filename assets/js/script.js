@@ -85,7 +85,13 @@ window.onload = function () {
         }
     });
     HowToPlay.addEventListener("click", function () {
-        alert("1 - Select the Dungeon.\n2 - To defeat the monster, Attack or Heal yourself using potions.\n3 - After killing the monster, your status will be increased.\n4 - Dungeons have a chance to drop a Health potions or magic pearls.\n5 - Magic Pearls add extra stats to your Hero.\n6 - Every Dungeon has a minimum attack to enter (It is not guaranteed that you will survive).\n\nGet strong, clear the dungeons, and become a Legend!!");
+        alert(`1 - Select the Dungeon.
+        \n2 - To defeat the monster, Attack or Heal yourself using potions.
+        \n3 - After killing the monster, your status will be increased.
+        \n4 - Dungeons have a chance to drop a Health potions or magic pearls.
+        \n5 - Magic Pearls add extra stats to your Hero.
+        \n6 - Every Dungeon has a minimum attack to enter (It is not guaranteed that you will survive).
+        \n\nGet strong, clear the dungeons, and become a Legend!!`);
     });
     //Default game for first run
     runGame("default");
@@ -315,33 +321,45 @@ function levelUp(level){
      let bonusHP = 15;
      let bonusATK = 2;
      let bonusDEF = 2;
+     let level = 1;
     // Select the dungeon and gives proper bonus stats
-    if (level === "levelone") {        
+    if (level === "levelone") {
+        level = 1;        
         currentMaxHeroHitPoints += bonusHP;
         currentHeroAttack += bonusATK;
         currentHeroDefense += bonusDEF;
-        alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP +  "points.\nYour max Attack increased by " + bonusATK + "points.\nYour max defense increased by " + bonusDEF +" points.");
+        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*level} +  
+        "points.\nYour max Attack increased by " + ${bonusATK*level} + 
+        "points.\nYour max defense increased by " + ${bonusDEF*level} +" points.`);
     }else if (level === "leveltwo") {
-        currentMaxHeroHitPoints += bonusHP*2;
-        currentHeroAttack += bonusATK*2;
-        currentHeroDefense += bonusDEF*2;
-        alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*2 +  "points.\nYour max Attack increased by " + bonusATK*2 + "points.\nYour max defense increased by " + bonusDEF*2 +" points.");
+        level = 2; 
+        currentMaxHeroHitPoints += bonusHP*level;
+        currentHeroAttack += bonusATK*level;
+        currentHeroDefense += bonusDEF*level;
+        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*level} +  
+        "points.\nYour max Attack increased by " + ${bonusATK*level} + 
+        "points.\nYour max defense increased by " + ${bonusDEF*level} +" points.`);
     }else if (level === "levelthree") {
-        currentMaxHeroHitPoints += bonusHP*3;
-        currentHeroAttack += bonusATK*3;
-        currentHeroDefense += bonusDEF*3;
-        alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*3 +  "points.\nYour max Attack increased by " + bonusATK*3 + "points.\nYour max defense increased by " + bonusDEF*3 +" points.");
+        level = 3; 
+        currentMaxHeroHitPoints += bonusHP*level;
+        currentHeroAttack += bonusATK*level;
+        currentHeroDefense += bonusDEF*level;
+        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*level} +  
+        "points.\nYour max Attack increased by " + ${bonusATK*level} + 
+        "points.\nYour max defense increased by " + ${bonusDEF*level} +" points.`);
     }else if (level === "levelfour") {
-        currentMaxHeroHitPoints += bonusHP*4;
-        currentHeroAttack += bonusATK*4;
-        currentHeroDefense += bonusDEF*4;
-        alert("Level up! Your stats have increased.\n Your max HP increased by " +  bonusHP*4 +  "points.\nYour max Attack increased by " + bonusATK*4 + "points.\nYour max defense increased by " + bonusDEF*4 +" points.");
+        level = 4; 
+        currentMaxHeroHitPoints += bonusHP*level;
+        currentHeroAttack += bonusATK*level;
+        currentHeroDefense += bonusDEF*level;
+        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*level} +  
+        "points.\nYour max Attack increased by " + ${bonusATK*level} + 
+        "points.\nYour max defense increased by " + ${bonusDEF*level} +" points.`);
     }
     // Small chance to get an item which will give a bonus status
     if (Math.random()<= 0.25){
         dropItem(selectedMonster.gameType);
     }
-
     if (Math.random() <= 0.85) {
         alert("The " + selectedMonster.name + " dropped a Health Potion");
         currentHeroHealthPotions++;       
@@ -372,12 +390,16 @@ function dropItem(item){
         currentMaxHeroHitPoints += 50;
         currentHeroAttack += 25;
         currentHeroDefense += 25;
-        alert("You Found a Very Rare magic Pearl!\nYour Attack,Defense Increase in 40 points.\n Your HP Increased in 50 points");
+        alert(`You Found a Very Rare magic Pearl!
+        \nYour Attack,Defense Increase in 40 points.
+        \n Your HP Increased in 50 points`);
     }else if (item === "levelfour") {
         currentMaxHeroHitPoints += 150;
         currentHeroAttack += 40;
         currentHeroDefense += 40;
-        alert("You Found a Epic magic Pearl!\nYour Attack,Defense Increase in 100 points.\n Your HP Increased in 150 points");
+        alert(`You Found a Epic magic Pearl!
+        \nYour Attack,Defense Increase in 100 points.
+        \n Your HP Increased in 150 points`);
     }
 }
 
@@ -430,7 +452,8 @@ function updateLifeBarColor(hpBar, currentHp, maxHp) {
 
 // Alert for not strong enough
 function alertWeak(){
-    alert(`You are not strong enough kiddo, you need a minimum ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`);
+    alert(`You are not strong enough kiddo, you need a minimum 
+    ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`);
 }
 
 // Continue in the dungeon or go back to the first page (user sugestion)
