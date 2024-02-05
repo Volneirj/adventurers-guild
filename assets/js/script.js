@@ -11,8 +11,6 @@ const HeroLifeBar = document.getElementById("character-life");
 const characterName = document.getElementById("character-name");
 const characterStats = document.getElementById("character-stats");
 
-
-
 // Wait for the DOM to finish loading before running the game
 window.onload = function () {
     // Get the button elements and add Event Listeners to them
