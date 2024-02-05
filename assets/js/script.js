@@ -242,7 +242,7 @@ function updateMonsterStats(){
     let monsterName = document.getElementById("monster-name");      
     let monsterStats = document.getElementById("monster-stats");
     monsterName.textContent = selectedMonster.name;    
-    monsterStats.textContent = "Atk: " + selectedMonster.attack + " Def: " + selectedMonster.defense;
+    monsterStats.textContent = "Atk:" + selectedMonster.attack + " Def:" + selectedMonster.defense;
 }
 
 // Function to update monster health/name and stats
@@ -400,7 +400,7 @@ function dropItem(item){
     }
 }
 
-// Function to set the background and monster image
+// Function to set the background and monster image 
 function setBackground(){   
     // Select the game container
     let gameContainer = document.querySelector(".game-container");
