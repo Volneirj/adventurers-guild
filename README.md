@@ -242,7 +242,7 @@ The game dynamic has been tested for 12 people, also I have played the game more
 ### Content
 
 All content used was free material gathered from the following web sites:
-- [Freepik](https://www.freepik.com/) - Backgrounds.
+- [Freepik](https://www.freepik.com/) - Background.
 - [Pixbay](https://pixabay.com/) - Background.
 - [CoolText Graphics Generator](https://cooltext.com/) - Logo art and Dungeon Numbers.
 - [LeonardAi](https://leonardo.ai/) - Monsters.
