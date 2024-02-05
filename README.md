@@ -108,7 +108,7 @@ As part of a course project, this website serves as an educational resource, dem
 - Add more than 1 monster per dungeon to make it more interactive
 - 
 
-## Testing
+## Testing and Fixing Bugs
 
 ### User Interaction Feedback
 
@@ -187,23 +187,10 @@ The game dynamic has been tested for 12 people, also I have played the game more
 
 ## Accessibility
 
-- Using the lighthouse Developer Tool from google Chrome, the performance, accessibility has been enchanced, also for better performance on small screems the images has been recized in three sizes, x-small, small, and the normal size.
+- Using the lighthouse Developer Tool from google Chrome, the performance, accessibility has been enchanced, improving the images sizes to get a good performance above 90 points.
 
-### Home page accessibility
+![Lighthouse Performance](docs/readme_images/lighthouse.jpg)
 
-## Unfixed and fixed Bugs
-
-  1. **Cache Control Performance Enhancement:**
-     - **Issue**: After implementing cache control for performance enhancement, the webpage showed a slight improvement of 1 or 2 points. However, upon inspecting the HTML code, errors were found in the line where the cache control was implemented.
-     - **Implemented Fix**: Considering it was showing an error when validate the html code. I decided to research and sort out this issue, as already implemented the cache control I did not want remove it, so I found someone with a similar issue on [StackOverFlow Forum](https://stackoverflow.com/questions/12498017/http-cache-headers-with-htaccess), and adpated it to my project adding the .htaccess to it.
-     - **Visual Reference**
-    ![Cache error](docs/readme_images/error_cache.jpg)
-
-  2. **Landscape Mode Issue:**
-     - **Issue**: Testing the website on Google Chrome in landscape mode revealed an issue affecting the contact page. Attempting to resolve this, a new media query for landscape was added. However, this had unintended consequences, deforming the image even on desktop.
-     - **Proposed Fix**: Considering a future implementation for the final website version outside the course project, a potential solution is to change the background image to a wider one. This would eliminate the need for extensive control over its position.
-     - **Visual Reference**
-    ![Landscape Issue](docs/readme_images/landscape_issue.jpg)
 
 ## Deployment
 
@@ -236,12 +223,16 @@ The game dynamic has been tested for 12 people, also I have played the game more
   5. Move to the folder you want clone it
   6. In the terminal type 'git clone' & then paste the link you copied in GitHub
   7. Press enter and your local clone will be created.
-- Live link: [GitHub Link](https://github.com/Volneirj/photographermiguelcardeal)
+- Live link: [GitHub Link](https://github.com/Volneirj/adventurers-guild)
 
 ## Credits
 
 1. **Base Code reference** 
-    - I leveraged the Love Running project as a foundational template for developing my code. Drawing upon the knowledge acquired during the project walkthrough, I applied key concepts and techniques to tailor the code to my specific needs. Additionally, I referred to the source code for troubleshooting and resolving issues in my implementation. The Code Institute's learning platform [Code Institute](https://learn.codeinstitute.net/). served as a valuable resource throughout this process."
+    - I used from the video bellow the idea how I would start the code, as it is using java, I convert the idea to java script, implementing new functions and making the game more dynamic as the example the function bellow, replacing the writing input "1", to my attackButton function which is triggered by a listener.
+    - [Java ForBegginers](https://www.youtube.com/watch?v=EpB9u4ItOYU&t=1284s&ab_channel=Codecourse)
+    ![Java Attack Code](docs/readme_images/java-attack.jpg)
+    ![Attack Button](docs/readme_images/attack-button.jpg)    
+
 2. **AI Search Engine:**
    - [OpenAI Chat](https://chat.openai.com/)
    - [Perplexity AI](https://www.perplexity.ai/)
@@ -251,6 +242,7 @@ The game dynamic has been tested for 12 people, also I have played the game more
 ### Content
 
 All content used was free material gathered from the following web sites:
-[Freepik](https://www.freepik.com/).
-[Pixbay](https://pixabay.com/).
-[CoolText Graphics Generator](https://cooltext.com/).
+[Freepik](https://www.freepik.com/) - Backgrounds.
+[Pixbay](https://pixabay.com/) - Background.
+[CoolText Graphics Generator](https://cooltext.com/) - Logo art and Dungeon Numbers.
+[LeonardAi](https://leonardo.ai/) - Monsters.
