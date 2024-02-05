@@ -321,40 +321,43 @@ function levelUp(level){
      let bonusHP = 15;
      let bonusATK = 2;
      let bonusDEF = 2;
-     let level = 1;
+     let bonusMultiplier = 1;
     // Select the dungeon and gives proper bonus stats
     if (level === "levelone") {
-        level = 1;        
+        bonusMultiplier = 1;        
         currentMaxHeroHitPoints += bonusHP;
         currentHeroAttack += bonusATK;
         currentHeroDefense += bonusDEF;
-        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*level} +  
-        "points.\nYour max Attack increased by " + ${bonusATK*level} + 
-        "points.\nYour max defense increased by " + ${bonusDEF*level} +" points.`);
+        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*bonusMultiplier} +  
+        "points.\nYour max Attack increased by " + ${bonusATK*bonusMultiplier} + 
+        "points.\nYour max defense increased by " + ${bonusDEF*bonusMultiplier} +" points.`);
     }else if (level === "leveltwo") {
-        level = 2; 
-        currentMaxHeroHitPoints += bonusHP*level;
-        currentHeroAttack += bonusATK*level;
-        currentHeroDefense += bonusDEF*level;
-        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*level} +  
-        "points.\nYour max Attack increased by " + ${bonusATK*level} + 
-        "points.\nYour max defense increased by " + ${bonusDEF*level} +" points.`);
+        bonusMultiplier = 2; 
+        currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
+        currentHeroAttack += bonusATK*bonusMultiplier;
+        currentHeroDefense += bonusDEF*bonusMultiplier;
+        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  
+        ${bonusHP*bonusMultiplier} +  
+        "points.\nYour max Attack increased by " + ${bonusATK*bonusMultiplier} + 
+        "points.\nYour max defense increased by " + ${bonusDEF*bonusMultiplier} +" points.`);
     }else if (level === "levelthree") {
-        level = 3; 
-        currentMaxHeroHitPoints += bonusHP*level;
-        currentHeroAttack += bonusATK*level;
-        currentHeroDefense += bonusDEF*level;
-        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*level} +  
-        "points.\nYour max Attack increased by " + ${bonusATK*level} + 
-        "points.\nYour max defense increased by " + ${bonusDEF*level} +" points.`);
+        bonusMultiplier = 3; 
+        currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
+        currentHeroAttack += bonusATK*bonusMultiplier;
+        currentHeroDefense += bonusDEF*bonusMultiplier;
+        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  
+        ${bonusHP*bonusMultiplier} +  
+        "points.\nYour max Attack increased by " + ${bonusATK*bonusMultiplier} + 
+        "points.\nYour max defense increased by " + ${bonusDEF*bonusMultiplier} +" points.`);
     }else if (level === "levelfour") {
-        level = 4; 
-        currentMaxHeroHitPoints += bonusHP*level;
-        currentHeroAttack += bonusATK*level;
-        currentHeroDefense += bonusDEF*level;
-        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  ${bonusHP*level} +  
-        "points.\nYour max Attack increased by " + ${bonusATK*level} + 
-        "points.\nYour max defense increased by " + ${bonusDEF*level} +" points.`);
+        bonusMultiplier = 4; 
+        currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
+        currentHeroAttack += bonusATK*bonusMultiplier;
+        currentHeroDefense += bonusDEF*bonusMultiplier;
+        alert(`Level up! Your stats have increased.\n Your max HP increased by " +  
+        ${bonusHP*bonusMultiplier} +  
+        "points.\nYour max Attack increased by " + ${bonusATK*bonusMultiplier} + 
+        "points.\nYour max defense increased by " + ${bonusDEF*bonusMultiplier} +" points.`);
     }
     // Small chance to get an item which will give a bonus status
     if (Math.random()<= 0.25){
