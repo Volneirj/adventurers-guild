@@ -85,13 +85,15 @@ window.onload = function () {
         }
     });
     HowToPlay.addEventListener("click", function () {
-        alert(`1 - Select the Dungeon.
-        2 - To defeat the monster, Attack or Heal yourself using potions.
+        alert(`
+        1 - Select the Dungeon.
+        2 - To play the game, Attack, Heal or Run.
         3 - After killing the monster, your status will be increased.
-        4 - Dungeons have a chance to drop a Health potions or magic pearls.
+        4 - Dungeons drop a Health potions and magic pearls.
         5 - Magic Pearls add extra stats to your Hero.
-        6 - Every Dungeon has a minimum attack to enter (It is not guaranteed that you will survive).
-        \nGet strong, clear the dungeons, and become a Legend!!`);
+        6 - Every Dungeon has a minimum attack to enter.
+
+        Get strong, clear the dungeons, and become a Legend!!`);
     });
     //Default game for first run
     runGame("default");
@@ -107,7 +109,7 @@ window.onload = function () {
 // List of variables with Hero Initial stats
 const maxHeroHitPoints =100;
 const HeroHitPoints = 100;
-const HeroAttack = 1500;
+const HeroAttack = 25;
 const HeroDefense = 0;
 const HeroHealthPotions = 14;
 
