@@ -107,7 +107,7 @@ window.onload = function () {
 // List of variables with Hero Initial stats
 const maxHeroHitPoints =100;
 const HeroHitPoints = 100;
-const HeroAttack = 25;
+const HeroAttack = 1500;
 const HeroDefense = 0;
 const HeroHealthPotions = 14;
 
