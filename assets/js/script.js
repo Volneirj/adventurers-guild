@@ -164,7 +164,7 @@ function dungeon(gameType) {
     let selectedMonster = monsters.find(monster => monster.gameType === gameType);
     // Check if a monster is found
     if (!selectedMonster) {
-        console.error(`No monster found for game type: ${selectedGameType}`);
+        console.error(`No monster found for game type: ${selectedMonster.gameType}`);
         return monsters.find(monster => monster.gameType === "default");
     }
     // Reset the monster's health to its initial value

@@ -100,14 +100,6 @@ As part of a course project, this website serves as an educational resource, dem
 - Canvas: Wireframes/Pre-design/
 - Leonardo.ai: AI Image Generator
 
-## Future Enhancements
-
-- Implementation of Status distribution to add more interaction with the game
-- Dungeon expansion and new monsters
-- Create an infinity loop between the missions increasing the dungeon dificulty
-- Add more than 1 monster per dungeon to make it more interactive
-- 
-
 ## Testing and Fixing Bugs
 
 ### User Interaction Feedback
@@ -184,6 +176,12 @@ The game dynamic has been tested for 12 people, also I have played the game more
 #### CSS
 
 - Using the [Markup Validation Service](https://validator.w3.org), through the direct input option the CSS code has been checked looking for errors.
+
+#### JavaScript
+- Using the [JShing](https://jshint.com/) inspect and validate the JavaScript code which has only found 79 warnings all related with the ES version.
+
+![JsHint Results](docs/readme_images/jshint.jpg)
+
 
 ## Accessibility
 
