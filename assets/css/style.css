@@ -1,101 +1,94 @@
-/*General Styles */
+  /* Asterisk wildcard selector to override default styles added by the browser */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/*General Styles*/
 body {
     margin: 0;
-    background-color: #333; 
-    overflow-y: auto; 
+    background-color: #333;
+    overflow-y: auto;
 }
-
 /* Header */
 header{
     background-color: #333;
     color: white;
-    text-align: center;  
-    min-height: 70px; 
-    margin-top: 10px;  
+    text-align: center;
+    min-height: 70px;
+    margin-top: 10px;
 }
-
 header img {
     max-width: 90%;
 }
-
 main {
     background-color: rgb(214, 217, 218);
-    /* Make main element take up any surplus space to push footer down */
+   /* Make main element take up any surplus space to push footer down */
     flex: 1 0 auto;
     box-shadow: 0 2px 2px #3a3a3a;
     display: flex;
-    flex-direction: column;  
+    flex-direction: column;
 }
-
 /* Game container*/
 .game-container {
     position: relative;
-    min-height: 80vh; 
+    min-height: 90vh;
     background-color: gray;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     padding: 20px;
-    width: 100%; 
+    width: 100%;
     max-width: 1500px;
     justify-content: space-evenly;
     margin:0 auto;
-    overflow-x: auto;    
+    overflow-x: auto;
 }
-
-.background-image { 
+.background-image {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
-    min-height: 80vh;
+    min-height: 85vh;
 }
-
 .monster-image {
     position: absolute;
     bottom: 10%;
-    left: 50%; 
-    transform: translateX(-50%);    
-    display:flex;     
-    max-height: 50%; 
-    z-index: 0; 
+    left: 50%;
+    transform: translateX(-50%);
+    display:flex;
+    max-height: 50%;
+    z-index: 0;
 }
-
 /* Hero and Monster styles */
-.character-info,
-.monster-info {
+.character-info, .monster-info {
     position: absolute;
     box-sizing: border-box;
     padding: 10px;
     width: 50%;
     text-align: center;
-    font-weight: bold; 
-    font-size: large;    
+    font-weight: bold;
+    font-size: large;
 }
-
 .character-info {
     top: 0;
     left: 0;
 }
-
 .monster-info {
     top: 0;
     right: 0;
 }
-
-.name{    
+.name{
     background-color: goldenrod;
     padding: 5px;
     border: 5px solid #352727;
     border-radius: 20%;
     text-align: center;
-    font-weight: bold; 
+    font-weight: bold;
 }
-
-.life-bar {   
+.life-bar {
     padding: 5px;
     border: 5px solid #352727;
     border-radius: 30%;
 }
-
-.stats {    
+.stats {
     color:white;
     font-style:normal;
     background-color: rgb(53, 48, 48);
@@ -103,7 +96,6 @@ main {
     border: 5px solid #745858;
     border-radius: 30%;
 }
-
 /* How to play */
 #how-to-play{
     position: absolute;
@@ -111,8 +103,7 @@ main {
     right:0;
     z-index: 0;
 }
-
-#how-to-play img { 
+#how-to-play img {
     max-height: 130px;
 }
 /* Select level */
@@ -125,36 +116,33 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10px; 
-    z-index: 0;   
-  }
+    padding: 10px;
+    z-index: 0;
+}
 #select-level img {
     height: 7vh;
-  }
+}
 /* Main screen buttons syle*/
-.button {    
+.button {
     color: white;
     padding: 10px;
     border:brown;
     text-align: center;
     text-decoration: none;
-    display: inline-block;  
+    display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
-    z-index: 2; 
+    z-index: 2;
 }
-
 .button img {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     max-height: 80px;
     z-index: 2;
-}  
-
+}
 /* Button Styles */
-.button-container,
-.action-container {
+.button-container, .action-container {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -162,21 +150,20 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10px;    
+    padding: 10px;
 }
-
 /*Action buttons style*/
 .act-button {
     flex: 1;
     margin: 0 5px;
     padding: 10px;
     font-size: 15px;
-    background-color: #8B4513; 
+    background-color: #8B4513;
     color: #FFF8DC;
     cursor: pointer;
     text-align: center;
     border-radius: 20%;
-    z-index: 2; 
+    z-index: 2;
     max-width: 70px;
     border: 2px solid #CD853F;
     box-shadow: 2px 2px 5px #A0522D;
@@ -184,23 +171,18 @@ main {
     font-weight: bold;
     max-height: 60px;
 }
-
 #potion-button{
-    min-width: 100px
+    min-width: 100px 
 }
-
 .act-button:hover {
     background-color: #A0522D;
 }
-
 /* Footer Styles */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    max-height: auto;
 }
-
 #social-networks {
     text-align: center;
     padding: 15px 0;
@@ -213,7 +195,6 @@ footer {
     line-height: 1;
     margin:0;
 }
-
 .fa-square-instagram{
     color: #e12375;
 }
@@ -223,111 +204,94 @@ footer {
 .fa-square-whatsapp{
     color: #1fad70;
 }
-
 /* Media query: small screens to better performance (smaller than 400px) */
 @media screen and (max-width: 400px) {
-
-    /* Select level */
+   /* Select level */
     #select-level{
         bottom: 100px;
-        max-height: 200px
-    } 
+        max-height: 200px 
+   }
     #select-level img {
         height: 6vh;
-    }
-    
-    /*Dungeon Button */
+   }
+   /*Dungeon Button */
     .button-container img {
         max-height: 50px;
-      }
-    .button {        
+   }
+    .button {
         padding: 0;
-    }
+   }
 }
-
 /* Media query: bigger screens to better performance (bigger than 767px) */
 @media screen and (min-width: 767px) {
-
-    /* Select level */
+   /* Select level */
     #select-level{
         bottom: 200px;
-        max-height: 100px
-    }    
+        max-height: 100px 
+   }
     #select-level img {
-        height: 15vh; 
-        max-height: 100px       
-      }
-    /*Dungeon Button */
+        height: 15vh;
+        max-height: 100px 
+   }
+   /*Dungeon Button */
     .button-container{
         bottom: 50px;
-    }
+   }
     .button-container img {
         height: 8vh;
-        max-height: 150px
-      }
-    .button {        
+        max-height: 150px 
+   }
+    .button {
         padding: 0;
-    }
-    /*Action buttons style*/
+   }
+   /*Action buttons style*/
     .act-button {
         font-size: 30px;
         max-width: 120px;
         max-height: 100px;
-    }
-
+   }
     #potion-button{
-        min-width: 200px
-    }
-    
+        min-width: 200px 
+   }
 }
-
 /* Media query: bigger screens to better performance (bigger than 1439px) */
 @media screen and (min-width: 1439px) {
-
-    /*Monster Image*/
-    .monster-image {      
+   /*Monster Image*/
+    .monster-image {
         max-height: 50%;
-    }
-    /* Select level */
+   }
+   /* Select level */
     #select-level{
         bottom: 300px;
-        max-height: 100px
-    }    
+        max-height: 100px 
+   }
     #select-level img {
-        height: 15vh; 
-        max-height: 140px       
-    }
-
-    /*Dungeon Button */
+        height: 15vh;
+        max-height: 140px 
+   }
+   /*Dungeon Button */
     .button-container img {
         height: 10vh;
-        max-height: 150px
-    }    
+        max-height: 150px 
+   }
 }
-
 /* Media query for landscape orientation (orientation: landscape) */
 @media screen and (orientation: landscape) and (max-width: 800px) {
-
-    /* Main content*/
+   /* Main content*/
     main {
         min-height: 600px;
-    }
-    /*Game container*/
+   }
+   /*Game container*/
     .game-container{
         max-height: none;
-    }
+   }
     .background-image{
         min-height: 600px;
-    }
+   }
     .monster-image {
-        height: 50%; 
-        max-height: none;  
-        bottom: 50px; 
-        transform: translateX(-50); 
-    }        
+        height: 50%;
+        max-height: none;
+        bottom: 50px;
+        transform: translateX(-50%);
+   }
 }
-
-
-
-
-  

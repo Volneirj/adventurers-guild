@@ -179,31 +179,17 @@ The game dynamic has been tested for 12 people, also I have played the game more
 
 - Using the [Markup Validation Service](https://validator.w3.org), through the URL option has been checked all pages and the results can be found bellow. During the tests few issues has been found and they will be adressed in the Unfixed and fixed bugs topic.
 
-- [Home Page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fvolneirj.github.io%2Fphotographermiguelcardeal%2F)
-- [Portfolio Page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fvolneirj.github.io%2Fphotographermiguelcardeal%2Fportfolio.html)
-- [Contact Page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fvolneirj.github.io%2Fphotographermiguelcardeal%2Fcontact.html)
+- [HTML Content](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fvolneirj.github.io%2Fadventurers-guild%2F)
 
 #### CSS
 
 - Using the [Markup Validation Service](https://validator.w3.org), through the direct input option the CSS code has been checked looking for errors.
-
-![CSS Validation](docs/readme_images/css_validation.jpg)
 
 ## Accessibility
 
 - Using the lighthouse Developer Tool from google Chrome, the performance, accessibility has been enchanced, also for better performance on small screems the images has been recized in three sizes, x-small, small, and the normal size.
 
 ### Home page accessibility
-
-![Home Test](docs/readme_images/index_test.jpg)
-
-### Portfolio page accessibility
-
-![Portfolio Test](docs/readme_images/portfolio_test.jpg)
-
-### Contact page accessibility
-
-![Contact Test](docs/readme_images/contact_test.jpg)
 
 ## Unfixed and fixed Bugs
 
