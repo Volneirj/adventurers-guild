@@ -4,7 +4,7 @@ window.onload = function () {
     let buttons = document.getElementsByClassName("button");
     for (let button of buttons) {
         button.addEventListener("click", function () {
-            let gameType = this.getAttribute("dungeon"); 
+            let gameType = this.getAttribute("id"); 
             selectedMonster = dungeon(gameType);           
             if(gameType ==="levelone"){
                 if (currentHeroAttack <= selectedMonster.attack*6){                    
@@ -53,10 +53,8 @@ window.onload = function () {
     });
     
     document.getElementById("potion-button").addEventListener("click", function () {
-        // If clicked and confirmed will call useHealthPotion
-        if (confirm("Using a health potion!")){
-            useHealthPotion();            
-        }
+        // If clicked will call useHealthPotion
+        useHealthPotion();            
     });
 
     document.getElementById("run-button").addEventListener("click", function () {
