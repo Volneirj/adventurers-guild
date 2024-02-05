@@ -196,7 +196,7 @@ function toggleButtons(showActionButtons) {
     }
 }
 
-// Function for attack Button
+// Function for attack Button (Base on https://www.youtube.com/watch?v=EpB9u4ItOYU&ab )
 function attackButton() {
     // Calculate damage dealt and update monster health
     let damageDealt = calculateDamage(currentHeroAttack, selectedMonster.defense);
