@@ -93,7 +93,7 @@ let maxHeroHitPoints =100;
 let HeroHitPoints = 100;
 let HeroAttack = 25;
 let HeroDefense = 0;
-let HeroHealthPotions = 12;
+let HeroHealthPotions = 14;
 
 // List of Hero and monster variable inicialization
 let selectedMonster = null; 
