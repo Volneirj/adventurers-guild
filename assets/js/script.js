@@ -310,7 +310,7 @@ async function useHealthPotion() {
             currentHeroHitPoints += healingAmount;
             // Decrease the Current health Potions
             --currentHeroHealthPotions;
-            await showPopup(`<p>You Healed ${healingAmount} Points</p>`, 1000);
+            await showPopup(`<p>You Healed <span>${healingAmount}</span> Points</p>`, 1000, 'green');
         } else {
             await showPopup(`<p>You already have full hitpoints!</p>`, 1000);
         }
@@ -502,13 +502,17 @@ async function showConfirmation(message) {
     });
 }
 
-async function showPopup(message, duration = null) {
+async function showPopup(message, duration = null, spanColor ='black') {
     return new Promise(resolve => {
         removeExistingPopUps();
         const popup = document.createElement('div');
         const messageElem = document.createElement('p');
         popup.classList.add('popup');
         messageElem.innerHTML = message;
+        const findSpan = Array.from(document.getElementsByTagName('span'));
+        findSpan.forEach(span => {
+            span.style.color = spanColor;
+        });       
         popup.appendChild(messageElem);
         document.body.appendChild(popup);
         //if set a duration it will stay on the screen for the duration time
