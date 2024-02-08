@@ -23,7 +23,7 @@ window.onload = function () {
                 if (currentHeroAttack <= selectedMonster.attack*6){                    
                     runGame(gameType);                    
                 }else{                   
-                    alert(`You are too strong the ${selectedMonster.name} run away in fear.`)
+                    showPopup(`<p>You are too strong the ${selectedMonster.name} run away in fear.</p>`)
                 }
             }else if(gameType === "leveltwo"){                               
                 if (currentHeroAttack >= selectedMonster.attack*0.8){
@@ -60,7 +60,7 @@ window.onload = function () {
         // If hero HP less or equal zero, when clicked will check status, tell you are dead and  sugest to use potion
         }else if (currentHeroHitPoints <=0){            
             checkGameStatus();
-            alert("You are dead - Use potion to have another chance");            
+            showPopup("<p>You are dead - Use potion to have another chance</p>");            
         }
     });
     
@@ -79,21 +79,21 @@ window.onload = function () {
         // Handle the situation when the Hero is dead and click in cancel and then so run will go to main screen
         if (currentHeroHitPoints <=0){            
             checkGameStatus();
-            alert("You Don't have much option you are dead - Stats Reseted")
+            showPopup("You Don't have much option you are dead - Stats Reseted")
             updateHeroAfterDeath();
             toggleButtons(false);  
         }
     });
     HowToPlay.addEventListener("click", function () {
-        alert(`
-        1 - Select the Dungeon.
-        2 - To play the game, Attack, Heal or Run.
-        3 - After killing the monster, your status will be increased.
-        4 - Dungeons drop a Health potions and magic pearls.
-        5 - Magic Pearls add extra stats to your Hero.
-        6 - Every Dungeon has a minimum attack to enter.
-
-        Get strong, clear the dungeons, and become a Legend!!`);
+        showPopup(`
+        <p>1 - Select the Dungeon.</p>
+        <p>2 - To play the game, Attack, Heal or Run.</p>
+        <p>3 - After killing the monster, your status will be increased.</p>
+        <p>4 - Dungeons drop a Health potions and magic pearls.</p>
+        <p>5 - Magic Pearls add extra stats to your Hero.</p>
+        <p>6 - Every Dungeon has a minimum attack to enter.</p>
+        
+        <p>Get strong, clear the dungeons, and become a Legend!!</p>`);
     });
     //Default game for first run
     runGame("default");
@@ -302,9 +302,9 @@ function useHealthPotion(){
             currentHeroHitPoints += healingAmount;
             // Decrease the Current health Potions
             --currentHeroHealthPotions;
-            alert("You Healed " + healingAmount + "Points");
+            showPopup("You Healed " + healingAmount + "Points");
         }else {
-            alert("You already have full hitpoints!");
+            showPopup("You already have full hitpoints!");
         }    
         // Garantee to not increase more than the maximum HP using potions
         if (currentHeroHitPoints > currentMaxHeroHitPoints) {
@@ -313,7 +313,7 @@ function useHealthPotion(){
     updateHeroLife();
     updateHeroStats();  
     }else if (currentHeroHealthPotions <= 0) {
-        alert("You are out of potions");
+        showPopup("You are out of potions");
     }    
 }
 
@@ -326,48 +326,20 @@ function levelUp(level){
      let bonusMultiplier = 1;
     // Select the dungeon and gives proper bonus stats
     if (level === "levelone") {
-        bonusMultiplier = 1;        
-        currentMaxHeroHitPoints += bonusHP;
-        currentHeroAttack += bonusATK;
-        currentHeroDefense += bonusDEF;
-        alert(`Level up! Your stats have increased.
-        Your max HP increased by + ${bonusHP*bonusMultiplier} + points.
-        Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.
-        Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.`);
+        dungeonBonus(1);
     }else if (level === "leveltwo") {
-        bonusMultiplier = 2; 
-        currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
-        currentHeroAttack += bonusATK*bonusMultiplier;
-        currentHeroDefense += bonusDEF*bonusMultiplier;
-        alert(`Level up! Your stats have increased.
-        Your max HP increased by + ${bonusHP*bonusMultiplier} + points.
-        Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.
-        Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.`);
+        dungeonBonus(2);
     }else if (level === "levelthree") {
-        bonusMultiplier = 3; 
-        currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
-        currentHeroAttack += bonusATK*bonusMultiplier;
-        currentHeroDefense += bonusDEF*bonusMultiplier;
-        alert(`Level up! Your stats have increased.
-        Your max HP increased by + ${bonusHP*bonusMultiplier} + points.
-        Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.
-        Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.`);
+        dungeonBonus(3);
     }else if (level === "levelfour") {
-        bonusMultiplier = 4; 
-        currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
-        currentHeroAttack += bonusATK*bonusMultiplier;
-        currentHeroDefense += bonusDEF*bonusMultiplier;
-        alert(`Level up! Your stats have increased.
-        Your max HP increased by + ${bonusHP*bonusMultiplier} + points.
-        Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.
-        Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.`);
+        dungeonBonus(4);
     }
     // Small chance to get an item which will give a bonus status
     if (Math.random()<= 0.25){
         dropItem(selectedMonster.gameType);
     }
     if (Math.random() <= 0.85) {
-        alert("The " + selectedMonster.name + " dropped a Health Potion");
+        showPopup("The " + selectedMonster.name + " dropped a Health Potion");
         currentHeroHealthPotions++;       
     }
     updateHeroStats();
@@ -380,30 +352,30 @@ function dropItem(item){
         const randomChance = Math.random();
         if (randomChance<=0.33){
             currentHeroAttack += 10;
-            alert("You Found a common magic Pearl\nYou Attack Increased in 10 points");
+            showPopup("You Found a common magic Pearl\nYou Attack Increased in 10 points");
         }else if(randomChance<=0.66){
             currentHeroDefense += 10;
-            alert("You Found a common magic Pearl\nYou Defense Increased in 10 points");  
+            showPopup("You Found a common magic Pearl\nYou Defense Increased in 10 points");  
         }else{
             currentMaxHeroHitPoints += 30;
-            alert("You Found a common magic Pearl\nYou Hitpoints Increased in 30 points");
+            showPopup("You Found a common magic Pearl\nYou Hitpoints Increased in 30 points");
         }  
     }else if (item === "leveltwo") {
         currentHeroDefense += 15;
         currentHeroAttack += 15;
-        alert("You Found a rare magic Pearl\nYou Attack and Defense Increased in 25 points");
+        showPopup("You Found a rare magic Pearl\nYou Attack and Defense Increased in 25 points");
     }else if (item === "levelthree") {
         currentMaxHeroHitPoints += 50;
         currentHeroAttack += 25;
         currentHeroDefense += 25;
-        alert(`You Found a Very Rare magic Pearl!
+        showPopup(`You Found a Very Rare magic Pearl!
         \nYour Attack,Defense Increase in 40 points.
         \n Your HP Increased in 50 points`);
     }else if (item === "levelfour") {
         currentMaxHeroHitPoints += 150;
         currentHeroAttack += 40;
         currentHeroDefense += 40;
-        alert(`You Found a Epic magic Pearl!
+        showPopup(`You Found a Epic magic Pearl!
         \nYour Attack,Defense Increase in 100 points.
         \n Your HP Increased in 150 points`);
     }
@@ -458,7 +430,7 @@ function updateLifeBarColor(hpBar, currentHp, maxHp) {
 
 // Alert for not strong enough
 function alertWeak(){
-    alert(`You are not strong enough kiddo, you need a minimum 
+    showPopup(`You are not strong enough kiddo, you need a minimum 
     ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`);
 }
 
@@ -468,7 +440,7 @@ function continueDungeon(){
     if (userResponse) {
         // User clicked "OK"
         runGame(selectedMonster.gameType);
-        alert(`Suddenly, a ${selectedMonster.name} jumps out from behind a rock!`);    
+        showPopup(`Suddenly, a ${selectedMonster.name} jumps out from behind a rock!`);    
     } else {    
         // User clicked "Cancel"
         runGame("default"); 
@@ -476,4 +448,35 @@ function continueDungeon(){
 }
 }
 
+function showPopup(message) {
+    const popup = document.createElement('div');
+    popup.classList.add('popup');    
+    const messageElem = document.createElement('p');
+    messageElem.innerHTML = message;    
+    popup.appendChild(messageElem);    
+    document.body.appendChild(popup);  
 
+    const closePopup = () => {
+        popup.remove();
+        document.removeEventListener('click', closePopup);
+    };
+    // Add a one-time click event listener to the document
+    document.addEventListener('click', function popupClickHandler(event) {
+        if (event.target !== popup) {
+            // Prevent the immediate closure when opening the popup
+            document.removeEventListener('click', popupClickHandler);
+            document.addEventListener('click', closePopup);
+        }
+    });
+}
+
+function dungeonBonus(bonusMultiplier){      
+    currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
+    currentHeroAttack += bonusATK*bonusMultiplier;
+    currentHeroDefense += bonusDEF*bonusMultiplier;
+    showPopup(`
+    <p>Level up! Your stats have increased.</p>
+    <p>Your max HP increased by + ${bonusHP*bonusMultiplier} + points.</p>
+    <p>Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.</p>
+    <p>Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.</p>`);
+}
