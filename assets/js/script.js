@@ -25,7 +25,7 @@ window.onload = function () {
                 if (currentHeroAttack <= selectedMonster.attack*6){                    
                     runGame(gameType);                    
                 }else{                   
-                    showPopup(`<p>You are too strong the ${selectedMonster.name} run away in fear.</p>`)
+                    showPopup(`<p>You are too strong the ${selectedMonster.name} run away in fear.</p>`,2000)
                 }
             }else if(gameType === "leveltwo"){                               
                 if (currentHeroAttack >= selectedMonster.attack*0.8){
@@ -62,7 +62,7 @@ window.onload = function () {
         // If hero HP less or equal zero, when clicked will check status, tell you are dead and  sugest to use potion
         }else if (currentHeroHitPoints <=0){            
             checkGameStatus();
-            showPopup("<p>You are dead - Use potion to have another chance</p>");            
+            showPopup("<p>You are dead - Use potion to have another chance</p>",1000);            
         }
     });
     
@@ -83,7 +83,7 @@ window.onload = function () {
         // Handle the situation when the Hero is dead and click in cancel and then so run will go to main screen
         if (currentHeroHitPoints <=0){            
             checkGameStatus();
-            showPopup("You Don't have much option you are dead - Stats Reseted")
+            showPopup("<p>You Don't have much option you are dead - Stats Reseted</p>")
             updateHeroAfterDeath();
             toggleButtons(false);  
         }
@@ -96,7 +96,7 @@ window.onload = function () {
         <p>4 - Dungeons drop a Health potions and magic pearls.</p>
         <p>5 - Magic Pearls add extra stats to your Hero.</p>
         <p>6 - Every Dungeon has a minimum attack to enter.</p>
-        
+        <br>
         <p>Get strong, clear the dungeons, and become a Legend!!</p>`);
     });
     //Default game for first run
@@ -112,17 +112,24 @@ window.onload = function () {
 // Game Variables
 // List of variables with Hero Initial stats
 const maxHeroHitPoints =100;
-const HeroHitPoints = 100;
-const HeroAttack = 25;
-const HeroDefense = 0;
-const HeroHealthPotions = 14;
+const heroHitPoints = 100;
+const heroAttack = 25;
+const heroDefense = 0;
+const heroHealthPotions = 14;
+
+const bonusATK =2;
+const bonusDEF =2;
+const bonusHP = 10;
+
+const itemDropProbrability =0.25;
+const potionDropProbability =0.8;
 
 // List of Hero and monster variable inicialization
 let selectedMonster = null; 
-let currentHeroHitPoints = HeroHitPoints; 
-let currentHeroAttack = HeroAttack;
-let currentHeroDefense = HeroDefense;
-let currentHeroHealthPotions = HeroHealthPotions;
+let currentHeroHitPoints = heroHitPoints; 
+let currentHeroAttack = heroAttack;
+let currentHeroDefense = heroDefense;
+let currentHeroHealthPotions = heroHealthPotions;
 let currentMaxHeroHitPoints = maxHeroHitPoints;
 
 // List of monster, each representing a different level (Base on https://www.youtube.com/watch?v=EpB9u4ItOYU&ab )
@@ -261,20 +268,18 @@ function calculateDamage(attackValue, defenseValue) {
     return Math.max(0, Math.floor(Math.random() * attackValue) - Math.floor(Math.random() * defenseValue));
 }
 
-function checkGameStatus() {
+async function checkGameStatus() {
     if (currentHeroHitPoints <= 0) {
         // Hero is defeated, handle game over logic
-        if (showConfirmation("Game Over - You are Dead! Do you want to restart?")) {
+        if (await showConfirmation("Game Over - You are Dead! Do you want to restart?")) {
             updateHeroAfterDeath();
         }
     }else if (selectedMonster && selectedMonster.HitPoints <= 0) {
         // Monster is defeated, handle victory logic
-        if (showConfirmation("Victory - Monster Defeated! Do you want to restart?")) {
-            removeMonsterImages();                       
-            levelUp(selectedMonster.gameType);
-            continueDungeon();    
-        }   
-    }
+        removeMonsterImages();                    
+        await levelUp(selectedMonster.gameType);
+        await continueDungeon();
+    }   
 }
 
 // Reset, move back to main screen and update hero info
@@ -290,14 +295,14 @@ function updateHeroAfterDeath(){
 function resetHeroStats(){
     // Set hero stats to inicial value
     currentMaxHeroHitPoints = maxHeroHitPoints;
-    currentHeroHitPoints = HeroHitPoints;
-    currentHeroAttack = HeroAttack;
-    currentHeroDefense = HeroDefense;
-    currentHeroHealthPotions = HeroHealthPotions;
+    currentHeroHitPoints = heroHitPoints;
+    currentHeroAttack = heroAttack;
+    currentHeroDefense = heroDefense;
+    currentHeroHealthPotions = heroHealthPotions;
 }
 
 //(Base on https://www.youtube.com/watch?v=EpB9u4ItOYU&ab )
-function useHealthPotion(){
+async function useHealthPotion(){
     if (currentHeroHealthPotions >= 1){
         // Increase the HP based on 25% of maximum health
         let healingAmount = Math.floor(0.25 * currentMaxHeroHitPoints);
@@ -306,9 +311,9 @@ function useHealthPotion(){
             currentHeroHitPoints += healingAmount;
             // Decrease the Current health Potions
             --currentHeroHealthPotions;
-            showPopup("You Healed " + healingAmount + "Points");
+           await showPopup(`<p>You Healed ${healingAmount} Points</p>`,1000);
         }else {
-            showPopup("You already have full hitpoints!");
+            await showPopup(`<p>You already have full hitpoints!</p>`,1000);
         }    
         // Garantee to not increase more than the maximum HP using potions
         if (currentHeroHitPoints > currentMaxHeroHitPoints) {
@@ -317,33 +322,28 @@ function useHealthPotion(){
     updateHeroLife();
     updateHeroStats();  
     }else if (currentHeroHealthPotions <= 0) {
-        showPopup("You are out of potions");
+        await showPopup("<p>You are out of potions</p>",1000);
     }    
 }
 
 //Increase status after every win
-function levelUp(level){
-    // Increase HP, Attack and defense related to the dungeon you enter
-     let bonusHP = 15;
-     let bonusATK = 2;
-     let bonusDEF = 2;
-     let bonusMultiplier = 1;
+async function levelUp(level){
     // Select the dungeon and gives proper bonus stats
     if (level === "levelone") {
-        dungeonBonus(1);
+        await dungeonBonus(1);
     }else if (level === "leveltwo") {
-        dungeonBonus(2);
+        await dungeonBonus(2);
     }else if (level === "levelthree") {
-        dungeonBonus(3);
+        await dungeonBonus(3);
     }else if (level === "levelfour") {
-        dungeonBonus(4);
+        await dungeonBonus(4);
     }
     // Small chance to get an item which will give a bonus status
-    if (Math.random()<= 0.25){
-        dropItem(selectedMonster.gameType);
+    if (Math.random()<= itemDropProbrability){
+        await dropItem(selectedMonster.gameType);
     }
-    if (Math.random() <= 0.85) {
-        showPopup("The " + selectedMonster.name + " dropped a Health Potion");
+    if (Math.random() <= potionDropProbability) {
+        await showPopup(`<p>The ${selectedMonster.name} dropped a Health Potion</p>`,2000);
         currentHeroHealthPotions++;       
     }
     updateHeroStats();
@@ -351,37 +351,50 @@ function levelUp(level){
 }
 
 // Handle the drop item based on dungeon level
-function dropItem(item){
+async function dropItem(item){
     if (item === "levelone") {
         const randomChance = Math.random();
         if (randomChance<=0.33){
             currentHeroAttack += 10;
-            showPopup("You Found a common magic Pearl\nYou Attack Increased in 10 points");
+            await showPopup(`
+            <p>You have found a common magic Pearl</p>
+            <p>Attack + 10 points</p>`,2000);
         }else if(randomChance<=0.66){
             currentHeroDefense += 10;
-            showPopup("You Found a common magic Pearl\nYou Defense Increased in 10 points");  
+            await showPopup(`
+            <p>You have found a common magic Pearl</p>
+            <p>Defense + 10 points</p>`,2000);  
         }else{
             currentMaxHeroHitPoints += 30;
-            showPopup("You Found a common magic Pearl\nYou Hitpoints Increased in 30 points");
+            await showPopup(`
+            <p>You have found a common magic Pearl</p>
+            <p>Max HP + 30 points</p>`,2000);
         }  
     }else if (item === "leveltwo") {
         currentHeroDefense += 15;
         currentHeroAttack += 15;
-        showPopup("You Found a rare magic Pearl\nYou Attack and Defense Increased in 25 points");
+        await showPopup(`
+        <p>You found a rare magic Pearl</p>
+        <p>Attack + 15 points</p>
+        <p>Defense + 15 points</p>`,2000);
     }else if (item === "levelthree") {
         currentMaxHeroHitPoints += 50;
         currentHeroAttack += 25;
         currentHeroDefense += 25;
-        showPopup(`You Found a Very Rare magic Pearl!
-        \nYour Attack,Defense Increase in 40 points.
-        \n Your HP Increased in 50 points`);
+        await showPopup(`
+        <p>You found a Very Rare magic Pearl!</p>
+        <p>Attack + 25 points</p>
+        <p>Defense + 25 points</p>
+        <p>Max HP + 50 points</p>`,2000);
     }else if (item === "levelfour") {
         currentMaxHeroHitPoints += 150;
         currentHeroAttack += 40;
         currentHeroDefense += 40;
-        showPopup(`You Found a Epic magic Pearl!
-        \nYour Attack,Defense Increase in 100 points.
-        \n Your HP Increased in 150 points`);
+        await showPopup(`
+        <p>You found a Epic magic Pearl!</p>
+        <p>Attack + 40 points</p>
+        <p>Defense + 40 points</p>
+        <p>Max HP + 150 points</p>`,2000);
     }
 }
 
@@ -433,18 +446,18 @@ function updateLifeBarColor(hpBar, currentHp, maxHp) {
 }
 
 // Alert for not strong enough
-function alertWeak(){
-    showPopup(`You are not strong enough kiddo, you need a minimum 
-    ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`);
+async function alertWeak(){
+    await showPopup(`You are not strong enough kiddo, you need a minimum 
+    ${parseInt(selectedMonster.attack*0.8)} of Attack Damage to enter this dungeon`,2000);
 }
 
 // Continue in the dungeon or go back to the first page (user sugestion)
 async function continueDungeon(){
-    const userResponse = await showConfirmation("Do you want continue in this dungeon?");
+    const userResponse = await showConfirmation("<p>Do you want continue in this dungeon?</p>");
     if (userResponse) {
         // User clicked "OK"
         runGame(selectedMonster.gameType);
-        showPopup(`Suddenly, a ${selectedMonster.name} jumps out from behind a rock!`);    
+        await showPopup(`<p>Suddenly, a ${selectedMonster.name} jumps out from behind a rock!</p>`,2000);    
     } else {    
         // User clicked "Cancel"
         runGame("default");
@@ -453,23 +466,20 @@ async function continueDungeon(){
 }
 
 async function dungeonBonus(bonusMultiplier){  
-    const bonusATK = 2;
-    const bonusDEF = 2;
-    const bonusHP = 10;    
     currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
     currentHeroAttack += bonusATK*bonusMultiplier;
     currentHeroDefense += bonusDEF*bonusMultiplier;
-    showPopup(`
-    <p>Level up! Your stats have increased.</p>
-    <p>Your max HP increased by + ${bonusHP*bonusMultiplier} + points.</p>
-    <p>Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.</p>
-    <p>Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.</p>`);
+    await showPopup(`
+    <p>You Defeated the ${selectedMonster.name}!</p>
+    <p>Your stats have increased.</p>
+    <p>Max HP + ${bonusHP*bonusMultiplier} points.</p>
+    <p>Attack + ${bonusATK*bonusMultiplier} points.</p>
+    <p>defense + ${bonusDEF*bonusMultiplier} points.</p>`);
 }
 
-function showConfirmation(message) {
+async function showConfirmation(message) {
     return new Promise(resolve => {
-        const existingPopups = document.querySelectorAll('.popup');
-        existingPopups.forEach(popup => popup.remove());
+        removeExistingPopUps();
         const popup = document.createElement('div');
         const messageElem = document.createElement('p');
         popup.classList.add('popup');
@@ -493,27 +503,40 @@ function showConfirmation(message) {
     });
 }
 
-async function showPopup(message) {
+async function showPopup(message,duration =null) {
+    return new Promise(resolve => {
+        const popup = document.createElement('div');
+        const messageElem = document.createElement('p');
+        popup.classList.add('popup');
+        messageElem.innerHTML = message;
+        popup.appendChild(messageElem);
+        document.body.appendChild(popup);
+        //if set a duration it will stay on the screen for the duration time
+        if (duration !== null) {
+            setTimeout(() => {
+                popup.remove();
+                resolve();
+            }, duration);
+        }
+        //When clicked outside the popup it will close
+        const closePopup = () => {
+            popup.remove();
+            document.removeEventListener('click', closePopup);
+            resolve();
+        };
+
+        document.addEventListener('click', function popupClickHandler(event) {
+            if (event.target !== popup) {
+                // Prevent the immediate closure when opening the popup
+                document.removeEventListener('click', popupClickHandler);
+                document.addEventListener('click', closePopup);
+            }
+        });
+    });
+}
+
+
+function removeExistingPopUps(){
     const existingPopups = document.querySelectorAll('.popup');
     existingPopups.forEach(popup => popup.remove());
-
-    const popup = document.createElement('div');
-    const messageElem = document.createElement('p');
-    popup.classList.add('popup');    
-    messageElem.innerHTML = message;    
-    popup.appendChild(messageElem);    
-    document.body.appendChild(popup); 
-    // Close the popup when click in any part of the screen
-    const closePopup = () => {
-        popup.remove();
-        document.removeEventListener('click', closePopup);
-    };
-    // Add a one-time click event listener to the document
-    document.addEventListener('click', function popupClickHandler(event) {
-        if (event.target !== popup) {
-            // Prevent the immediate closure when opening the popup
-            document.removeEventListener('click', popupClickHandler);
-            document.addEventListener('click', closePopup);
-        }
-    });
 }
