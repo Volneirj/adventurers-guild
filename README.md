@@ -159,6 +159,13 @@ As part of a course project, this website serves as an educational resource, dem
   
 The game dynamic has been tested for 12 people, also I have played the game more than 5 hours looking for bugs and to see if was possible to finish it, with a good strategy and luck it is possible.
 
+### PopUps Issues
+  - During the development I had the idea to add alerts to create some interaction with the user, but the alerts or confirm function cant be styled, so after had the most of the idea done, I did some research and created popUps where I could style it and show it in the middle of the screem. 
+  When I had more than 1 popup, for example when I got the battle result and the confirm message to continue the dungeon, the last popup suppress the popups before or overlaied it.
+  Looking for few examples on internet I found this tutorial doing something similar [Async Await Prompt UI](https://wesbos.com/javascript/12-advanced-flow-control/72-async-await-prompt-ui), so I had to make my popup function async, so I would be able to control this behavior, also I created two behaviors one where the popUp close when I click outside of it and also with a timeout, so when the user use a potion it just stays for 2 seconds and disapear without the need to click on it, but in the case of rewards or bit text where maybe the user want read the information it has the click option.
+  ![Async popUp](docs/readme_images/async.jpg)
+
+
 ### Debbugging 
   - For debugging, the JavaScript code has been using `console.log` together with the Google Developer Tools to help identify bugs, loops, and condition interactions.. 
  ![Console.log](docs/readme_images/console-log.jpg)
