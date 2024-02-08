@@ -10,6 +10,8 @@ const monsterLifeBar = document.getElementById("monster-life");
 const HeroLifeBar = document.getElementById("character-life");
 const characterName = document.getElementById("character-name");
 const characterStats = document.getElementById("character-stats");
+//const popup = document.createElement('div');
+//const messageElem = document.createElement('p');
 
 // Wait for the DOM to finish loading before running the game
 window.onload = function () {
@@ -71,11 +73,13 @@ window.onload = function () {
 
     runButton.addEventListener("click", function () {
         // When clicked will move to the main screen
-        if(confirm("Running away from the monster!") && (currentHeroHitPoints >0)){
+        (async () => {
+            if(await showConfirmation("Running away from the monster!") && (currentHeroHitPoints >0)){
             // Back to the Main screen
             runGame("default");
             toggleButtons(false);         
-        }
+            }
+        })();
         // Handle the situation when the Hero is dead and click in cancel and then so run will go to main screen
         if (currentHeroHitPoints <=0){            
             checkGameStatus();
@@ -260,12 +264,12 @@ function calculateDamage(attackValue, defenseValue) {
 function checkGameStatus() {
     if (currentHeroHitPoints <= 0) {
         // Hero is defeated, handle game over logic
-        if (confirm("Game Over - You are Dead! Do you want to restart?")) {
+        if (showConfirmation("Game Over - You are Dead! Do you want to restart?")) {
             updateHeroAfterDeath();
         }
     }else if (selectedMonster && selectedMonster.HitPoints <= 0) {
         // Monster is defeated, handle victory logic
-        if (confirm("Victory - Monster Defeated! Do you want to restart?")) {
+        if (showConfirmation("Victory - Monster Defeated! Do you want to restart?")) {
             removeMonsterImages();                       
             levelUp(selectedMonster.gameType);
             continueDungeon();    
@@ -435,27 +439,71 @@ function alertWeak(){
 }
 
 // Continue in the dungeon or go back to the first page (user sugestion)
-function continueDungeon(){
-    const userResponse = window.confirm("Do you want continue in this dungeon?");
+async function continueDungeon(){
+    const userResponse = await showConfirmation("Do you want continue in this dungeon?");
     if (userResponse) {
         // User clicked "OK"
         runGame(selectedMonster.gameType);
         showPopup(`Suddenly, a ${selectedMonster.name} jumps out from behind a rock!`);    
     } else {    
         // User clicked "Cancel"
-        runGame("default"); 
+        runGame("default");
         toggleButtons(false);    
 }
 }
 
-function showPopup(message) {
+async function dungeonBonus(bonusMultiplier){  
+    const bonusATK = 2;
+    const bonusDEF = 2;
+    const bonusHP = 10;    
+    currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
+    currentHeroAttack += bonusATK*bonusMultiplier;
+    currentHeroDefense += bonusDEF*bonusMultiplier;
+    showPopup(`
+    <p>Level up! Your stats have increased.</p>
+    <p>Your max HP increased by + ${bonusHP*bonusMultiplier} + points.</p>
+    <p>Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.</p>
+    <p>Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.</p>`);
+}
+
+function showConfirmation(message) {
+    return new Promise(resolve => {
+        const existingPopups = document.querySelectorAll('.popup');
+        existingPopups.forEach(popup => popup.remove());
+        const popup = document.createElement('div');
+        const messageElem = document.createElement('p');
+        popup.classList.add('popup');
+        messageElem.innerHTML = message;    
+        popup.appendChild(messageElem);
+        const confirmButton = document.createElement('button');
+        confirmButton.textContent = 'Confirm';
+        confirmButton.addEventListener('click', () => {
+            popup.remove();
+            resolve(true);      
+        });
+        popup.appendChild(confirmButton);
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Cancel';
+        cancelButton.addEventListener('click', () => {
+            popup.remove();
+            resolve(false);       
+        });
+        popup.appendChild(cancelButton);
+        document.body.appendChild(popup);
+    });
+}
+
+async function showPopup(message) {
+    const existingPopups = document.querySelectorAll('.popup');
+    existingPopups.forEach(popup => popup.remove());
+
     const popup = document.createElement('div');
-    popup.classList.add('popup');    
     const messageElem = document.createElement('p');
+    popup.classList.add('popup');    
     messageElem.innerHTML = message;    
     popup.appendChild(messageElem);    
-    document.body.appendChild(popup);  
-
+    document.body.appendChild(popup); 
+    // Close the popup when click in any part of the screen
     const closePopup = () => {
         popup.remove();
         document.removeEventListener('click', closePopup);
@@ -468,15 +516,4 @@ function showPopup(message) {
             document.addEventListener('click', closePopup);
         }
     });
-}
-
-function dungeonBonus(bonusMultiplier){      
-    currentMaxHeroHitPoints += bonusHP*bonusMultiplier;
-    currentHeroAttack += bonusATK*bonusMultiplier;
-    currentHeroDefense += bonusDEF*bonusMultiplier;
-    showPopup(`
-    <p>Level up! Your stats have increased.</p>
-    <p>Your max HP increased by + ${bonusHP*bonusMultiplier} + points.</p>
-    <p>Your max Attack increased by  + ${bonusATK*bonusMultiplier} + points.</p>
-    <p>Your max defense increased by  + ${bonusDEF*bonusMultiplier} + points.</p>`);
 }
