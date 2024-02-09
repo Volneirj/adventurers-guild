@@ -61,9 +61,11 @@ window.onload = function () {
         } else if (selectedMonster.HitPoints <= 0 || currentHeroHitPoints > 0) {
             continueDungeon();
             // If hero HP less or equal zero, when clicked will check status, tell you are dead and  sugest to use potion
-        } else if (currentHeroHitPoints <= 0) {
+        } else if (currentHeroHitPoints <= 0 && currentHeroHealthPotions > 0) {
             checkGameStatus();
             showPopup("<p>You are dead - Use potion to have another chance</p>", 2000);
+        } else if (currentHeroHealthPotions <= 0) {
+            checkGameStatus();
         }
     });
 
