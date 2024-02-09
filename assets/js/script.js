@@ -10,7 +10,6 @@ const monsterLifeBar = document.getElementById("monster-life");
 const HeroLifeBar = document.getElementById("character-life");
 const characterName = document.getElementById("character-name");
 const characterStats = document.getElementById("character-stats");
-let suppressConfirmation = false;
 
 // Wait for the DOM to finish loading before running the game
 window.onload = function () {
