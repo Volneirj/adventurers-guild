@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/*jshint esversion: 8 */
+
 //DOM Variables
 const attackButton = document.getElementById("attack-button");
 const potionButton = document.getElementById("potion-button");
@@ -23,7 +26,7 @@ window.onload = function () {
                 if (currentHeroAttack <= selectedMonster.attack * 6) {
                     runGame(gameType);
                 } else {
-                    showPopup(`<p>You are too strong the ${selectedMonster.name} run away in fear.</p>`, 2000)
+                    showPopup(`<p>You are too strong the ${selectedMonster.name} run away in fear.</p>`, 2000);
                 }
             } else if (gameType === "leveltwo") {
                 if (currentHeroAttack >= selectedMonster.attack * 0.8) {
@@ -81,7 +84,7 @@ window.onload = function () {
         // Handle the situation when the Hero is dead and click in cancel and then so run will go to main screen
         if (currentHeroHitPoints <= 0) {
             checkGameStatus();
-            showPopup("<p>You Don't have much option you are dead - Stats Reseted</p>")
+            showPopup("<p>You Don't have much option you are dead - Stats Reseted</p>");
             updateHeroAfterDeath();
             toggleButtons(false);
         }
@@ -245,7 +248,7 @@ function updateHeroLife() {
 }
 
 function updateHeroStats() {
-    characterName.textContent = "Hero"
+    characterName.textContent = "Hero";
     characterStats.textContent = `Atk:${currentHeroAttack} Def:${currentHeroDefense}`;
     potionButton.textContent = `Use Health Potion (${currentHeroHealthPotions})`;
 }
