@@ -18,9 +18,9 @@ const characterStats = document.getElementById("character-stats");
 window.onload = function () {
     // Get the button elements and add Event Listeners to them
     let buttons = document.getElementsByClassName("button");
-    for (let button of buttons) {
+    buttons.forEach(function (button) {
         button.addEventListener("click", function () {
-            let gameType = this.getAttribute("id");
+            let gameType = button.getAttribute("id");
             selectedMonster = dungeon(gameType);
             if (gameType === "levelone") {
                 if (currentHeroAttack <= selectedMonster.attack * 6) {
@@ -50,7 +50,7 @@ window.onload = function () {
                 runGame(gameType);
             }
         });
-    }
+    });
 
     // Add event listeners for the action buttons    
     attackButton.addEventListener("click", function () {
@@ -92,7 +92,7 @@ window.onload = function () {
         }
     });
     HowToPlay.addEventListener("click", function () {
-        showPopup(`<img src="assets/images/instructions.webp" alt="Instructions image">`,null,'black','popup');
+        showPopup(`<img src="assets/images/instructions.webp" alt="Instructions image">`, null, 'black', 'popup');
     });
     //Default game for first run
     runGame("default");
@@ -498,7 +498,7 @@ async function showConfirmation(message) {
     });
 }
 
-async function showPopup(message, duration = null, spanColor ='black', imgId = false) {
+async function showPopup(message, duration = null, spanColor = 'black', imgId = false) {
     return new Promise(resolve => {
         removeExistingPopUps();
         const popup = document.createElement('div');
@@ -508,10 +508,10 @@ async function showPopup(message, duration = null, spanColor ='black', imgId = f
         const findSpan = Array.from(document.getElementsByTagName('span'));
         findSpan.forEach(span => {
             span.style.color = spanColor;
-        });       
+        });
         popup.appendChild(messageElem);
         document.body.appendChild(popup);
-        if (imgId){
+        if (imgId) {
             popup.id = 'imgPopup';
         }
         //if set a duration it will stay on the screen for the duration time

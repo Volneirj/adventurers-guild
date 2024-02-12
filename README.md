@@ -217,7 +217,7 @@ After all user implementations, a batch of tests has been conducted, and the res
 
 #### HTML
 
-- Using the [Markup Validation Service](https://validator.w3.org), through the URL option has been checked all pages and the results can be found bellow. During the tests few issues has been found and they will be adressed in the Unfixed and fixed bugs topic.
+- Using the [Markup Validation Service](https://validator.w3.org), through the URL option has been checked all pages and the results can be found bellow. 
 
 - [HTML content](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fvolneirj.github.io%2Fadventurers-guild%2F)
 
@@ -225,8 +225,12 @@ After all user implementations, a batch of tests has been conducted, and the res
 
 - Using the [Markup Validation Service](https://validator.w3.org), through the direct input option the CSS code has been checked looking for errors.
 
+- [CSS content](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fvolneirj.github.io%2Fadventurers-guild%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+
 #### JavaScript
-- Using the [JShint](https://jshint.com/) inspect and validate the JavaScript code which has only found 79 warnings all related with the ES version.
+- Using the [JShint](https://jshint.com/) inspect and validate the JavaScript bellow has a image showing the result.
+
+- Observation: Has been written to include the comments /*jshint esversion: 6 */ /*jshint esversion: 8 */ at the beginning of the JavaScript code to ignore potential warnings related to mismatched versions.
 
 ![JShint Results](docs/readme_images/jshint.jpg)
 

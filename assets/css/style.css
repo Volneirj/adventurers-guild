@@ -328,9 +328,10 @@
       #potion-button {
           min-width: 200px
       }
+
       .popup img {
-        max-width: 60vh;
-    }
+          max-width: 60vh;
+      }
   }
 
   /* Media query: bigger screens to better performance (bigger than 1439px) */
@@ -384,10 +385,10 @@
       }
   }
 
-    /* Media query for landscape orientation (orientation: landscape) */
-    @media screen and (orientation: landscape) and (max-width: 1280px) {
-        .popup img {
-            max-width: 80vh;
-            max-height: fit-content;
-        }
-    }
+  /* Media query for landscape orientation (orientation: landscape) */
+  @media screen and (orientation: landscape) and (max-width: 1280px) {
+      .popup img {
+          max-width: 80vh;
+          max-height: fit-content;
+      }
+  }
