@@ -92,15 +92,7 @@ window.onload = function () {
         }
     });
     HowToPlay.addEventListener("click", function () {
-        showPopup(`
-        <p>1 - Select the Dungeon.</p>
-        <p>2 - To play the game, Attack, Heal or Run.</p>
-        <p>3 - After killing the monster, your status will be increased.</p>
-        <p>4 - Dungeons drop a Health potions and magic pearls.</p>
-        <p>5 - Magic Pearls add extra stats to your Hero.</p>
-        <p>6 - Every Dungeon has a minimum attack to enter.</p>
-        <br>
-        <p>Get strong, clear the dungeons, and become a Legend!!</p>`);
+        showPopup(`<img src="assets/images/instructions.webp" alt="Instructions image">`,null,'black','popup');
     });
     //Default game for first run
     runGame("default");
@@ -118,11 +110,11 @@ const maxHeroHitPoints = 100;
 const heroHitPoints = 100;
 const heroAttack = 25;
 const heroDefense = 0;
-const heroHealthPotions = 14;
+const heroHealthPotions = 12;
 
 const bonusATK = 2;
 const bonusDEF = 2;
-const bonusHP = 10;
+const bonusHP = 8;
 
 const itemDropProbrability = 0.25;
 const potionDropProbability = 0.8;
@@ -506,7 +498,7 @@ async function showConfirmation(message) {
     });
 }
 
-async function showPopup(message, duration = null, spanColor ='black') {
+async function showPopup(message, duration = null, spanColor ='black', imgId = false) {
     return new Promise(resolve => {
         removeExistingPopUps();
         const popup = document.createElement('div');
@@ -519,6 +511,9 @@ async function showPopup(message, duration = null, spanColor ='black') {
         });       
         popup.appendChild(messageElem);
         document.body.appendChild(popup);
+        if (imgId){
+            popup.id = 'imgPopup';
+        }
         //if set a duration it will stay on the screen for the duration time
         if (duration !== null) {
             setTimeout(() => {
