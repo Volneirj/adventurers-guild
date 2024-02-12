@@ -23,7 +23,7 @@ As part of a course project, this website serves as an educational resource, dem
 #### Game Container
 
 - The game container is where the user will interact and play the game.
-- The background brings the idea of a mediavel and fantasy world.
+- The background brings the idea of a medieval and fantasy world.
 - The main screen have the hero life and status, how to play and the dungeon selection.
 
 ![Game container](docs/readme_images/game-container.jpg)
@@ -39,7 +39,7 @@ As part of a course project, this website serves as an educational resource, dem
 - The button on the top right of the game container open an alert to show the user basic how to play the game
 - The button is Responsive changing the size for diferent screens.
 
-![How to Play](docs/readme_images/how-to-play.jpg)
+![How to play](docs/readme_images/how-to-play.jpg)
 
 #### Dungeon Selection
 
@@ -47,8 +47,8 @@ As part of a course project, this website serves as an educational resource, dem
 - Every dungeon has his own power attack requirement.
 - When you have some restricion to access specific dungeon a pop up will explain why.
 
-![Dungeon Selection](docs/readme_images/dungeon-selection.jpg)
-![Requirement for second Dungeon](docs/readme_images/dungeon-selection-interaction.jpg)
+![Dungeon selection](docs/readme_images/dungeon-selection.jpg)
+![Requirement for second dungeon](docs/readme_images/dungeon-selection-interaction.jpg)
 
 #### Dungeon Dynamic and Interface
 
@@ -58,7 +58,7 @@ As part of a course project, this website serves as an educational resource, dem
 - The monster is unique for each dungeon.
 - To the user interact he has three options Attack, Use Health Potion or Run.
 
-![Dungeon Interface](docs/readme_images/dungeon-interaction.jpg)
+![Dungeon interface](docs/readme_images/dungeon-interaction.jpg)
 
 #### Life bar, status and monster name.
 
@@ -66,23 +66,23 @@ As part of a course project, this website serves as an educational resource, dem
 - The life bar interacts with the amount of life the player and the monster have, if the life is bigger than 50% it turn green, if less than 50% it turn yellow if less than 25% it turn red.
 - The hero status will be increase after he win the battle and will show it on the status bar.
 
-![Dungeon Interaction bars](docs/readme_images/dungeon-bar-interaction.jpg)
+![Dungeon interaction bars](docs/readme_images/dungeon-bar-interaction.jpg)
 
 #### The footer section
 
 - Contains clickable links to Facebook, Instagram, and Whatsapp for contact.
 
-![Contact Page](docs/readme_images/footer.jpg)
+![Contact page](docs/readme_images/footer.jpg)
 
 ## Design
 
 ### Main Screen Pre Design
 
-![Main Screen Pre Design](docs/readme_images/home-frame.jpg)
+![Main screen pre design](docs/readme_images/home-frame.jpg)
 
 ### About us Pre Design
 
-![Battle Screen Pre Design](docs/readme_images/battle-screen.jpg)
+![Battle screen pre design](docs/readme_images/battle-screen.jpg)
 
 ## Technologies
 
@@ -112,8 +112,8 @@ As part of a course project, this website serves as an educational resource, dem
 - User 1 feedback:
   1. When finish the battle, it go back to the main screen, would be nice to have an option to keep inside the dungeon.
     * Feature added.
-  ![Feedback Restart Dungeon](docs/readme_images/continue-dungeon.jpg)
-  2. Globin can be killed infinity times and so you can take infinity Health potion and kill the bigger monsters easily. 
+  ![Feedback restart dungeon](docs/readme_images/continue-dungeon.jpg)
+  2. Goblin can be killed infinity times and so you can take infinity Health potion and kill the bigger monsters easily. 
     * Added a minimum power for next dungeons. 
     ![Feedback minimum power](docs/readme_images/minpower.jpg) 
     * Added maximum power to enter dungeon I.
@@ -133,10 +133,10 @@ As part of a course project, this website serves as an educational resource, dem
 - User 3 feedback:
   1. The user found a bug if the player die when cancel the prompt and click to attack your life would keep going down.
   * Added to the damage function a condition to life not go lower than zero.
-  ![Attack Button logic](docs/readme_images/hpminimum.jpg)
+  ![Attack button logic](docs/readme_images/hpminimum.jpg)
 
   * Also, added a few conditions to the attack buttom where it only can be activated to attack when player is alive and the monster in case the player cancel the alert if he click to attack again will show the pop up to continue on the dungeon or leave.
-  ![Attack Button logic](docs/readme_images/attack-button-logic.jpg)
+  ![Attack button logic](docs/readme_images/attack-button-logic.jpg)
   * Amount time played: More than 30 minutes.
   * Finished the game?: No.
   * Gamming experience: Yes.
@@ -152,7 +152,7 @@ As part of a course project, this website serves as an educational resource, dem
 - User 5 feedback:
  1. User suggest to change the action buttons as it was not matching with the screen design and increase the text size.
     * Using CSS create more medieval color for the buttons and limit it size so do not take all width for bigger screens, selected better colour to have more contrast.
-  ![Old/New Action buttons](docs/readme_images/buttons-feedback.jpg)
+  ![Old/New action buttons](docs/readme_images/buttons-feedback.jpg)
   * Amount time played: Less than 30 minutes.
   * Finished the game?: No.
   * Gamming experience: yes.
@@ -174,33 +174,33 @@ The game dynamic has been tested for 12 people, also I have played the game more
 
 After all user implementations, a batch of tests has been conducted, and the results are shown below.
 
-|                          **Feature**                          |                                                                        **Expected Results**                                                                        |                                **Testing Performed**                               | **Result** |   |   |   |   |   |
-|:-------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------:|:----------:|---|---|---|---|---|
-|                        **Main Screen**                        |                                                                                                                                                                    |                                                                                    |            |   |   |   |   |   |
-|                           Home Page                           |                                                                    Load all content without bugs                                                                   |                          Open page on computer and mobile                          |    Pass    |   |   |   |   |   |
-|                       How to Play Button                      |                                                                           Open the popup                                                                           |                              Clicked on "How to Play"                              |    Pass    |   |   |   |   |   |
-|                  Select an available dungeon                  |                                                                          Enter the battle                                                                          |                                Clicked on Dungeon I                                |    Pass    |   |   |   |   |   |
-|                 Select an unavailable dungeon                 |                                                                Shows the reason it is not accessible                                                               |                         Clicked on Dungeon II, III, and IV                         |    Pass    |   |   |   |   |   |
-|                Select dungeon when overpowered                |                                                                Shows the reason it is not accessible                                                               |                   Clicked on Dungeon II with more than 150 power                   |    Pass    |   |   |   |   |   |
-|                       Social Media Icons                      |                                                                  Open a new page with social media                                                                 |                 Clicked on Instagram, Facebook, and WhatsApp links                 |    Pass    |   |   |   |   |   |
-|                     Load Hero Information                     |                                                         Load hero hitpoints and hero status on the top left                                                        |                            Information loaded correctly                            |    Pass    |   |   |   |   |   |
-|                       Change Background                       |                                                  Background should change back to default when the battle is over                                                  |            Left the battle and observed the background change to default           |    Pass    |   |   |   |   |   |
-|                       **Battle Screen**                       |                                                                                                                                                                    |                                                                                    |            |   |   |   |   |   |
-|                          **Buttons**                          |                                                                                                                                                                    |                                                                                    |            |   |   |   |   |   |
-|                   Attack With Full HitPoints                  |                                                                Attack and defend against the monster                                                               |                            Clicked on the attack button                            |    Pass    |   |   |   |   |   |
-|                   Attack With Zero HitPoints                  |                                                                        Popup "You are dead"                                                                        |                            Clicked on the attack button                            |    Pass    |   |   |   |   |   |
-|         Attack With Zero HitPoints with Health Potion         |                                                       Popup "Game over" and suggestion to use a health potion                                                      |                            Clicked on the attack button                            |    Pass    |   |   |   |   |   |
-|        Attack With Zero HitPoints without Health Potion       |                                                                          Popup "Game over"                                                                         |                            Clicked on the attack button                            |    Pass    |   |   |   |   |   |
-| Use Health Potion with less Hitpoints and more than 0 potions |                                                 Popup showing the amount of life recovered and recover the hero HP                                                 |                         Clicked on the health potion button                        |    Pass    |   |   |   |   |   |
-|             Use Health Potion with full Hitpoints             |                                                           Popup showing "You already have full hitpoints"                                                          |                         Clicked on the health potion button                        |    Pass    |   |   |   |   |   |
-|                       Run with HitPoints                      |                                      Popup asking to confirm if you want to run away; if confirmed, go back to default screen                                      |                              Clicked on the run button                             |    Pass    |   |   |   |   |   |
-|                     Run without HitPoints                     |                                              Move back to the main screen, reset status, and show an interaction popup                                             |                              Clicked on the run button                             |    Pass    |   |   |   |   |   |
-|                        **Interaction**                        |                                                                                                                                                                    |                                                                                    |            |   |   |   |   |   |
-|                         Hitpoints Bar                         |                           While receiving damage, it updates and changes color to green, yellow, and red depending on the amount of life                           |                                Attacked the monster                                |    Pass    |   |   |   |   |   |
-|                       Killing a Monster                       | Calls the level-up function and increases the hero's status; asks if the user wants to continue in the dungeon; if confirmed, adds status and spawns a new monster |                                  Killed a monster                                  |    Pass    |   |   |   |   |   |
-|                        Hero Status Bar                        |                                                                Being updated after winning a battle                                                                |               Killed a monster and checked if rewards have been added              |    Pass    |   |   |   |   |   |
-|                          Monster Drop                         |                                                      30% chance to get a special item that boosts your status                                                      | Killed a monster until getting special rewards and checked if they have been added |    Pass    |   |   |   |   |   |
-|                                                               |                                                                                                                                                                    |                                                                                    |            |   |   |   |   |   |
+|                          **Feature**                          |                                                                        **Expected Results**                                                                        |                                **Testing Performed**                               | **Result** |
+|:-------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------:|:----------:|
+|                        **Main Screen**                        |                                                                                                                                                                    |                                                                                    |            |
+|                           Home Page                           |                                                                    Load all content without bugs                                                                   |                          Open page on computer and mobile                          |    Pass    |
+|                       How to Play Button                      |                                                                           Open the popup                                                                           |                              Clicked on "How to Play"                              |    Pass    |
+|                  Select an available dungeon                  |                                                                          Enter the battle                                                                          |                                Clicked on Dungeon I                                |    Pass    |
+|                 Select an unavailable dungeon                 |                                                                Shows the reason it is not accessible                                                               |                         Clicked on Dungeon II, III, and IV                         |    Pass    |
+|                Select dungeon when overpowered                |                                                                Shows the reason it is not accessible                                                               |                   Clicked on Dungeon II with more than 150 power                   |    Pass    |
+|                       Social Media Icons                      |                                                                  Open a new page with social media                                                                 |                 Clicked on Instagram, Facebook, and WhatsApp links                 |    Pass    |
+|                     Load Hero Information                     |                                                         Load hero hitpoints and hero status on the top left                                                        |                            Information loaded correctly                            |    Pass    |
+|                       Change Background                       |                                                  Background should change back to default when the battle is over                                                  |            Left the battle and observed the background change to default           |    Pass    |
+|                       **Battle Screen**                       |                                                                                                                                                                    |                                                                                    |            |
+|                          **Buttons**                          |                                                                                                                                                                    |                                                                                    |            |
+|                   Attack With Full HitPoints                  |                                                                Attack and defend against the monster                                                               |                            Clicked on the attack button                            |    Pass    | 
+|                   Attack With Zero HitPoints                  |                                                                        Popup "You are dead"                                                                        |                            Clicked on the attack button                            |    Pass    |
+|         Attack With Zero HitPoints with Health Potion         |                                                       Popup "Game over" and suggestion to use a health potion                                                      |                            Clicked on the attack button                            |    Pass    |
+|        Attack With Zero HitPoints without Health Potion       |                                                                          Popup "Game over"                                                                         |                            Clicked on the attack button                            |    Pass    |
+| Use Health Potion with less Hitpoints and more than 0 potions |                                                 Popup showing the amount of life recovered and recover the hero HP                                                 |                         Clicked on the health potion button                        |    Pass    |
+|             Use Health Potion with full Hitpoints             |                                                           Popup showing "You already have full hitpoints"                                                          |                         Clicked on the health potion button                        |    Pass    |
+|                       Run with HitPoints                      |                                      Popup asking to confirm if you want to run away; if confirmed, go back to default screen                                      |                              Clicked on the run button                             |    Pass    |  
+|                     Run without HitPoints                     |                                              Move back to the main screen, reset status, and show an interaction popup                                             |                              Clicked on the run button                             |    Pass    | 
+|                        **Interaction**                        |                                                                                                                                                                    |                                                                                    |            |
+|                         Hitpoints Bar                         |                           While receiving damage, it updates and changes color to green, yellow, and red depending on the amount of life                           |                                Attacked the monster                                |    Pass    |
+|                       Killing a Monster                       | Calls the level-up function and increases the hero's status; asks if the user wants to continue in the dungeon; if confirmed, adds status and spawns a new monster |                                  Killed a monster                                  |    Pass    |
+|                        Hero Status Bar                        |                                                                Being updated after winning a battle                                                                |               Killed a monster and checked if rewards have been added              |    Pass    |
+|                          Monster Drop                         |                                                      30% chance to get a special item that boosts your status                                                      | Killed a monster until getting special rewards and checked if they have been added |    Pass    |
+|                                                               |                                                                                                                                                                    |                                                                                    |            
 
 
 
@@ -216,16 +216,16 @@ After all user implementations, a batch of tests has been conducted, and the res
 
 - Using the [Markup Validation Service](https://validator.w3.org), through the URL option has been checked all pages and the results can be found bellow. During the tests few issues has been found and they will be adressed in the Unfixed and fixed bugs topic.
 
-- [HTML Content](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fvolneirj.github.io%2Fadventurers-guild%2F)
+- [HTML content](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fvolneirj.github.io%2Fadventurers-guild%2F)
 
 #### CSS
 
 - Using the [Markup Validation Service](https://validator.w3.org), through the direct input option the CSS code has been checked looking for errors.
 
 #### JavaScript
-- Using the [JShing](https://jshint.com/) inspect and validate the JavaScript code which has only found 79 warnings all related with the ES version.
+- Using the [JShint](https://jshint.com/) inspect and validate the JavaScript code which has only found 79 warnings all related with the ES version.
 
-![JsHint Results](docs/readme_images/jshint.jpg)
+![JShint Results](docs/readme_images/jshint.jpg)
 
 
 ## Accessibility

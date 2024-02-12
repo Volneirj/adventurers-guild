@@ -538,7 +538,6 @@ async function showPopup(message, duration = null, spanColor ='black', imgId = f
     });
 }
 
-
 function removeExistingPopUps() {
     const existingPopups = document.querySelectorAll('.popup');
     existingPopups.forEach(popup => popup.remove());
