@@ -8,11 +8,13 @@ Embark on an epic adventure in Adventurer's Guild The game, a thrilling role-pla
 
 ## Project Overview
 
+
 ### Purpose:
 
 As part of a course project, this website serves as an educational resource, demonstrating the application of web development skills to create an engaging online platform. Through the mini game presented, we aim to explore HTML/CSS/JavaScript features, creating an accessible and responsive design.
 
 ### Existing Features
+
 
 #### LOGO
 
@@ -74,7 +76,9 @@ As part of a course project, this website serves as an educational resource, dem
 
 ![Contact page](docs/readme_images/footer.jpg)
 
+
 ## Design
+
 
 ### Main Screen Pre Design
 
@@ -84,23 +88,26 @@ As part of a course project, this website serves as an educational resource, dem
 
 ![Battle screen pre design](docs/readme_images/battle-screen.jpg)
 
+
 ## Technologies
 
-- HTML: The structure of the website.
-- CSS: Styling using custom CSS.
-- JavaScript: Backend Development
-- CodeAnywhere.com: Online IDE.
-- Visual Studio Code: Local IDE.
-- GitHub: Source code hosting and deployment.
-- Git: Version control.
-- Font Awesome: Icons for social media links.
-- Iloveimg.com: Image size reduction.
-- Cloudconvert: Image format conversion.
-- Favicon.io: Favicon creation.- 
-- Canvas: Wireframes/Pre-design/
-- Leonardo.ai: AI Image Generator
+- **HTML:** The structure of the website.
+- **CSS:** Styling using custom CSS.
+- **JavaScript:** Backend Development
+- **CodeAnywhere.com:** Online IDE.
+- **Visual Studio Code:** Local IDE.
+- **GitHub:** Source code hosting and deployment.
+- **Git:** Version control.
+- **Font Awesome:** Icons for social media links.
+- **Iloveimg.com:** Image size reduction.
+- **Cloudconvert:** Image format conversion.
+- **Favicon.io:** Favicon creation.
+- **Canvas:** Wireframes/Pre-design/
+- **Leonardo.ai:** AI Image Generator
+
 
 ## Testing and Fixing Bugs
+
 
 ### User Interaction Feedback
 
@@ -166,6 +173,7 @@ The game dynamic has been tested for 12 people, also I have played the game more
   ![Async popUp](docs/readme_images/async.jpg)
 
 ### Debbugging 
+
   - For debugging, the JavaScript code has been using `console.log` together with the Google Developer Tools to help identify bugs, loops, and condition interactions.. 
  ![Console.log](docs/readme_images/console-log.jpg)
  ![Developer Tools](docs/readme_images/devtools.jpg)
@@ -200,17 +208,11 @@ After all user implementations, a batch of tests has been conducted, and the res
 |                       Killing a Monster                       | Calls the level-up function and increases the hero's status; asks if the user wants to continue in the dungeon; if confirmed, adds status and spawns a new monster |                                  Killed a monster                                  |    Pass    |
 |                        Hero Status Bar                        |                                                                Being updated after winning a battle                                                                |               Killed a monster and checked if rewards have been added              |    Pass    |
 |                          Monster Drop                         |                                                      30% chance to get a special item that boosts your status                                                      | Killed a monster until getting special rewards and checked if they have been added |    Pass    |
-|                                                               |                                                                                                                                                                    |                                                                                    |            
-
-
-
-
-
-
-
+|                                                               |                                                                                                                                                                    |                                                                                    |
 
 
 ### Validator Testing
+
 
 #### HTML
 
@@ -227,7 +229,6 @@ After all user implementations, a batch of tests has been conducted, and the res
 
 ![JShint Results](docs/readme_images/jshint.jpg)
 
-
 ## Accessibility
 
 - Using the lighthouse Developer Tool from google Chrome, the performance, accessibility has been enchanced, improving the images sizes to get a good performance above 90 points.
@@ -236,6 +237,7 @@ After all user implementations, a batch of tests has been conducted, and the res
 
 
 ## Deployment
+
 
 - **Deploying the project on Github**
   You can deploy this website by using GitPages and following the below steps:
@@ -268,18 +270,24 @@ After all user implementations, a batch of tests has been conducted, and the res
   7. Press enter and your local clone will be created.
 - Live link: [GitHub Link](https://github.com/Volneirj/adventurers-guild)
 
+
 ## Credits
 
+
 1. **Base Code reference** 
+
     - I used from the video bellow the idea how I would start the code, as it is using java, I convert the idea to java script, implementing new functions and making the game more dynamic as the example the function bellow, replacing the writing input "1", to my attackButton function which is triggered by a listener.
     - [Java ForBegginers](https://www.youtube.com/watch?v=EpB9u4ItOYU&t=1284s&ab_channel=Codecourse)
     ![Java Attack Code](docs/readme_images/java-attack.jpg)
     ![Attack Button](docs/readme_images/attack-button.jpg)    
 
 2. **AI Search Engine:**
+
    - [OpenAI Chat](https://chat.openai.com/)
    - [Perplexity AI](https://www.perplexity.ai/)
+
 3. **Code Validation:**
+
    - [W3C Jigsaw Validator](https://jigsaw.w3.org/)
 
 ### Content

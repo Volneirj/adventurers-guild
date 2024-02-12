@@ -284,6 +284,9 @@
       .button {
           padding: 0;
       }
+      .popup img {
+        max-width: 48vh;
+    }
   }
 
   /* Media query: bigger screens to better performance (bigger than 767px) */
