@@ -231,7 +231,7 @@ After all user implementations, a batch of tests has been conducted, and the res
 
 ## Accessibility
 
-- Using the lighthouse Developer Tool from google Chrome, the performance, accessibility has been enchanced, improving the images sizes to get a good performance above 90 points.
+- Using the lighthouse Developer Tool from google Chrome, the performance, accessibility has been enhanced, improving the images sizes to get a good performance above 90 points.
 
 ![Lighthouse Performance](docs/readme_images/lighthouse.jpg)
 

@@ -284,9 +284,10 @@
       .button {
           padding: 0;
       }
+
       .popup img {
-        max-width: 48vh;
-    }
+          max-width: 48vh;
+      }
   }
 
   /* Media query: bigger screens to better performance (bigger than 767px) */
@@ -327,6 +328,9 @@
       #potion-button {
           min-width: 200px
       }
+      .popup img {
+        max-width: 60vh;
+    }
   }
 
   /* Media query: bigger screens to better performance (bigger than 1439px) */
