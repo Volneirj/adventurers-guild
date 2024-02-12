@@ -353,7 +353,7 @@
   }
 
   /* Media query for landscape orientation (orientation: landscape) */
-  @media screen and (orientation: landscape) and (max-width: 1280px) {
+  @media screen and (orientation: landscape) and (max-width: 800px) {
 
       /* Main content*/
       main {
@@ -375,9 +375,12 @@
           bottom: 50px;
           transform: translateX(-50%);
       }
-
-      .popup img {
-          max-width: 80vh;
-          max-height: fit-content;
-      }
   }
+
+    /* Media query for landscape orientation (orientation: landscape) */
+    @media screen and (orientation: landscape) and (max-width: 1280px) {
+        .popup img {
+            max-width: 80vh;
+            max-height: fit-content;
+        }
+    }
