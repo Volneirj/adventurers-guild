@@ -117,7 +117,7 @@ As part of a course project, this website serves as an educational resource, dem
 - To the game content testing, have been sent for a few people to test it and taken in consideration feedbacks and implemented on the game, bellow the most relevant information.
 
 - User 1 feedback:
-  1. When finish the battle, it go back to the main screen, would be nice to have an option to keep inside the dungeon.
+  1. When finish the battle, it go back to the main screen, would be nice to have an option to continue the dungeon.
     * Feature added.
   ![Feedback restart dungeon](docs/readme_images/continue-dungeon.jpg)
   2. Goblin can be killed infinity times and so you can take infinity Health potion and kill the bigger monsters easily. 
@@ -208,8 +208,7 @@ After all user implementations, a batch of tests has been conducted, and the res
 | **Killing a Monster**                                          | Calls the level-up function and increases the hero's status; asks if the user wants to continue in the dungeon; if confirmed, adds status and spawns a new monster | Killed a monster and checked if rewards have been added | Pass       |
 | **Hero Status Bar**                                           | Being updated after winning a battle                                                             | Killed a monster and checked if rewards have been added | Pass       |
 | **Monster Drop**                                               | 30% chance to get a special item that boosts your status                                         | Killed a monster until getting special rewards and checked if they have been added | Pass       |
-|                                                               |                                                                                                                                                                    |                                                                                    |            |
-
+|
 
 
 ### Validator Testing
@@ -294,6 +293,7 @@ After all user implementations, a batch of tests has been conducted, and the res
 3. **Code Validation:**
 
    - [W3C Jigsaw Validator](https://jigsaw.w3.org/)
+   - [JSHint](https://jshint.com/)
 
 ### Content
 
