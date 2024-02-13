@@ -170,7 +170,7 @@ The game dynamic has been tested for 12 people, also I have played the game more
   - During the development I had the idea to add alerts to create some interaction with the user, but the alerts or confirm function cant be styled, so after having most of the idea done, I did some research and created popups where I could style them and display them in the middle of the screen.
   When I had more than 1 popup, for example when I got the battle result and the confirm message to continue the dungeon, the last popup suppress the popups before or overlaid them.
   Looking for few examples on internet I found this tutorial doing something similar [Async Await Prompt UI](https://wesbos.com/javascript/12-advanced-flow-control/72-async-await-prompt-ui), Therefore, I had to make my popup function asynchronous, allowing me to control this behavior. Also, I created two behaviors: one where the popup closes when I click outside of it and another with a timeout, for example when the user use a potion it stays for 2 seconds and disappears without the need to click on it, but in the case of rewards or bit text where maybe the user want read the information it has the click option.
-  ![Async popUp](docs/readme_images/async.jpg)
+  ![Async popUp](docs/readme_images/async-code.jpg)
 
 ### Debbugging 
 
