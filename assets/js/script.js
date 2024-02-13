@@ -18,7 +18,7 @@ const characterStats = document.getElementById("character-stats");
 window.onload = function () {
     // Get the button elements and add Event Listeners to them
     let buttons = document.getElementsByClassName("button");
-    buttons.forEach(function (button) {
+    Array.from(buttons).forEach(function (button) {
         button.addEventListener("click", function () {
             let gameType = button.getAttribute("id");
             selectedMonster = dungeon(gameType);
