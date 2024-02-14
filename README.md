@@ -190,7 +190,7 @@ After all user implementations, a batch of tests has been conducted, and the res
 | **How to Play Button**  | Open the popup                                                     | Clicked on "How to Play"                                     | Pass       |
 | **Select an available dungeon** | Enter the battle                                               | Clicked on Dungeon I                                          | Pass       |
 | **Select an unavailable dungeon** | Shows the reason it is not accessible                           | Clicked on Dungeon II, III, and IV                             | Pass       |
-| **Select dungeon when overpowered** | Shows the reason it is not accessible                       | Clicked on Dungeon II with more than 150 power                 | Pass       |
+| **Select dungeon when overpowered** | Shows the reason it is not accessible                       | Clicked on Dungeon I with more than 150 power                 | Pass       |
 | **Social Media Icons**  | Open a new page with social media                                  | Clicked on Instagram, Facebook, and WhatsApp links             | Pass       |
 | **Load Hero Information** | Load hero hitpoints and hero status on the top left               | Information loaded correctly                                  | Pass       |
 | **Change Background**   | Background should change back to default when the battle is over | Left the battle and observed the background change to default | Pass       |
